@@ -211,16 +211,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 767825142438995220, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 767825142438995220, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 767825143953188488, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: m_LocalPosition.x
