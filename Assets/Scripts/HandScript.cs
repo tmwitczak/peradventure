@@ -10,12 +10,15 @@ using Vector3 = UnityEngine.Vector3;
 public class HandScript : MonoBehaviour
 {
     public float Speed;
-
+    public float StealAmount;
     public GameObject Hive;
+    private GameObject honey;
 
     private bool moveBack;
 
     private Vector3 initialPos;
+
+    private HoneyBar HoneyBar;
 
     private float destructionTimer = 0.0f;
     // Start is called before the first frame update
@@ -23,6 +26,8 @@ public class HandScript : MonoBehaviour
     {
         moveBack = false;
         initialPos = transform.position;
+        honey = gameObject.transform.GetChild(0).gameObject;
+        HoneyBar = GameObject.FindGameObjectWithTag("HoneyBar").GetComponent<HoneyBar>();
     }
 
     // Update is called once per frame
@@ -39,6 +44,7 @@ public class HandScript : MonoBehaviour
         }
         else
         {
+            honey.SetActive(true);
             transform.position = Vector2.MoveTowards(transform.position, initialPos, step);
             destructionTimer += Time.deltaTime;
             if (destructionTimer >= 1.0f)
@@ -53,6 +59,10 @@ public class HandScript : MonoBehaviour
         if (other.CompareTag("Hive"))
         {
             moveBack = true;
+            if (HoneyBar.getHoneyAmount() - StealAmount <= 0.0f)
+            {
+                HoneyBar.setHoneyAmount(0.0f);
+            }else HoneyBar.setHoneyAmount(HoneyBar.getHoneyAmount() - StealAmount);
         }
     }
 }

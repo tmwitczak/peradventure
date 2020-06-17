@@ -10,10 +10,10 @@ public class HandSpawner : MonoBehaviour
     private Vector3 screenMin;
     private Vector3 screenMax;
     private float spawnTimer = 0.0f;
-    private float spawnCooldown = 1.0f;
+    public float SpawnCooldown = 3.0f;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
-    private int tmp = 0;
+    private int seed = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -36,7 +36,7 @@ public class HandSpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnCooldown)
+        if (spawnTimer >= SpawnCooldown)
         {
             SpawnHand();
             spawnTimer = 0.0f;
@@ -45,8 +45,8 @@ public class HandSpawner : MonoBehaviour
 
     private void SpawnHand()
     {
-        tmp += 1000;
-        Random.InitState(tmp);
+        seed += 1000;
+        Random.InitState(seed);
         var spawnPosition = new Vector2(spawnX[Random.Range(0, spawnX.Count)], spawnY[Random.Range(0, spawnY.Count)]);
         Instantiate(Hand, spawnPosition, Quaternion.identity);
     }
