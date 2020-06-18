@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trail: {fileID: 9047633377133651298, guid: 48fc71d509b047646a491cf93cfe1798, type: 3}
-  minCutVelocity: 0.001
+  minCutVelocity: 0.00001
 --- !u!50 &9019628314672914891
 Rigidbody2D:
   serializedVersion: 4
@@ -66,7 +66,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &9019628314672914740
 CircleCollider2D:

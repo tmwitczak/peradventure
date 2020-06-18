@@ -413,12 +413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 640, y: 960}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -432,8 +432,8 @@ Canvas:
   m_GameObject: {fileID: 1902009107}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -612,19 +612,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1902009111}
     m_Modifications:
-    - target: {fileID: 4365458687321778248, guid: 814364231086ac047844aebc532ca398,
-        type: 3}
-      propertyPath: Speed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778250, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_Name
-      value: HoneyBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365458687321778250, guid: 814364231086ac047844aebc532ca398,
-        type: 3}
-      propertyPath: m_TagString
       value: HoneyBar
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
@@ -685,22 +675,22 @@ PrefabInstance:
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 135.97
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 82
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 16.49
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
@@ -710,7 +700,7 @@ PrefabInstance:
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
@@ -720,7 +710,7 @@ PrefabInstance:
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
@@ -730,7 +720,7 @@ PrefabInstance:
     - target: {fileID: 4365458687321778251, guid: 814364231086ac047844aebc532ca398,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4365458688822438030, guid: 814364231086ac047844aebc532ca398,
         type: 3}
@@ -805,6 +795,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615227038859752295, guid: f10284a08e1850c4ca3a5dda9b5b0748,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615227038859752295, guid: f10284a08e1850c4ca3a5dda9b5b0748,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f10284a08e1850c4ca3a5dda9b5b0748, type: 3}
