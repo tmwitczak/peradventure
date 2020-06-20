@@ -51,6 +51,7 @@ public class SmokeBehaviour : MonoBehaviour
             {
                 SmokeLeft.Stop();
                 startPlaying[0] = false;
+                startTime[0] = 0.0f;
             }
         }
 
@@ -60,11 +61,12 @@ public class SmokeBehaviour : MonoBehaviour
             {
                 SmokeRight.Play();
             }
-            float timePlaying = (Time.time - startTime[0]);
+            float timePlaying = (Time.time - startTime[1]);
             if (timePlaying > EMITTING_TIME && SmokeRight.isPlaying)
             {
                 SmokeRight.Stop();
                 startPlaying[1] = false;
+                startTime[1] = 0.0f;
             }
         }
 
@@ -74,11 +76,12 @@ public class SmokeBehaviour : MonoBehaviour
             {
                 SmokeUp.Play();
             }
-            float timePlaying = (Time.time - startTime[0]);
+            float timePlaying = (Time.time - startTime[2]);
             if (timePlaying > EMITTING_TIME && SmokeUp.isPlaying)
             {
                 SmokeUp.Stop();
                 startPlaying[2] = false;
+                startTime[2] = 0.0f;
             }
         }
 
@@ -88,11 +91,12 @@ public class SmokeBehaviour : MonoBehaviour
             {
                 SmokeDown.Play();
             }
-            float timePlaying = (Time.time - startTime[0]);
+            float timePlaying = (Time.time - startTime[3]);
             if (timePlaying > EMITTING_TIME && SmokeDown.isPlaying)
             {
                 SmokeDown.Stop();
-                startPlaying[0] = false;
+                startPlaying[3] = false;
+                startTime[3] = 0.0f;
             }
         }
     }
