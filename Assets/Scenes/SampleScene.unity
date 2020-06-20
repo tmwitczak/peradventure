@@ -271,11 +271,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smokes
       objectReference: {fileID: 0}
-    - target: {fileID: 767825143953188491, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42ccd7293de293c4f8c15e3d4f94f2b4, type: 3}
 --- !u!224 &1525632705 stripped
