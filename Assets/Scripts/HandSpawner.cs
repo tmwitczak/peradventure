@@ -28,8 +28,6 @@ public class HandSpawner : MonoBehaviour
         {
             spawnY.Add(i);
         }
-        spawnX = spawnX.Where(value => value <= screenMin.x || value >= screenMax.x).ToList();
-        spawnY = spawnY.Where(value => value <= screenMin.y || value >= screenMax.y).ToList();
     }
 
     // Update is called once per frame
@@ -47,6 +45,20 @@ public class HandSpawner : MonoBehaviour
     {
         seed += 1000;
         Random.InitState(seed);
+        int rand = Random.Range(0, 50);
+        if (rand % 3 == 1)
+        {
+            spawnX = spawnX.Where(value => value <= screenMin.x || value >= screenMax.x).ToList();
+        }
+        else if(rand % 3 == 2)
+        {
+            spawnY = spawnY.Where(value => value <= screenMin.y || value >= screenMax.y).ToList();
+        }
+        else
+        {
+            spawnX = spawnX.Where(value => value <= screenMin.x || value >= screenMax.x).ToList();
+            spawnY = spawnY.Where(value => value <= screenMin.y || value >= screenMax.y).ToList();
+        }
         var spawnPosition = new Vector2(spawnX[Random.Range(0, spawnX.Count)], spawnY[Random.Range(0, spawnY.Count)]);
         Instantiate(Hand, spawnPosition, Quaternion.identity);
     }
