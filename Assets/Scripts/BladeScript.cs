@@ -10,7 +10,8 @@ public class BladeScript : MonoBehaviour
     public float minCutVelocity;
 
     private Rigidbody2D rigidbody;
-    private CircleCollider2D circleCollider;
+    [SerializeField] CircleCollider2D circleCollider;
+    [SerializeField] CircleCollider2D circleCollider1;
     private Camera camera;
     private GameObject currentTrail;
     private Vector2 previousPos;
@@ -18,7 +19,6 @@ public class BladeScript : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        circleCollider = GetComponent<CircleCollider2D>();
         camera = Camera.main;
     }
 
@@ -66,8 +66,12 @@ public class BladeScript : MonoBehaviour
         if (velocity > minCutVelocity)
         {
             circleCollider.enabled = true;
+            circleCollider1.enabled = true;
         }
-        else circleCollider.enabled = false;
+        else { 
+            circleCollider.enabled = false; 
+            circleCollider1.enabled = false; 
+        }
 
         previousPos = newPos;
     }
@@ -77,6 +81,7 @@ public class BladeScript : MonoBehaviour
         isCutting = true;
         currentTrail = Instantiate(Trail, transform);
         circleCollider.enabled = false;
+        circleCollider1.enabled = false;
     }
 
     void StopCutting()
@@ -85,6 +90,7 @@ public class BladeScript : MonoBehaviour
         currentTrail.transform.SetParent(null);
         Destroy(currentTrail);
         circleCollider.enabled = false;
+        circleCollider1.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

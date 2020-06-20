@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 9019628314672914890}
   - component: {fileID: 9019628314672914891}
   - component: {fileID: 9019628314672914740}
-  m_Layer: 0
+  - component: {fileID: 1653222391}
+  m_Layer: 8
   m_Name: Blade
   m_TagString: Blade
   m_Icon: {fileID: 0}
@@ -47,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Trail: {fileID: 9047633377133651298, guid: 48fc71d509b047646a491cf93cfe1798, type: 3}
   minCutVelocity: 0.00001
+  circleCollider: {fileID: 9019628314672914740}
+  circleCollider1: {fileID: 1653222391}
 --- !u!50 &9019628314672914891
 Rigidbody2D:
   serializedVersion: 4
@@ -84,3 +87,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!58 &1653222391
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019628314672914888}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75
