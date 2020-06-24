@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hand: {fileID: 4303970828566958942, guid: 697cd065f5b1b4146998c7a0a1b637b4, type: 3}
+  SpawnCooldown: 3
+  HandsToSpawn: 1

@@ -7,10 +7,12 @@ using Random = UnityEngine.Random;
 public class HandSpawner : MonoBehaviour
 {
     public GameObject Hand;
+    public float SpawnCooldown;
+    public int HandsToSpawn;
+
     private Vector3 screenMin;
     private Vector3 screenMax;
     private float spawnTimer = 0.0f;
-    public float SpawnCooldown = 3.0f;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
     private int seed = 0;
@@ -36,7 +38,10 @@ public class HandSpawner : MonoBehaviour
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= SpawnCooldown)
         {
-            SpawnHand();
+            for (int i = 0; i < HandsToSpawn; i++)
+            {
+                SpawnHand();
+            }
             spawnTimer = 0.0f;
         }
     }
