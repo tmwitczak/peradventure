@@ -7,10 +7,12 @@ using Object = System.Object;
 
 public class HoneyBar : MonoBehaviour
 {
+    [SerializeField] GameObject EndGameMenu;
     public Slider slider;
     public float Speed;
     private BeesAmountScript beesAmountScript;
     private int amountOfBees;
+    public static float endHoneyAmount = 0.0f;
 
     private void Start()
     {
@@ -21,6 +23,12 @@ public class HoneyBar : MonoBehaviour
     {
         amountOfBees = beesAmountScript.ActualNumOfBees;
         slider.value += Time.deltaTime * amountOfBees * Speed;
+        if (slider.value == slider.maxValue || TimerScript.TimeLeft == 0.0f)
+        {
+            endHoneyAmount = slider.value;
+            EndGameMenu.SetActive(true);
+            HiveLevel.resultsActive = true;
+        }
     }
     public void setMaxHoneyAmount(float value)
     {

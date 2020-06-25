@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
-    public float TimeLeft;
+    public static float TimeLeft = 30.0f;
 
     private Text text;
     // Start is called before the first frame update
@@ -17,7 +17,11 @@ public class TimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeLeft -= Time.deltaTime;
-        text.text = "Time left:" + Mathf.Round(TimeLeft);
+        if (TimeLeft > 0.0f)
+        {
+            TimeLeft -= Time.deltaTime;
+            text.text = "Time left:" + Mathf.Round(TimeLeft);
+        }
+        else TimeLeft = 0.0f;
     }
 }
