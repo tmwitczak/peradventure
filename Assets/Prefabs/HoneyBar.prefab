@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4365458687321778249}
   - component: {fileID: 4365458687321778248}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: HoneyBar
   m_TagString: HoneyBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
