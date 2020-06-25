@@ -103,7 +103,6 @@ public class SmokeBehaviour : MonoBehaviour
 
     void ActivateSmoke(int i)
     {
-        Debug.Log(i);
         switch (i)
         {
             case 0:
