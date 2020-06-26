@@ -29,7 +29,7 @@ public class PauseMenuController : MonoBehaviour
         isPaused = false;
     }
 
-    private void Pause()
+    public void Pause()
     {
         PauseMenu.SetActive(true);
         Time.timeScale = 0.0f;
