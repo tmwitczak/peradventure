@@ -64,6 +64,7 @@ public class HiveLevel : MonoBehaviour
     private void LevelUp()
     {
         hiveLevel++;
+        levelNumber.text = hiveLevel.ToString();
         slider.maxValue *= 2.0f;
     }
 }
