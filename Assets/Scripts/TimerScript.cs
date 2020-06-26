@@ -20,7 +20,7 @@ public class TimerScript : MonoBehaviour
         if (TimeLeft > 0.0f)
         {
             TimeLeft -= Time.deltaTime;
-            text.text = "Time left:" + Mathf.Round(TimeLeft);
+            text.text = "Time left: " + Mathf.Round(TimeLeft);
         }
         else TimeLeft = 0.0f;
     }
