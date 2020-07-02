@@ -8,7 +8,9 @@ using Object = System.Object;
 public class HoneyCounter : MonoBehaviour
 {
     public float Speed;
+    public float MinSmokedSpeed = 0.3f;
     public float SmokeFactor = 1f;
+    private float initialSmokeFactor;
     private BeesAmountScript beesAmountScript;
     private int amountOfBees;
     private Text text;
@@ -19,13 +21,15 @@ public class HoneyCounter : MonoBehaviour
     private void Start()
     {
         beesAmountScript = FindObjectOfType<BeesAmountScript>();
-        honeyAmount = 0.0f;
+        honeyAmount = 0f;
         text = GetComponent<Text>();
         initialText = text.text;
+        initialSmokeFactor = SmokeFactor;
     }
 
     private void Update()
     {
+        Debug.Log(SmokeFactor);
         amountOfBees = beesAmountScript.ActualNumOfBees;
         honeyAmount += Time.deltaTime * (amountOfBees * SmokeFactor) * Speed;
         text.text = initialText + Mathf.Round(honeyAmount);
@@ -38,5 +42,20 @@ public class HoneyCounter : MonoBehaviour
     public float getHoneyAmount()
     {
         return honeyAmount;
+    }
+
+    public float getSmokeFactor()
+    {
+        return SmokeFactor;
+    }
+
+    public void setSmokeFactor(float value)
+    {
+        if (value >= MinSmokedSpeed && value <= initialSmokeFactor)
+        {
+            SmokeFactor = value;
+        }
+        else if (value < MinSmokedSpeed) SmokeFactor = MinSmokedSpeed;
+        else SmokeFactor = initialSmokeFactor;
     }
 }

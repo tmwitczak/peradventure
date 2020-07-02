@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 767825142438995221}
   - component: {fileID: 767825142438995220}
   - component: {fileID: 767825142438995223}
+  - component: {fileID: 1876831416}
   m_Layer: 8
   m_Name: SmokeLeft
   m_TagString: Smoke
@@ -222,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3749,16 +3750,16 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 1
+    enter: 2
     exit: 0
     radiusScale: 1
   SubModule:
@@ -4763,6 +4764,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1876831416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767825142438995222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  honeyCounter: {fileID: 0}
+  smokeEffect: 0.00001
 --- !u!1 &767825143048045796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4774,6 +4789,7 @@ GameObject:
   - component: {fileID: 767825143048045797}
   - component: {fileID: 767825143048045795}
   - component: {fileID: 767825143048045794}
+  - component: {fileID: 1560030743}
   m_Layer: 8
   m_Name: SmokeUp
   m_TagString: Smoke
@@ -4985,7 +5001,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -8512,16 +8528,16 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     radiusScale: 1
   SubModule:
@@ -9526,6 +9542,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1560030743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767825143048045796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  honeyCounter: {fileID: 0}
+  smokeEffect: 0.00001
 --- !u!1 &767825143305193335
 GameObject:
   m_ObjectHideFlags: 0
@@ -9537,6 +9567,7 @@ GameObject:
   - component: {fileID: 767825143305193332}
   - component: {fileID: 767825143305193330}
   - component: {fileID: 767825143305193333}
+  - component: {fileID: 1521085847}
   m_Layer: 8
   m_Name: SmokeRight
   m_TagString: Smoke
@@ -9748,7 +9779,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -13275,16 +13306,16 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     radiusScale: 1
   SubModule:
@@ -14289,6 +14320,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1521085847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767825143305193335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  honeyCounter: {fileID: 0}
+  smokeEffect: 0.00001
 --- !u!1 &767825143773373095
 GameObject:
   m_ObjectHideFlags: 0
@@ -14300,6 +14345,7 @@ GameObject:
   - component: {fileID: 767825143773373092}
   - component: {fileID: 767825143773373090}
   - component: {fileID: 767825143773373093}
+  - component: {fileID: 529699738}
   m_Layer: 8
   m_Name: SmokeDown
   m_TagString: Smoke
@@ -14511,7 +14557,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -18038,16 +18084,16 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     radiusScale: 1
   SubModule:
@@ -19052,6 +19098,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &529699738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767825143773373095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  honeyCounter: {fileID: 0}
+  smokeEffect: 0.00001
 --- !u!1 &767825143953188491
 GameObject:
   m_ObjectHideFlags: 0
