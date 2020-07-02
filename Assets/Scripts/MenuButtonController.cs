@@ -43,7 +43,7 @@ public class MenuButtonController : MonoBehaviour
                     if (animEnded)
                     {
                         LoadLevel("Level1");
-                        TimerScript.TimeLeft = 30.0f;
+                        StopwatchScript.MaxTime = 30.0f;
                         Time.timeScale = 1.0f;
                         SetToFalse();
                     }

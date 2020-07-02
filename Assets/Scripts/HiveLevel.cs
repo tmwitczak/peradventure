@@ -11,6 +11,7 @@ public class HiveLevel : MonoBehaviour
     [SerializeField] Text levelNumber;
     public Slider slider;
 
+    private HoneyCounter honeyCounter;
     private float fillSpeed = 1.5f;
     private float honeyAmount = 0.0f;
     private float startFillTime = 0.0f;
@@ -21,6 +22,7 @@ public class HiveLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        honeyCounter = FindObjectOfType<HoneyCounter>();
         hiveLevel = 1;
         levelNumber.text = hiveLevel.ToString();
     }
@@ -38,10 +40,10 @@ public class HiveLevel : MonoBehaviour
             }
             else
             {
-                slider.value = Mathf.Lerp(honeyAmount, HoneyBar.endHoneyAmount, honeySmoothing);
-                if (slider.value == HoneyBar.endHoneyAmount)
+                slider.value = Mathf.Lerp(honeyAmount, honeyCounter.endHoneyAmount, honeySmoothing);
+                if (slider.value == honeyCounter.endHoneyAmount)
                 {
-                    honeyAmount = HoneyBar.endHoneyAmount;
+                    honeyAmount = honeyCounter.endHoneyAmount;
                     filled = true;
                 }
             }

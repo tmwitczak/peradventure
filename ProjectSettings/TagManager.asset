@@ -8,9 +8,10 @@ TagManager:
   - Bee
   - Hand
   - Honey
-  - HoneyBar
   - Blade
   - Smoke
+  - HoneyCounter
+  - HoneyBar
   layers:
   - Default
   - TransparentFX

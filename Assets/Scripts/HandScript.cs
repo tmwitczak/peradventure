@@ -18,7 +18,7 @@ public class HandScript : MonoBehaviour
 
     private Vector3 initialPos;
 
-    private HoneyBar HoneyBar;
+    private HoneyCounter HoneyCounter;
 
     private float destructionTimer = 0.0f;
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class HandScript : MonoBehaviour
         moveBack = false;
         initialPos = transform.position;
         honey = gameObject.transform.GetChild(0).gameObject;
-        HoneyBar = GameObject.FindGameObjectWithTag("HoneyBar").GetComponent<HoneyBar>();
+        HoneyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
     }
 
     // Update is called once per frame
@@ -59,10 +59,10 @@ public class HandScript : MonoBehaviour
         if (other.CompareTag("Hive"))
         {
             moveBack = true;
-            if (HoneyBar.getHoneyAmount() - StealAmount <= 0.0f)
+            if (HoneyCounter.getHoneyAmount() - StealAmount <= 0.0f)
             {
-                HoneyBar.setHoneyAmount(0.0f);
-            }else HoneyBar.setHoneyAmount(HoneyBar.getHoneyAmount() - StealAmount);
+                HoneyCounter.setHoneyAmount(0.0f);
+            }else HoneyCounter.setHoneyAmount(HoneyCounter.getHoneyAmount() - StealAmount);
         }
     }
 }
