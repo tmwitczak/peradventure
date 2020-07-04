@@ -25,7 +25,7 @@ public class SmokeCounter : MonoBehaviour
 
     float ComputeSmokeScreen()
     {
-        smokeAmount = 1 - (Mathf.Round(honeyCounter.getSmokeFactor() * 100f) / 100f);
+        smokeAmount = honeyCounter.getSmokeFactor() * 2f;
         return (Mathf.Round(smokeAmount * 10f) / 2f) * 10f;
     }
 }

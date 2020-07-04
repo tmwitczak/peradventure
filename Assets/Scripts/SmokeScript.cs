@@ -6,7 +6,7 @@ using UnityEngine;
 public class SmokeScript : MonoBehaviour
 {
     public HoneyCounter honeyCounter;
-    public float smokeEffect;
+    private float smokeEffect = 0.003f;
     private ParticleSystem particleSystem;
     List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
     // Start is called before the first frame update
