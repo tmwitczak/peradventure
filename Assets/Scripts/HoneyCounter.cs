@@ -29,10 +29,10 @@ public class HoneyCounter : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(SmokeFactor);
+        //Debug.Log(SmokeFactor);
         amountOfBees = beesAmountScript.ActualNumOfBees;
         honeyAmount += Time.deltaTime * (amountOfBees * SmokeFactor) * Speed;
-        text.text = initialText + Mathf.Round(honeyAmount);
+        text.text = initialText + (Mathf.Round(honeyAmount) / 10.0f) + " l";
     }
 
     public void setHoneyAmount(float value)

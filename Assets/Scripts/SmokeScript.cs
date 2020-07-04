@@ -19,7 +19,7 @@ public class SmokeScript : MonoBehaviour
     {
         if (other.CompareTag("Blade"))
         {
-            honeyCounter.setSmokeFactor(honeyCounter.getSmokeFactor() + (smokeEffect * 5f));
+            honeyCounter.setSmokeFactor(honeyCounter.getSmokeFactor() + smokeEffect);
         }
     }
 
