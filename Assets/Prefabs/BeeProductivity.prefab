@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7663980446636682159
+--- !u!1 &498658036601957677
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7663980446636682158}
-  - component: {fileID: 7663980446636682156}
-  - component: {fileID: 7663980446636682157}
-  - component: {fileID: 7663980446636682153}
+  - component: {fileID: 498658036601957676}
+  - component: {fileID: 498658036601957678}
+  - component: {fileID: 498658036601957679}
+  - component: {fileID: 498658036601957675}
   m_Layer: 5
-  m_Name: SmokeAmount
+  m_Name: BeeProductivity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &7663980446636682158
+--- !u!224 &498658036601957676
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663980446636682159}
+  m_GameObject: {fileID: 498658036601957677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
@@ -38,21 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 40, y: -150}
   m_SizeDelta: {x: 890, y: 170}
   m_Pivot: {x: 0.5, y: 1}
---- !u!222 &7663980446636682156
+--- !u!222 &498658036601957678
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663980446636682159}
+  m_GameObject: {fileID: 498658036601957677}
   m_CullTransparentMesh: 0
---- !u!114 &7663980446636682157
+--- !u!114 &498658036601957679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663980446636682159}
+  m_GameObject: {fileID: 498658036601957677}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -78,14 +78,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Smoke Amount: '
---- !u!114 &7663980446636682153
+  m_Text: 'Bee Productivity: '
+--- !u!114 &498658036601957675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663980446636682159}
+  m_GameObject: {fileID: 498658036601957677}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 878706230bf0f6d44b3b71493aa67ac9, type: 3}
