@@ -132,6 +132,8 @@ public class MenuButtonController : MonoBehaviour
         var buttonText = button.GetComponentInChildren<Text>();
         var buttonName = gameObject.name;
         var buttonBgColor = button.GetComponent<Image>();
+
+        button.interactable = true;
         lockImage.SetActive(false);
         for (int i = 0; i < buttonName.Length; i++)
         {
