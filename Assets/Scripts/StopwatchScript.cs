@@ -9,6 +9,7 @@ public class StopwatchScript : MonoBehaviour
     public static float MaxTime = 30.0f;
     public Transform clockHandTransform;
     [SerializeField] GameObject EndGameMenu;
+    [SerializeField] GameObject Fill;
     
     private float timer = 0.0f;
     private float timeDuration;
@@ -29,12 +30,14 @@ public class StopwatchScript : MonoBehaviour
             honeyCounter.endHoneyAmount = honeyCounter.getHoneyAmount();
             EndGameMenu.SetActive(true);
             HiveLevel.resultsActive = true;
+            Fill.GetComponent<Image>().fillAmount = 1.0f;
         }
         if (timer < 1f)
         {
             timer += Time.deltaTime / timeDuration;
             float timeNormalized = timer % 1f;
             clockHandTransform.eulerAngles = new Vector3(0, 0, -timeNormalized * 360f);
+            Fill.GetComponent<Image>().fillAmount = timeNormalized;
         }
         else timer = 1f;
     }
