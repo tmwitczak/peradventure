@@ -7,6 +7,13 @@ public class BeesAmountScript : MonoBehaviour
 {
     private Text text;
     private List<GameObject> bees;
+
+    public int InitialNumOfBees
+    {
+        get => initialNumOfBees;
+        set => initialNumOfBees = value;
+    }
+
     private int initialNumOfBees;
     public int ActualNumOfBees
     {

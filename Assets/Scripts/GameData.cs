@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameData : MonoBehaviour
+[System.Serializable]
+public class GameData
 {
     public int levelsUnlocked;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int hiveLevel;
+    public float honeyAmount;
+    public int beesAmount;
 
-    // Update is called once per frame
-    void Update()
+    public GameData(DataCollectorScript dataCollector)
     {
-        
+        levelsUnlocked = dataCollector.levelsUnlocked;
+        hiveLevel = dataCollector.hiveLevel;
+        honeyAmount = dataCollector.honeyAmount;
+        beesAmount = dataCollector.beesAmount;
     }
 }
