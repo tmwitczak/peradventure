@@ -17,10 +17,12 @@ public class MenuButtonController : MonoBehaviour
         Back,
         Resume,
         QuitToMenu,
-        Continue
+        Continue,
+        Level
     }
 
     [SerializeField] GameObject MainMenu;
+    [SerializeField] GameObject LevelMenu;
     [SerializeField] GameObject OptionsMenu;
     [SerializeField] ButtonType type;
     [SerializeField] Animator animator;
@@ -45,9 +47,11 @@ public class MenuButtonController : MonoBehaviour
                 case ButtonType.Start:
                     if (animEnded)
                     {
-                        LoadLevel("Level1");
-                        StopwatchScript.MaxTime = 30.0f;
-                        Time.timeScale = 1.0f;
+                        MainMenu.SetActive(false);
+                        LevelMenu.SetActive(true);
+                        // LoadLevel("Level1");
+                        // StopwatchScript.MaxTime = 30.0f;
+                        // Time.timeScale = 1.0f;
                         SetToFalse();
                     }
                     break;
@@ -92,6 +96,16 @@ public class MenuButtonController : MonoBehaviour
                             LoadMainMenu();
                             SetToFalse();
                         }
+                    }
+                    break;
+                case ButtonType.Level:
+                    if (animEnded)
+                    {
+                        string buttonName = gameObject.name;
+                        buttonName = buttonName.Replace(" ", String.Empty);
+                        LoadLevel(buttonName);
+                        StopwatchScript.MaxTime = 30.0f;
+                        Time.timeScale = 1.0f;
                     }
                     break;
             }
