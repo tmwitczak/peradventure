@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +16,8 @@ public class MenuButtonController : MonoBehaviour
         Quit,
         Back,
         Resume,
-        QuitToMenu
+        QuitToMenu,
+        Continue
     }
 
     [SerializeField] GameObject MainMenu;
@@ -81,6 +84,16 @@ public class MenuButtonController : MonoBehaviour
                         SetToFalse();
                     }
                     break;
+                case ButtonType.Continue:
+                    if (animEnded)
+                    {
+                        if (!LoadNextScene())
+                        {
+                            LoadMainMenu();
+                            SetToFalse();
+                        }
+                    }
+                    break;
             }
         }
     }
@@ -106,6 +119,18 @@ public class MenuButtonController : MonoBehaviour
     private void LoadLevel(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    private bool LoadNextScene()
+    {
+        if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else
+        {
+            return false;
+        }
+        return true;
     }
 
     private void LoadMainMenu()
