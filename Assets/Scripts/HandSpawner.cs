@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class HandSpawner : MonoBehaviour
 {
     public GameObject Hand;
+    public float HandSpeed;
     public float SpawnCooldown;
     public int HandsToSpawn;
 
@@ -68,7 +69,7 @@ public class HandSpawner : MonoBehaviour
 
     private void SpawnHand()
     {
-        seed += 1000;
+        seed += 100;
         Random.InitState(seed);
         int rand = Random.Range(0, 50);
         if (rand % 3 == 1)
@@ -85,6 +86,7 @@ public class HandSpawner : MonoBehaviour
             spawnY = spawnY.Where(value => value <= screenMin.y || value >= screenMax.y).ToList();
         }
         var spawnPosition = new Vector2(spawnX[Random.Range(0, spawnX.Count)], spawnY[Random.Range(0, spawnY.Count)]);
-        Instantiate(Hand, spawnPosition, Quaternion.identity);
+        var hand = Instantiate(Hand, spawnPosition, Quaternion.identity);
+        hand.GetComponent<HandScript>().Speed = HandSpeed;
     }
 }

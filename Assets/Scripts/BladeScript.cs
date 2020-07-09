@@ -87,7 +87,6 @@ public class BladeScript : MonoBehaviour
     void StopCutting()
     {
         isCutting = false;
-        currentTrail.transform.SetParent(null);
         Destroy(currentTrail);
         circleCollider.enabled = false;
         circleCollider1.enabled = false;
