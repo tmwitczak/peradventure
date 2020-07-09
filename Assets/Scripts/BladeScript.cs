@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class BladeScript : MonoBehaviour
 {
-    private bool isCutting = true;
-    public GameObject Trail;
+    public TrailRenderer Trail;
     public float minCutVelocity;
 
     private Rigidbody2D rigidbody;
     [SerializeField] CircleCollider2D circleCollider;
     [SerializeField] CircleCollider2D circleCollider1;
     private Camera camera;
-    private GameObject currentTrail;
+    private TrailRenderer currentTrail;
     private Vector2 previousPos;
+
+    private float timer = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +54,17 @@ public class BladeScript : MonoBehaviour
 
         #endregion
 
-        if (isCutting)
+        if (currentTrail != null)
         {
+            if(timer > 0.0f)
+            {
+                Trail.Clear();
+                currentTrail.Clear();
+                timer -= Time.deltaTime;
+            }
             UpdateCut();
         }
+
     }
 
     void UpdateCut()
@@ -78,7 +87,7 @@ public class BladeScript : MonoBehaviour
 
     void StartCut()
     {
-        isCutting = true;
+        timer = 0.05f;
         currentTrail = Instantiate(Trail, transform);
         circleCollider.enabled = false;
         circleCollider1.enabled = false;
@@ -86,7 +95,6 @@ public class BladeScript : MonoBehaviour
 
     void StopCutting()
     {
-        isCutting = false;
         Destroy(currentTrail);
         circleCollider.enabled = false;
         circleCollider1.enabled = false;
