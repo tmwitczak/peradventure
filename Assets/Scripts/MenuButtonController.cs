@@ -125,6 +125,24 @@ public class MenuButtonController : MonoBehaviour
         animEnded = true;
     }
 
+    public void ActivateLevel()
+    {
+        var button = gameObject.GetComponentInChildren<Button>();
+        var lockImage = button.transform.Find("Image").gameObject;
+        var buttonText = button.GetComponentInChildren<Text>();
+        var buttonName = gameObject.name;
+        var buttonBgColor = button.GetComponent<Image>();
+        lockImage.SetActive(false);
+        for (int i = 0; i < buttonName.Length; i++)
+        {
+            if (Char.IsDigit(buttonName[i]))
+            {
+                buttonText.text += buttonName[i];
+            }
+        }
+        buttonBgColor.color = Color.white;
+    }
+
     private void LoadLevel(int sceneNum)
     {
         SceneManager.LoadScene(sceneNum);

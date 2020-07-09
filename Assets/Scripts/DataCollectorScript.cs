@@ -6,42 +6,36 @@ using UnityEngine;
 public class DataCollectorScript : MonoBehaviour
 {
     private HiveLevel HiveLevel;
-    private BeesAmountScript BeesAmountScript;
+    
+    public BeesScript BeesScript;
     [HideInInspector]
-    public int beesAmount;
+    public int amountOfBees;
     [HideInInspector]
     public float honeyAmount;
     [HideInInspector]
     public int hiveLevel;
-
     [HideInInspector] public int levelsUnlocked;
 
     private void Start()
     {
-        BeesAmountScript = FindObjectOfType<BeesAmountScript>();
         HiveLevel = FindObjectOfType<HiveLevel>();
+        BeesScript = FindObjectOfType<BeesScript>();
         levelsUnlocked = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        beesAmount = BeesAmountScript.InitialNumOfBees;
-        //honeyAmount = HoneyCounter.getHoneyAmount();
-        hiveLevel = HiveLevel.hiveLevel;
     }
 
     public void SaveData()
     {
-        levelsUnlocked++;
+        hiveLevel = HiveLevel.hiveLevel;
+        amountOfBees = BeesScript.amountOfBees;
+        honeyAmount = HiveLevel.honeyCounter.endHoneyAmount;
         SaveSystem.SaveData(this);
     }
 
     public void LoadData()
     {
         GameData gameData = SaveSystem.LoadGameData();
+        BeesScript.amountOfBees = gameData.amountOfBees;
         HiveLevel.hiveLevel = gameData.hiveLevel;
-        BeesAmountScript.InitialNumOfBees = gameData.beesAmount;
         levelsUnlocked = gameData.levelsUnlocked;
     }
 }

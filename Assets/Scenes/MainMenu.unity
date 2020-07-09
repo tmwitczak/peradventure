@@ -677,10 +677,30 @@ PrefabInstance:
       propertyPath: type
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4365279970625081815, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365279971293287200, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365279971361870197, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5292360637828190930, guid: 0556950b6f3be284d830a5262f747685,
         type: 3}
       propertyPath: m_Name
       value: LevelMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5292360637828190930, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5292360637828190931, guid: 0556950b6f3be284d830a5262f747685,
         type: 3}

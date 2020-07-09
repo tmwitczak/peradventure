@@ -10,8 +10,10 @@ public class HiveLevel : MonoBehaviour
     public static int hiveLevel;
     [SerializeField] Text levelNumber;
     public Slider slider;
-
-    private HoneyCounter honeyCounter;
+    public BeesScript BeesScript;
+    [HideInInspector]
+    public HoneyCounter honeyCounter;
+    
     private float fillSpeed = 1.5f;
     private float honeyAmount = 0.0f;
     private float startFillTime = 0.0f;
@@ -66,6 +68,7 @@ public class HiveLevel : MonoBehaviour
     private void LevelUp()
     {
         hiveLevel++;
+        BeesScript.amountOfBees += 10;
         levelNumber.text = hiveLevel.ToString();
         slider.maxValue *= 2.0f;
     }

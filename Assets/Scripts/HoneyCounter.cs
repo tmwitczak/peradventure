@@ -9,8 +9,9 @@ public class HoneyCounter : MonoBehaviour
     public float Speed;
     public float MinSmokedSpeed = 0.3f;
     public float SmokeFactor = 1f;
+    public BeesScript beesScript;
+    
     private float initialSmokeFactor;
-    private BeesAmountScript beesAmountScript;
     private int amountOfBees;
     private Text text;
     private float honeyAmount;
@@ -19,24 +20,23 @@ public class HoneyCounter : MonoBehaviour
     public float endHoneyAmount { get; set; }
     private void Start()
     {
-        beesAmountScript = FindObjectOfType<BeesAmountScript>();
         honeyAmount = 0f;
         text = GetComponent<Text>();
         initialText = text.text;
         initialSmokeFactor = SmokeFactor;
+        amountOfBees = beesScript.amountOfBees;
     }
 
     private void Update()
     {
         //Debug.Log(SmokeFactor);
-        amountOfBees = beesAmountScript.ActualNumOfBees;
-        honeyAmount += Time.deltaTime * (amountOfBees * SmokeFactor) * Speed;
+        honeyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = initialText + (Mathf.Round(honeyAmount) / 10.0f) + " l";
     }
 
     public void setHoneyAmount(float value)
     {
-        honeyAmount = value;
+        honeyAmount = value <= 0f ? 0f : value;
     }
     public float getHoneyAmount()
     {
