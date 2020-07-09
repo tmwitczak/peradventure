@@ -16,13 +16,14 @@ public class HandSpawner : MonoBehaviour
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
     private int seed = 0;
+    private int randomNumber = 0;
 
     // Start is called before the first frame update
     private void Start()
     {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        for (float i = screenMin.x - 5.0f; i < screenMax.x + 5.0f; i+=0.5f)
+        for (float i = screenMin.x - 5.0f; i < screenMax.x + 5.0f; i += 0.5f)
         {
             spawnX.Add(i);
         }
@@ -38,9 +39,28 @@ public class HandSpawner : MonoBehaviour
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= SpawnCooldown)
         {
-            for (int i = 0; i < HandsToSpawn; i++)
+            switch (HandsToSpawn)
             {
-                SpawnHand();
+                case 12:
+                    randomNumber = Random.Range(1, 3);
+                    for (int i = 0; i < randomNumber; i++)
+                    {
+                        SpawnHand();
+                    }
+                    break;
+                case 13:
+                    randomNumber = Random.Range(1, 4);
+                    for (int i = 0; i < randomNumber; i++)
+                    {
+                        SpawnHand();
+                    }
+                    break;
+                default:
+                    for (int i = 0; i < HandsToSpawn; i++)
+                    {
+                        SpawnHand();
+                    }
+                    break;
             }
             spawnTimer = 0.0f;
         }
@@ -55,7 +75,7 @@ public class HandSpawner : MonoBehaviour
         {
             spawnX = spawnX.Where(value => value <= screenMin.x || value >= screenMax.x).ToList();
         }
-        else if(rand % 3 == 2)
+        else if (rand % 3 == 2)
         {
             spawnY = spawnY.Where(value => value <= screenMin.y || value >= screenMax.y).ToList();
         }
