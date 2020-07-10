@@ -17,11 +17,14 @@ public class BladeScript : MonoBehaviour
     private Vector2 previousPos;
 
     private float timer = 0.0f;
+    private bool isCutting = false;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
+        circleCollider.enabled = false;
+        circleCollider1.enabled = false;
     }
 
     // Update is called once per frame
@@ -54,7 +57,7 @@ public class BladeScript : MonoBehaviour
 
         #endregion
 
-        if (currentTrail != null)
+        if (isCutting)
         {
             if(timer > 0.0f)
             {
@@ -87,6 +90,7 @@ public class BladeScript : MonoBehaviour
 
     void StartCut()
     {
+        isCutting = true;
         timer = 0.05f;
         currentTrail = Instantiate(Trail, transform);
         circleCollider.enabled = false;
@@ -95,6 +99,7 @@ public class BladeScript : MonoBehaviour
 
     void StopCutting()
     {
+        isCutting = false;
         Destroy(currentTrail);
         circleCollider.enabled = false;
         circleCollider1.enabled = false;
