@@ -158,14 +158,14 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerModule.collisionShape1
       value: 
-      objectReference: {fileID: 1715474081}
-    - target: {fileID: 767825142438995220, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
-        type: 3}
-      propertyPath: TriggerModule.collisionShape2
-      value: 
       objectReference: {fileID: 1715474080}
     - target: {fileID: 767825142438995220, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
+      propertyPath: TriggerModule.collisionShape2
+      value: 
+      objectReference: {fileID: 1715474081}
+    - target: {fileID: 767825142438995220, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
+        type: 3}
       propertyPath: TriggerModule.collisionShape3
       value: 
       objectReference: {fileID: 1715474079}
@@ -203,12 +203,12 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerModule.collisionShape0
       value: 
-      objectReference: {fileID: 1715474082}
+      objectReference: {fileID: 1715474081}
     - target: {fileID: 767825143305193330, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: TriggerModule.collisionShape1
       value: 
-      objectReference: {fileID: 1715474081}
+      objectReference: {fileID: 1715474079}
     - target: {fileID: 767825143305193330, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: TriggerModule.collisionShape2
@@ -218,7 +218,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerModule.collisionShape3
       value: 
-      objectReference: {fileID: 1715474079}
+      objectReference: {fileID: 1715474082}
     - target: {fileID: 767825143773373090, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: simulationSpeed
@@ -228,22 +228,22 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerModule.collisionShape0
       value: 
-      objectReference: {fileID: 1715474082}
+      objectReference: {fileID: 1715474080}
     - target: {fileID: 767825143773373090, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: TriggerModule.collisionShape1
       value: 
-      objectReference: {fileID: 1715474081}
+      objectReference: {fileID: 1715474079}
     - target: {fileID: 767825143773373090, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: TriggerModule.collisionShape2
       value: 
-      objectReference: {fileID: 1715474080}
+      objectReference: {fileID: 1715474082}
     - target: {fileID: 767825143773373090, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: TriggerModule.collisionShape3
       value: 
-      objectReference: {fileID: 1715474079}
+      objectReference: {fileID: 1715474081}
     - target: {fileID: 767825143953188488, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: m_LocalPosition.x
