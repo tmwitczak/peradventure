@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class DataCollectorScript : MonoBehaviour
 {
-    private HiveLevel HiveLevel;
-    
-    public BeesScript BeesScript;
+    private HiveLevel HiveLvl;
+    private BeesScript BeesScript;
+
     [HideInInspector]
     public int amountOfBees;
     [HideInInspector]
     public float honeyAmount;
     [HideInInspector]
     public int hiveLevel;
-    [HideInInspector] public int levelsUnlocked;
+    [HideInInspector] 
+    public int levelsUnlocked;
 
     private void Start()
     {
-        HiveLevel = FindObjectOfType<HiveLevel>();
+        HiveLvl = FindObjectOfType<HiveLevel>();
         BeesScript = FindObjectOfType<BeesScript>();
         levelsUnlocked = 1;
     }
@@ -27,15 +28,23 @@ public class DataCollectorScript : MonoBehaviour
     {
         hiveLevel = HiveLevel.hiveLevel;
         amountOfBees = BeesScript.amountOfBees;
-        honeyAmount = HiveLevel.honeyCounter.endHoneyAmount;
+        honeyAmount = HiveLevel.honeyAmount;
         SaveSystem.SaveData(this);
     }
 
-    public void LoadData()
+    public bool LoadData()
     {
+        if (SaveSystem.LoadGameData() == null)
+        {
+            return false;
+        }
+
         GameData gameData = SaveSystem.LoadGameData();
         BeesScript.amountOfBees = gameData.amountOfBees;
         HiveLevel.hiveLevel = gameData.hiveLevel;
+        HiveLevel.honeyAmount = gameData.honeyAmount;
         levelsUnlocked = gameData.levelsUnlocked;
+
+        return true;
     }
 }

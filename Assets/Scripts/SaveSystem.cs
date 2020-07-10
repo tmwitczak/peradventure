@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    static string path = Application.persistentDataPath + "/gamedata.mta";
+    static string path = Application.persistentDataPath + "/gamedata.atm";
     public static void SaveData(DataCollectorScript dataCollector)
     {
         BinaryFormatter formatter = new BinaryFormatter();
