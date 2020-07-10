@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
-  StealAmount: 5
+  StealAmount: 15
   Hive: {fileID: 4615227038859752290, guid: f10284a08e1850c4ca3a5dda9b5b0748, type: 3}
 --- !u!1001 &763653202847752249
 PrefabInstance:
