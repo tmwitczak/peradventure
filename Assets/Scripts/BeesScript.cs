@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +9,16 @@ public class BeesScript : MonoBehaviour
     private ParticleSystem bees;
     [SerializeField] ParticleSystem center;
     private HoneyCounter honeyCounter;
+    private DataCollectorScript dataCollector;
+
     // Start is called before the first frame update
     void Start()
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
+        dataCollector = FindObjectOfType<DataCollectorScript>();
         bees = GetComponent<ParticleSystem>();
+
+        dataCollector.LoadData();
     }
 
     private void Update()

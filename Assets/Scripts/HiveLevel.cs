@@ -13,9 +13,11 @@ public class HiveLevel : MonoBehaviour
     private BeesScript beesScript;
     [HideInInspector]
     public HoneyCounter honeyCounter;
-    
+
+    private DataCollectorScript dataCollector;
+
+    public static float honeyAmount = 0.0f;
     private float fillSpeed = 1.5f;
-    private float honeyAmount = 0.0f;
     private float startFillTime = 0.0f;
 
     private bool endStart = true;
@@ -26,7 +28,13 @@ public class HiveLevel : MonoBehaviour
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
         beesScript = FindObjectOfType<BeesScript>();
-        hiveLevel = 1;
+        dataCollector = FindObjectOfType<DataCollectorScript>();
+
+        if (!dataCollector.LoadData())
+        {
+            hiveLevel = 1;
+        }
+
         levelNumber.text = hiveLevel.ToString();
     }
 
@@ -39,29 +47,34 @@ public class HiveLevel : MonoBehaviour
         {
             if (endStart)
             {
-                StartCoroutine(fillSlider());
+                StartCoroutine(fillSlider(0.5f));
             }
             else
             {
-                slider.value = Mathf.Lerp(honeyAmount, honeyCounter.endHoneyAmount, honeySmoothing);
-                if (slider.value == honeyCounter.endHoneyAmount)
+                slider.value = Mathf.Lerp(honeyAmount, honeyCounter.endHoneyAmount + honeyAmount, honeySmoothing);
+                if (slider.value == honeyCounter.endHoneyAmount + honeyAmount)
                 {
-                    honeyAmount = honeyCounter.endHoneyAmount;
+                    honeyAmount += honeyCounter.endHoneyAmount;
                     filled = true;
                 }
             }
-        }
 
-        if(slider.value == slider.maxValue)
-        {
-            LevelUp();
-            slider.value = 0.0f;
+            if (slider.value == slider.maxValue)
+            {
+                LevelUp();
+                slider.value = 0.0f;
+            }
+
+            if(filled)
+            {
+                dataCollector.SaveData();
+            }
         }
     }
 
-    IEnumerator fillSlider()
+    IEnumerator fillSlider(float seconds)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(seconds);
         endStart = false;
         startFillTime = Time.time;
     }
@@ -69,8 +82,8 @@ public class HiveLevel : MonoBehaviour
     private void LevelUp()
     {
         hiveLevel++;
-        beesScript.amountOfBees += 10;
+        beesScript.amountOfBees += 20;
         levelNumber.text = hiveLevel.ToString();
-        slider.maxValue *= 2.0f;
+        slider.maxValue *= 5.0f;
     }
 }
