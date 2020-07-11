@@ -31,5 +31,7 @@ public class BeesScript : MonoBehaviour
 
         var centerEmission = center.emission;
         centerEmission.rateOverTime = honeyCounter.SmokeFactor * 10.0f;
+
+        honeyCounter.Speed = honeyCounter.SmokeFactor;
     }
 }
