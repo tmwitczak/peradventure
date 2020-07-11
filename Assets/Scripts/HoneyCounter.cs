@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +31,7 @@ public class HoneyCounter : MonoBehaviour
     {
         Debug.Log(SmokeFactor);
         honeyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
-        text.text = initialText + (Mathf.Round(honeyAmount) / 10.0f) + " l";
+        text.text = (Mathf.Round(16.54f * honeyAmount)) + "";
     }
 
     public void setHoneyAmount(float value)
