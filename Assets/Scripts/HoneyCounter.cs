@@ -29,7 +29,6 @@ public class HoneyCounter : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(SmokeFactor);
         honeyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = (Mathf.Round(16.54f * honeyAmount)) + "";
     }
