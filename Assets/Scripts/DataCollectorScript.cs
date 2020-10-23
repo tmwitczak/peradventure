@@ -14,6 +14,8 @@ public class DataCollectorScript : MonoBehaviour
     public float honeyAmount;
     [HideInInspector]
     public int hiveLevel;
+    [HideInInspector]
+    public float levelMaxValue;
     [HideInInspector] 
     public int levelsUnlocked;
 
@@ -29,7 +31,11 @@ public class DataCollectorScript : MonoBehaviour
         hiveLevel = HiveLevel.hiveLevel;
         amountOfBees = BeesScript.amountOfBees;
         honeyAmount = HiveLevel.honeyAmount;
+        levelMaxValue = HiveLevel.levelMaxValue;
         SaveSystem.SaveData(this);
+
+        //Debug.Log("Ilosc pszczol: " + amountOfBees + '\n' + "Level ula: " + hiveLevel + '\n' + "Ilosc miodu: " + honeyAmount);
+
     }
 
     public bool LoadData()
@@ -42,8 +48,11 @@ public class DataCollectorScript : MonoBehaviour
         GameData gameData = SaveSystem.LoadGameData();
         BeesScript.amountOfBees = gameData.amountOfBees;
         HiveLevel.hiveLevel = gameData.hiveLevel;
+        HiveLevel.levelMaxValue = gameData.levelMaxValue;
         HiveLevel.honeyAmount = gameData.honeyAmount;
         levelsUnlocked = gameData.levelsUnlocked;
+
+        //Debug.Log("Ilosc pszczol: " + gameData.amountOfBees + '\n' + "Level ula: " + gameData.hiveLevel + '\n' + "Ilosc miodu: " + gameData.honeyAmount + '\n' + "Odblokowane poziomy: " + gameData.levelsUnlocked + '\n' + "SliderMaxVal: " + gameData.levelMaxValue);
 
         return true;
     }
