@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class HiveLevel : MonoBehaviour
 {
+    public GameObject EndLevelHelper;
     public static bool resultsActive = false;
     public static int hiveLevel;
     [SerializeField] Text levelNumber;
@@ -45,6 +46,7 @@ public class HiveLevel : MonoBehaviour
         float honeySmoothing = honeyCovered / fillSpeed;
         if (resultsActive && !filled)
         {
+            EndLevelHelper.SetActive(false);
             if (endStart)
             {
                 StartCoroutine(fillSlider(0.5f));
