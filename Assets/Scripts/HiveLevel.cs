@@ -14,10 +14,11 @@ public class HiveLevel : MonoBehaviour
     private BeesScript beesScript;
     [HideInInspector]
     public HoneyCounter honeyCounter;
-
-    private DataCollectorScript dataCollector;
+    public DataCollectorScript dataCollector;
 
     public static float honeyAmount = 0.0f;
+    public static float levelMaxValue = 0.0f;
+
     private float fillSpeed = 1.5f;
     private float startFillTime = 0.0f;
 
@@ -29,13 +30,14 @@ public class HiveLevel : MonoBehaviour
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
         beesScript = FindObjectOfType<BeesScript>();
-        dataCollector = FindObjectOfType<DataCollectorScript>();
-
+        
         if (!dataCollector.LoadData())
         {
             hiveLevel = 1;
+            levelMaxValue = slider.maxValue;
         }
 
+        slider.maxValue = levelMaxValue;
         levelNumber.text = hiveLevel.ToString();
     }
 
@@ -49,19 +51,19 @@ public class HiveLevel : MonoBehaviour
             EndLevelHelper.SetActive(false);
             if (endStart)
             {
-                StartCoroutine(fillSlider(0.5f));
+                StartCoroutine(waitForMenu(0.5f));
             }
             else
             {
                 slider.value = Mathf.Lerp(honeyAmount, honeyCounter.endHoneyAmount + honeyAmount, honeySmoothing);
-                if (slider.value == honeyCounter.endHoneyAmount + honeyAmount)
+                if (honeySmoothing >= 1.0f)
                 {
                     honeyAmount += honeyCounter.endHoneyAmount;
                     filled = true;
                 }
             }
 
-            if (slider.value == slider.maxValue)
+            if (slider.value >= levelMaxValue)
             {
                 LevelUp();
                 slider.value = 0.0f;
@@ -74,7 +76,7 @@ public class HiveLevel : MonoBehaviour
         }
     }
 
-    IEnumerator fillSlider(float seconds)
+    IEnumerator waitForMenu(float seconds)
     {
         yield return new WaitForSecondsRealtime(seconds);
         endStart = false;
@@ -86,6 +88,6 @@ public class HiveLevel : MonoBehaviour
         hiveLevel++;
         beesScript.amountOfBees += 20;
         levelNumber.text = hiveLevel.ToString();
-        slider.maxValue *= 5.0f;
+        levelMaxValue *= 2.0f;
     }
 }
