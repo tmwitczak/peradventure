@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataCollectorScript : MonoBehaviour
 {
@@ -23,7 +24,6 @@ public class DataCollectorScript : MonoBehaviour
     {
         HiveLvl = FindObjectOfType<HiveLevel>();
         BeesScript = FindObjectOfType<BeesScript>();
-        levelsUnlocked = 1;
     }
 
     public void SaveData()
@@ -46,11 +46,16 @@ public class DataCollectorScript : MonoBehaviour
         }
 
         GameData gameData = SaveSystem.LoadGameData();
-        BeesScript.amountOfBees = gameData.amountOfBees;
-        HiveLevel.hiveLevel = gameData.hiveLevel;
-        HiveLevel.levelMaxValue = gameData.levelMaxValue;
-        HiveLevel.honeyAmount = gameData.honeyAmount;
-        levelsUnlocked = gameData.levelsUnlocked;
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            levelsUnlocked = gameData.levelsUnlocked;
+        }else
+        {
+            BeesScript.amountOfBees = gameData.amountOfBees;
+            HiveLevel.hiveLevel = gameData.hiveLevel;
+            HiveLevel.levelMaxValue = gameData.levelMaxValue;
+            HiveLevel.honeyAmount = gameData.honeyAmount;
+        }
 
         //Debug.Log("Ilosc pszczol: " + gameData.amountOfBees + '\n' + "Level ula: " + gameData.hiveLevel + '\n' + "Ilosc miodu: " + gameData.honeyAmount + '\n' + "Odblokowane poziomy: " + gameData.levelsUnlocked + '\n' + "SliderMaxVal: " + gameData.levelMaxValue);
 

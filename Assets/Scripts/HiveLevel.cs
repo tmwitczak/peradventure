@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HiveLevel : MonoBehaviour
 {
@@ -71,6 +72,11 @@ public class HiveLevel : MonoBehaviour
 
             if(filled)
             {
+                int levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
+                if (!(dataCollector.levelsUnlocked == levelToUnlock) && SceneManager.sceneCountInBuildSettings - 1 >= levelToUnlock)
+                {
+                    dataCollector.levelsUnlocked = levelToUnlock;
+                }
                 dataCollector.SaveData();
             }
         }
