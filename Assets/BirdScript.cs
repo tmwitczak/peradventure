@@ -10,7 +10,9 @@ public class BirdScript : MonoBehaviour
     public float Speed;
     [HideInInspector]
     public bool isTriggered = false;
+    public float lifeTime;
 
+    private float lifeTimer = 0f;
     private HoneyCounter honeyCounter;
     private GameObject Hive;
     private bool headsRight = true;
@@ -35,6 +37,7 @@ public class BirdScript : MonoBehaviour
     }
     private void Update()
     {
+        lifeTimer += Time.deltaTime;
         if(headsRight && !isTriggered)
         {
             transform.position += Vector3.right * Time.deltaTime * Speed;
@@ -46,6 +49,10 @@ public class BirdScript : MonoBehaviour
             if (!headsRight) headsRight = true;
             Speed = initialSpeed * 1.5f;
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, Speed * Time.deltaTime);
+        }
+        if(lifeTimer >= lifeTime)
+        {
+            Destroy(gameObject);
         }
     }
 
