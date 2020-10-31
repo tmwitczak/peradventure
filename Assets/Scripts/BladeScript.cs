@@ -110,6 +110,9 @@ public class BladeScript : MonoBehaviour
         if (other.CompareTag("Hand"))
         {
             Destroy(other.gameObject);
+        } else if (other.CompareTag("Bird"))
+        {
+            other.gameObject.GetComponent<BirdScript>().isTriggered = true;
         }
     }
 }

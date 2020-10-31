@@ -12,6 +12,7 @@ TagManager:
   - Smoke
   - HoneyCounter
   - HoneyBar
+  - Bird
   layers:
   - Default
   - TransparentFX

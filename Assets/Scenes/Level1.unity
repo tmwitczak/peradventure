@@ -479,6 +479,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 2230783086767674684, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2230783086767674686, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
       propertyPath: m_LocalPosition.x
