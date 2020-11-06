@@ -18,6 +18,8 @@ public class BirdScript : MonoBehaviour
     private bool headsRight = true;
     private float initialSpeed;
 
+    private Vector2 hiveDirection;
+
     private Vector3 screenMin;
     private Vector3 screenMax;
     private void Start()
@@ -32,7 +34,7 @@ public class BirdScript : MonoBehaviour
             headsRight = false;
         }
         Hive = GameObject.FindGameObjectWithTag("Hive");
-        honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
+        honeyCounter = FindObjectOfType<HoneyCounter>();
         initialSpeed = Speed;
     }
     private void Update()
@@ -46,9 +48,11 @@ public class BirdScript : MonoBehaviour
             transform.position += Vector3.left * Time.deltaTime * Speed;
         } else
         {
-            if (!headsRight) headsRight = true;
             Speed = initialSpeed * 1.5f;
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, Speed * Time.deltaTime);
+            
+            hiveDirection = Hive.transform.position - transform.position;
+            transform.right = (headsRight ? 1 : -1) * hiveDirection;
         }
         if(lifeTimer >= lifeTime)
         {
