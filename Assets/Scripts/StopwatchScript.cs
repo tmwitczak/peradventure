@@ -31,8 +31,6 @@ public class StopwatchScript : MonoBehaviour
             EndGameMenu.SetActive(true);
             HiveLevel.resultsActive = true;
             Fill.GetComponent<Image>().fillAmount = 1.0f;
-            Destroy(GameObject.Find("HandSpawner"));
-            Destroy(GameObject.Find("HoneyCounter"));
         }
         if (timer < 1f)
         {
