@@ -44,19 +44,13 @@ public class MenuButtonController : MonoBehaviour
             switch (type)
             {
                 case ButtonType.Start:
-                    if (animEnded)
-                    {
-                        MainMenu.SetActive(false);
-                        LevelMenu.SetActive(true);
-                        // LoadLevel("Level1");
-                        // StopwatchScript.MaxTime = 30.0f;
-                        // Time.timeScale = 1.0f;
-                        SetToFalse();
-                    }
+                    MainMenu.SetActive(false);
+                    LevelMenu.SetActive(true);
+                    AnimationEnd();
                     break;
 
                 case ButtonType.Options:
-                    if (animEnded && !OptionsMenu.activeInHierarchy)
+                    if (!OptionsMenu.activeInHierarchy)
                     {
                         MainMenu.SetActive(false);
                         OptionsMenu.SetActive(true);
@@ -65,47 +59,36 @@ public class MenuButtonController : MonoBehaviour
                     break;
 
                 case ButtonType.Quit:
-                    if (animEnded)
-                    {
-                        SetToFalse();
-                        Application.Quit();
-                    }
+                    AnimationEnd();
+                    Application.Quit();
                     break;
 
                 case ButtonType.Back:
-                    if (animEnded && OptionsMenu.activeInHierarchy)
-                    {
-                        MainMenu.SetActive(true);
-                        OptionsMenu.SetActive(false);
-                        SetToFalse();
-                    }
+                    MainMenu.SetActive(true);
+                    OptionsMenu.SetActive(false);
+                    AnimationEnd();
                     break;
+
                 case ButtonType.QuitToMenu:
-                    if (animEnded)
+                    LoadMainMenu();
+                    AnimationEnd();
+                    break;
+
+                case ButtonType.Continue:
+                    PressButton();
+                    if (!LoadNextScene())
                     {
                         LoadMainMenu();
-                        SetToFalse();
+                        AnimationEnd();
                     }
                     break;
-                case ButtonType.Continue:
-                    if (animEnded)
-                    {
-                        if (!LoadNextScene())
-                        {
-                            LoadMainMenu();
-                            SetToFalse();
-                        }
-                    }
-                    break;
+
                 case ButtonType.Level:
-                    if (animEnded)
-                    {
-                        string buttonName = gameObject.name;
-                        buttonName = buttonName.Replace(" ", String.Empty);
-                        LoadLevel(buttonName);
-                        StopwatchScript.MaxTime = 30.0f;
-                        Time.timeScale = 1.0f;
-                    }
+                    string buttonName = gameObject.name;
+                    buttonName = buttonName.Replace(" ", String.Empty);
+                    LoadLevel(buttonName);
+                    StopwatchScript.MaxTime = 30.0f;
+                    Time.timeScale = 1.0f;
                     break;
             }
         }
@@ -122,6 +105,7 @@ public class MenuButtonController : MonoBehaviour
     {
         animator.SetBool("press", false);
         animEnded = true;
+        //buttonPressed = false;
     }
 
     public void ActivateLevel()
