@@ -857,6 +857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821133147}
     m_Modifications:
+    - target: {fileID: 183395156, guid: 0556950b6f3be284d830a5262f747685, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1558459540, guid: 0556950b6f3be284d830a5262f747685, type: 3}
       propertyPath: dataCollector
       value: 
@@ -976,8 +980,7 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1558459540, guid: 0556950b6f3be284d830a5262f747685, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0556950b6f3be284d830a5262f747685, type: 3}
 --- !u!1001 &5623656785779467560
 PrefabInstance:

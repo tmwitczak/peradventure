@@ -73,7 +73,9 @@ public class HiveLevel : MonoBehaviour
             if(filled)
             {
                 int levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
-                if (!(dataCollector.levelsUnlocked == levelToUnlock) && SceneManager.sceneCountInBuildSettings - 1 >= levelToUnlock)
+                // SceneManager.sceneCountInBuildSettings - 1 >= levelToUnlock
+                // leveltounlock <= 6 is temporary
+                if (!(dataCollector.levelsUnlocked == levelToUnlock) && levelToUnlock <= 6)
                 {
                     dataCollector.levelsUnlocked = levelToUnlock;
                 }
