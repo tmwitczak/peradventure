@@ -17,6 +17,8 @@ public class HiveLevel : MonoBehaviour
     public HoneyCounter honeyCounter;
     public DataCollectorScript dataCollector;
 
+    public Image beeLevelUp;
+
     public static float honeyAmount = 0.0f;
     public static float levelMaxValue = 0.0f;
 
@@ -25,6 +27,7 @@ public class HiveLevel : MonoBehaviour
 
     private bool endStart = true;
     private bool filled = false;
+    private bool beeAmountUp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,8 @@ public class HiveLevel : MonoBehaviour
 
         slider.maxValue = levelMaxValue;
         levelNumber.text = hiveLevel.ToString();
+
+        beeLevelUp.canvasRenderer.SetAlpha(0.0f);
     }
 
     // Update is called once per frame
@@ -67,7 +72,11 @@ public class HiveLevel : MonoBehaviour
             if (slider.value >= levelMaxValue)
             {
                 LevelUp();
-                slider.value = 0.0f;
+                beeAmountUp = true;
+                if(beeLevelUp.color.a == 1.0f)
+                {
+                    slider.value = 0.0f;
+                }
             }
 
             if(filled)
@@ -82,6 +91,10 @@ public class HiveLevel : MonoBehaviour
                 dataCollector.SaveData();
             }
         }
+        else if(filled && beeAmountUp)
+        {
+            StartCoroutine(showBeeAmountUp());
+        }
     }
 
     IEnumerator waitForMenu(float seconds)
@@ -89,6 +102,14 @@ public class HiveLevel : MonoBehaviour
         yield return new WaitForSecondsRealtime(seconds);
         endStart = false;
         startFillTime = Time.time;
+    }
+
+    IEnumerator showBeeAmountUp()
+    {
+        beeLevelUp.CrossFadeAlpha(1.0f, 0.1f, false);
+        yield return new WaitForSecondsRealtime(0.5f);
+        beeLevelUp.CrossFadeAlpha(0.0f, 0.1f, false);
+        beeAmountUp = false;
     }
 
     private void LevelUp()
