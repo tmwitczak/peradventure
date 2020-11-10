@@ -1175,6 +1175,26 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1805591315}
+    - target: {fileID: 6805341594314806152, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: dataCollector
+      value: 
+      objectReference: {fileID: 1805591315}
+    - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: EndLevelHelper
+      value: 
+      objectReference: {fileID: 1707342300}
+    - target: {fileID: 7125916801642636389, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7341717526895082948, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_Camera
