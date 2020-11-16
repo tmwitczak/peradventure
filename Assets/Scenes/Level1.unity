@@ -404,6 +404,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8ce7a9c63bcf87a4abc3c2f5f652058d,
         type: 3}
+    - target: {fileID: 4615227038859752288, guid: f10284a08e1850c4ca3a5dda9b5b0748,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4615227038859752290, guid: f10284a08e1850c4ca3a5dda9b5b0748,
         type: 3}
       propertyPath: m_Name
@@ -775,32 +780,32 @@ PrefabInstance:
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4441166
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6444732
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -871.5469
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019628314672914741, guid: f6ed43f150e4f1c4491f693313f03fe4,
         type: 3}
@@ -832,12 +837,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blade
       objectReference: {fileID: 0}
-    - target: {fileID: 9019628314672914890, guid: f6ed43f150e4f1c4491f693313f03fe4,
-        type: 3}
-      propertyPath: Trail
-      value: 
-      objectReference: {fileID: 2474375884088303900, guid: 48fc71d509b047646a491cf93cfe1798,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ed43f150e4f1c4491f693313f03fe4, type: 3}
 --- !u!4 &1985762467 stripped
