@@ -24,11 +24,12 @@ public class HoneyCounter : MonoBehaviour
         text = GetComponent<Text>();
         initialText = text.text;
         initialSmokeFactor = SmokeFactor;
-        amountOfBees = beesScript.amountOfBees;
+        
     }
 
     private void Update()
     {
+        amountOfBees = beesScript.amountOfBees;
         honeyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = (Mathf.Round(16.54f * honeyAmount)) + "";
     }

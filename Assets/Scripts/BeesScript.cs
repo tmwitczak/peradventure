@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BeesScript : MonoBehaviour
 {
-    public int amountOfBees = 10;
+    public int amountOfBees;
     private ParticleSystem bees;
     [SerializeField] ParticleSystem center;
     private HoneyCounter honeyCounter;
@@ -14,6 +14,7 @@ public class BeesScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         honeyCounter = FindObjectOfType<HoneyCounter>();
         dataCollector = FindObjectOfType<DataCollectorScript>();
         bees = GetComponent<ParticleSystem>();

@@ -15,12 +15,14 @@ public class BladeScript : MonoBehaviour
     private Camera camera;
     private TrailRenderer currentTrail;
     private Vector2 previousPos;
+    private HoneyCounter honeyCounter;
 
     private float timer = 0.0f;
     private bool isCutting = false;
     // Start is called before the first frame update
     void Start()
     {
+        honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
         circleCollider.enabled = false;
@@ -109,6 +111,7 @@ public class BladeScript : MonoBehaviour
     {
         if (other.CompareTag("Hand"))
         {
+            honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().StealAmount);
             Destroy(other.gameObject);
         } else if (other.CompareTag("Bird"))
         {
