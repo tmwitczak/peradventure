@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652841012d3f38745aca83a20e3d9e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trail: {fileID: 2474375884088303900, guid: 48fc71d509b047646a491cf93cfe1798, type: 3}
-  minCutVelocity: 0.00001
+  Trail: {fileID: 9047633377133651298, guid: 48fc71d509b047646a491cf93cfe1798, type: 3}
+  minCutVelocity: 0.01
   circleCollider: {fileID: 9019628314672914740}
   circleCollider1: {fileID: 1653222391}
 --- !u!50 &9019628314672914891

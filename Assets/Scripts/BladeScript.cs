@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
 public class BladeScript : MonoBehaviour
 {
-    public TrailRenderer Trail;
-    public float minCutVelocity;
+    public GameObject Trail;
+    private GameObject currentTrail;
+    public float minCutVelocity = .001f;
 
     private Rigidbody2D rigidbody;
     [SerializeField] CircleCollider2D circleCollider;
     [SerializeField] CircleCollider2D circleCollider1;
+
     private Camera camera;
-    private TrailRenderer currentTrail;
     private Vector2 previousPos;
     private HoneyCounter honeyCounter;
 
-    private float timer = 0.0f;
     private bool isCutting = false;
+
     // Start is called before the first frame update
     void Start()
     {
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
-        circleCollider.enabled = false;
-        circleCollider1.enabled = false;
     }
 
     // Update is called once per frame
@@ -37,9 +37,9 @@ public class BladeScript : MonoBehaviour
         {
             StartCut();
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && currentTrail != null)
         {
-            StopCutting();
+            StopCutting(); 
         }
         #endregion
 
@@ -47,11 +47,11 @@ public class BladeScript : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            if (Input.touches[0].phase == TouchPhase.Moved)
+            if (Input.touches[0].phase == TouchPhase.Began)
             {
                 StartCut();
             }
-            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+            else if (Input.touches[0].phase == TouchPhase.Ended && currentTrail != null)
             {
                 StopCutting();
             }
@@ -61,13 +61,12 @@ public class BladeScript : MonoBehaviour
 
         if (isCutting)
         {
-            if(timer > 0.0f)
-            {
-                Trail.Clear();
-                currentTrail.Clear();
-                timer -= Time.deltaTime;
-            }
             UpdateCut();
+        }
+
+        if (currentTrail != null)
+        {
+            currentTrail.transform.position = previousPos;
         }
 
     }
@@ -76,7 +75,8 @@ public class BladeScript : MonoBehaviour
     {
         Vector2 newPos = camera.ScreenToWorldPoint(Input.mousePosition);
         rigidbody.position = newPos;
-        float velocity = (newPos - previousPos).magnitude * Time.deltaTime;
+
+        float velocity = (newPos - previousPos).magnitude / Time.deltaTime;
         if (velocity > minCutVelocity)
         {
             circleCollider.enabled = true;
@@ -89,12 +89,12 @@ public class BladeScript : MonoBehaviour
 
         previousPos = newPos;
     }
-
+    
     void StartCut()
     {
         isCutting = true;
-        timer = 0.05f;
-        currentTrail = Instantiate(Trail, transform);
+        previousPos = camera.ScreenToWorldPoint(Input.mousePosition);
+        currentTrail = Instantiate(Trail);
         circleCollider.enabled = false;
         circleCollider1.enabled = false;
     }
@@ -102,7 +102,8 @@ public class BladeScript : MonoBehaviour
     void StopCutting()
     {
         isCutting = false;
-        Destroy(currentTrail);
+        Destroy(currentTrail, 1f);
+        currentTrail = null;
         circleCollider.enabled = false;
         circleCollider1.enabled = false;
     }
