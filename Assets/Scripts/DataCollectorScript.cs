@@ -33,7 +33,6 @@ public class DataCollectorScript : MonoBehaviour
         honeyAmount = HiveLevel.honeyAmount;
         levelMaxValue = HiveLevel.levelMaxValue;
         SaveSystem.SaveData(this);
-        Debug.Log("zapisano pszczol" + BeesScript.amountOfBees + "tyle przypisano:" + amountOfBees);
     }
 
     public bool LoadData()

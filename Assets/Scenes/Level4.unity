@@ -295,6 +295,11 @@ PrefabInstance:
       propertyPath: SpawnCooldown
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 589469783077399864, guid: 3a13fb68ac4970041b44c970302e497a,
+        type: 3}
+      propertyPath: BirdSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 589469783077399865, guid: 3a13fb68ac4970041b44c970302e497a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1120,7 +1125,7 @@ PrefabInstance:
     - target: {fileID: -531447446284312183, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
       propertyPath: HandSpeed
-      value: 2.7
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -531447446284312183, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}

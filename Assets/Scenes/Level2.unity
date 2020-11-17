@@ -609,7 +609,7 @@ PrefabInstance:
     - target: {fileID: -531447446284312183, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
       propertyPath: HandsToSpawn
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -531447446284312183, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
