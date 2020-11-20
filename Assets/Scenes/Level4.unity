@@ -474,6 +474,10 @@ PrefabInstance:
       propertyPath: honeyCounter
       value: 
       objectReference: {fileID: 1630408390}
+    - target: {fileID: 1897925468, guid: 42ccd7293de293c4f8c15e3d4f94f2b4, type: 3}
+      propertyPath: smokeCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 767825142438995220, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: TriggerModule.collisionShape0

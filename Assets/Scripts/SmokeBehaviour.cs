@@ -8,9 +8,9 @@ public class SmokeBehaviour : MonoBehaviour
     [SerializeField] ParticleSystem SmokeRight;
     [SerializeField] ParticleSystem SmokeUp;
     [SerializeField] ParticleSystem SmokeDown;
+    public float smokeCooldown = 2.0f;
 
     private float smokeTimer = 0.0f;
-    private float smokeCooldown = 2.0f;
     private bool[] startPlaying;
     private float[] startTime;
 
