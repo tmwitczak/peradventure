@@ -50,7 +50,7 @@ public class MenuButtonController : MonoBehaviour
                     break;
 
                 case ButtonType.Options:
-                    if (!OptionsMenu.activeInHierarchy)
+                    if (!OptionsMenu.activeSelf)
                     {
                         MainMenu.SetActive(false);
                         OptionsMenu.SetActive(true);
@@ -64,9 +64,20 @@ public class MenuButtonController : MonoBehaviour
                     break;
 
                 case ButtonType.Back:
-                    MainMenu.SetActive(true);
-                    OptionsMenu.SetActive(false);
-                    AnimationEnd();
+                    if (!MainMenu.activeSelf)
+                    {
+                        MainMenu.SetActive(true);
+                        if(OptionsMenu.activeSelf)
+                        {
+                            OptionsMenu.SetActive(false);
+                        }
+                        if(LevelMenu.activeSelf)
+                        {
+                            LevelMenu.SetActive(false);
+                        }
+                        AnimationEnd();
+                    }
+                    SetToFalse();
                     break;
 
                 case ButtonType.QuitToMenu:
@@ -75,7 +86,6 @@ public class MenuButtonController : MonoBehaviour
                     break;
 
                 case ButtonType.Continue:
-                    PressButton();
                     if (!LoadNextScene())
                     {
                         LoadMainMenu();
@@ -105,7 +115,7 @@ public class MenuButtonController : MonoBehaviour
     {
         animator.SetBool("press", false);
         animEnded = true;
-        //buttonPressed = false;
+        buttonPressed = false;
     }
 
     public void ActivateLevel()
