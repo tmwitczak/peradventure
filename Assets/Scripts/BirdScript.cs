@@ -20,11 +20,13 @@ public class BirdScript : MonoBehaviour
 
     private Vector2 hiveDirection;
 
-    private Vector3 screenMin;
     private Vector3 screenMax;
+
+    private GameObject angerSymbol;
+    private float initialAngerSymbolScale;
+    // private GameObject badWords;
     private void Start()
     {
-        screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         if(transform.position.x > screenMax.x)
         {
@@ -36,6 +38,9 @@ public class BirdScript : MonoBehaviour
         Hive = GameObject.FindGameObjectWithTag("Hive");
         honeyCounter = FindObjectOfType<HoneyCounter>();
         initialSpeed = Speed;
+        // badWords = transform.GetChild(0).gameObject;
+        angerSymbol = transform.GetChild(1).gameObject;
+        initialAngerSymbolScale = angerSymbol.transform.localScale.x;
     }
     private void Update()
     {
@@ -48,6 +53,8 @@ public class BirdScript : MonoBehaviour
             transform.position += Vector3.left * Time.deltaTime * Speed;
         } else
         {
+            angerSymbol.SetActive(true);
+            angerSymbol.transform.localScale = new Vector3(Mathf.PingPong(Time.time * 1.6f, 0.5f) + initialAngerSymbolScale, Mathf.PingPong(Time.time * 1.6f, 0.5f) + initialAngerSymbolScale, transform.localScale.y); ;
             Speed = initialSpeed * 1.5f;
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, Speed * Time.deltaTime);
             
@@ -71,6 +78,7 @@ public class BirdScript : MonoBehaviour
             {
                 honeyCounter.setHoneyAmount(0f);
             }
+            Handheld.Vibrate();
             Destroy(gameObject);
         }
     }

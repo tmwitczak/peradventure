@@ -298,7 +298,7 @@ PrefabInstance:
     - target: {fileID: 589469783077399864, guid: 3a13fb68ac4970041b44c970302e497a,
         type: 3}
       propertyPath: BirdSpeed
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 589469783077399865, guid: 3a13fb68ac4970041b44c970302e497a,
         type: 3}
