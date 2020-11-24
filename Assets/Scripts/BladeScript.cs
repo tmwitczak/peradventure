@@ -14,6 +14,8 @@ public class BladeScript : MonoBehaviour
     private Rigidbody2D rigidbody;
     [SerializeField] CircleCollider2D circleCollider;
     [SerializeField] CircleCollider2D circleCollider1;
+    [SerializeField] GameObject starParticles;
+    private GameObject particleSystem;
 
     private Camera camera;
     private Vector2 previousPos;
@@ -27,6 +29,7 @@ public class BladeScript : MonoBehaviour
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
+        particleSystem = starParticles;
     }
 
     // Update is called once per frame
@@ -68,7 +71,6 @@ public class BladeScript : MonoBehaviour
         {
             currentTrail.transform.position = previousPos;
         }
-
     }
 
     void UpdateCut()
@@ -108,12 +110,22 @@ public class BladeScript : MonoBehaviour
         circleCollider1.enabled = false;
     }
 
+    void emitParticles(GameObject hand)
+    {
+        particleSystem = Instantiate(starParticles);
+        particleSystem.transform.position = 
+            new Vector3(Mathf.Lerp(transform.position.x, hand.transform.position.x, 0.2f), Mathf.Lerp(transform.position.y, hand.transform.position.y, 0.2f));
+        particleSystem.GetComponent<ParticleSystem>().Play();
+        Destroy(particleSystem, 1.0f);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hand"))
         {
             honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().StealAmount);
             Destroy(other.gameObject);
+            emitParticles(other.gameObject);
         } else if (other.CompareTag("Bird"))
         {
             other.gameObject.GetComponent<BirdScript>().isTriggered = true;

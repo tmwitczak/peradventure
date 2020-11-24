@@ -50,6 +50,8 @@ MonoBehaviour:
   minCutVelocity: 0.01
   circleCollider: {fileID: 9019628314672914740}
   circleCollider1: {fileID: 1653222391}
+  starParticles: {fileID: 3800759672124508984, guid: 5e5320ffd6760ce4cacc2316d8488e19,
+    type: 3}
 --- !u!50 &9019628314672914891
 Rigidbody2D:
   serializedVersion: 4
