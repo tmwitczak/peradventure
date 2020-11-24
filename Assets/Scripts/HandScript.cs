@@ -14,7 +14,7 @@ public class HandScript : MonoBehaviour
     public GameObject Hive;
     private GameObject honey;
 
-    private bool moveBack;
+    public bool moveBack;
 
     private Vector3 initialPos;
 

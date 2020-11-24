@@ -123,7 +123,10 @@ public class BladeScript : MonoBehaviour
     {
         if (other.CompareTag("Hand"))
         {
-            honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().StealAmount);
+            if (other.GetComponent<HandScript>().moveBack)
+            {
+                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().StealAmount);
+            }
             Destroy(other.gameObject);
             emitParticles(other.gameObject);
         } else if (other.CompareTag("Bird"))

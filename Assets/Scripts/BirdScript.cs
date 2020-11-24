@@ -24,6 +24,7 @@ public class BirdScript : MonoBehaviour
 
     private GameObject angerSymbol;
     private float initialAngerSymbolScale;
+    private float pingPongSpeed = 2.0f;
     // private GameObject badWords;
     private void Start()
     {
@@ -54,7 +55,7 @@ public class BirdScript : MonoBehaviour
         } else
         {
             angerSymbol.SetActive(true);
-            angerSymbol.transform.localScale = new Vector3(Mathf.PingPong(Time.time * 1.6f, 0.5f) + initialAngerSymbolScale, Mathf.PingPong(Time.time * 1.6f, 0.5f) + initialAngerSymbolScale, transform.localScale.y); ;
+            angerSymbol.transform.localScale = new Vector3(Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale, Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale, transform.localScale.y); ;
             Speed = initialSpeed * 1.5f;
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, Speed * Time.deltaTime);
             
