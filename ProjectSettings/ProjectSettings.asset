@@ -245,7 +245,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: E:/bee-keeper/user.keystore
+  AndroidKeystoreName: D:/bee-keeper/user.keystore
   AndroidKeyaliasName: beekeeper
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
