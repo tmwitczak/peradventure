@@ -26,6 +26,8 @@ public class BirdScript : MonoBehaviour
     private float initialAngerSymbolScale;
     private float pingPongSpeed = 2.0f;
     // private GameObject badWords;
+
+    private bool hasCollided = false;
     private void Start()
     {
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
@@ -70,12 +72,31 @@ public class BirdScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hive") && isTriggered)
+        if (collision.CompareTag("Hive") && isTriggered && !hasCollided)
         {
+            hasCollided = true;
             if(honeyCounter.getHoneyAmount() - StealAmount > 0f)
             {
                 honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() - StealAmount);
             }else
+            {
+                honeyCounter.setHoneyAmount(0f);
+            }
+            Handheld.Vibrate();
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Hive") && isTriggered && !hasCollided)
+        {
+            hasCollided = true;
+            if (honeyCounter.getHoneyAmount() - StealAmount > 0f)
+            {
+                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() - StealAmount);
+            }
+            else
             {
                 honeyCounter.setHoneyAmount(0f);
             }
