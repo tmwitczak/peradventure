@@ -3,23 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using UnityEditor.XR;
 using UnityEngine;
 
 public class BladeScript : MonoBehaviour
 {
     public GameObject Trail;
     private GameObject currentTrail;
-    public float minCutVelocity = .001f;
-
-    private Rigidbody2D rigidbody;
-    [SerializeField] CircleCollider2D circleCollider;
-    [SerializeField] CircleCollider2D circleCollider1;
-    [SerializeField] GameObject starParticles;
     private GameObject particleSystem;
 
+    [SerializeField] GameObject starParticles;
+    [SerializeField] CircleCollider2D circleCollider;
+    [SerializeField] CircleCollider2D circleCollider1;
+
+    private Rigidbody2D rigidbody;
     private Camera camera;
-    private Vector2 previousPos;
     private HoneyCounter honeyCounter;
+
+    private Vector2 previousPos;
+
+    public float minCutVelocity = .001f;
 
     private bool isCutting = false;
 
@@ -30,6 +33,7 @@ public class BladeScript : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
         particleSystem = starParticles;
+        switchColliders(false);
     }
 
     // Update is called once per frame
@@ -81,12 +85,10 @@ public class BladeScript : MonoBehaviour
         float velocity = (newPos - previousPos).magnitude / Time.deltaTime;
         if (velocity > minCutVelocity)
         {
-            circleCollider.enabled = true;
-            circleCollider1.enabled = true;
+            switchColliders(true);
         }
-        else { 
-            circleCollider.enabled = false; 
-            circleCollider1.enabled = false; 
+        else {
+            switchColliders(false);
         }
 
         previousPos = newPos;
@@ -97,8 +99,7 @@ public class BladeScript : MonoBehaviour
         isCutting = true;
         previousPos = camera.ScreenToWorldPoint(Input.mousePosition);
         currentTrail = Instantiate(Trail);
-        circleCollider.enabled = false;
-        circleCollider1.enabled = false;
+        switchColliders(false);
     }
 
     void StopCutting()
@@ -106,8 +107,7 @@ public class BladeScript : MonoBehaviour
         isCutting = false;
         Destroy(currentTrail, 1f);
         currentTrail = null;
-        circleCollider.enabled = false;
-        circleCollider1.enabled = false;
+        switchColliders(false);
     }
 
     void emitParticles(GameObject hand)
@@ -117,6 +117,19 @@ public class BladeScript : MonoBehaviour
             new Vector3(Mathf.Lerp(transform.position.x, hand.transform.position.x, 0.2f), Mathf.Lerp(transform.position.y, hand.transform.position.y, 0.2f));
         particleSystem.GetComponent<ParticleSystem>().Play();
         Destroy(particleSystem, 1.0f);
+    }
+
+    void switchColliders(bool onOff)
+    {
+        if(!onOff)
+        {
+            circleCollider.enabled = false;
+            circleCollider1.enabled = false;
+        } else
+        {
+            circleCollider.enabled = true;
+            circleCollider1.enabled = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
