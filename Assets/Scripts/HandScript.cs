@@ -28,6 +28,7 @@ public class HandScript : MonoBehaviour
         initialPos = transform.position;
         honey = gameObject.transform.GetChild(0).gameObject;
         HoneyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
+        transform.rotation = rotationTowardsHive();
     }
 
     // Update is called once per frame
@@ -37,10 +38,6 @@ public class HandScript : MonoBehaviour
         if (!moveBack)
         {
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, step);
-            Vector3 direction = (Hive.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion lookRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, step * 6);
         }
         else
         {
@@ -52,6 +49,13 @@ public class HandScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private Quaternion rotationTowardsHive()
+    {
+        Vector3 direction = (Hive.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
