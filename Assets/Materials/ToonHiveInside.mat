@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: 207cd7d6bdf48884581528e5cefd1cd7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 98ee6a470fb277e49ac43c0d789e9701, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -73,19 +73,19 @@ Material:
     - _Parallax: 0.02
     - _RimMax: 1
     - _RimMin: 1
-    - _SSSDistortion: 0.05
-    - _SSSPower: 7.1
-    - _SSSScale: 12.6
-    - _SSSThickness: 0.4
+    - _SSSDistortion: 0
+    - _SSSPower: 1
+    - _SSSScale: 0
+    - _SSSThickness: 0.32
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.58431375, b: 0.03529412, a: 0.2627451}
+    - _Color: {r: 0.6509804, g: 0.44320488, b: 0.1882353, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.654902, g: 0.6117647, b: 0.20000002, a: 0.40392157}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
-    - _SColor: {r: 0.42352945, g: 0.24313727, b: 0.15686275, a: 0.39607844}
-    - _SSSAmbient: {r: 1, g: 1, b: 1, a: 1}
+    - _SColor: {r: 0, g: 0, b: 0, a: 0.39607844}
+    - _SSSAmbient: {r: 0.3679245, g: 0.22743616, b: 0.078097194, a: 1}
