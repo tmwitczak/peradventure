@@ -26,7 +26,12 @@ Shader "Toony Colors Free/Rim Lighting"
 		_RimMin ("Rim Min", Range(0,1)) = 0.5
 		_RimMax ("Rim Max", Range(0,1)) = 1.0
 		
-		
+		// Subsurface scattering
+		_SSSThickness ("Thickness", Range(0,1)) = 0.5
+		_SSSAmbient ("Ambient", Color) = (1.0, 1.0, 1.0, 1.0)
+		_SSSDistortion ("Distortion", Range(0,1)) = 0.05
+		_SSSPower ("Power", Range(1,20)) = 12.0
+		_SSSScale ("Scale", Range(0,20)) = 5.0
 	}
 	
 	SubShader
@@ -50,6 +55,12 @@ Shader "Toony Colors Free/Rim Lighting"
 		fixed _RimMin;
 		fixed _RimMax;
 		float4 _RimDir;
+
+		half _SSSThickness;
+		half3 _SSSAmbient;
+		half _SSSDistortion;
+		half _SSSPower;
+		half _SSSScale;
 		
 		struct Input
 		{
@@ -80,6 +91,11 @@ Shader "Toony Colors Free/Rim Lighting"
 			s.Normal = normalize(s.Normal);
 			fixed ndl = max(0, dot(s.Normal, lightDir)*0.5 + 0.5);
 			
+			// Subsurface scattering / translucency
+			half3 vLTLight = lightDir + s.Normal * _SSSDistortion;
+			half fLTDot = pow(saturate(dot(viewDir, -vLTLight)), _SSSPower) * _SSSScale;
+			half3 fLT = (fLTDot + _SSSAmbient) * _SSSThickness;
+			
 			fixed3 ramp = tex2D(_Ramp, fixed2(ndl,ndl));
 		#if !(POINT) && !(SPOT)
 			ramp *= atten;
@@ -87,7 +103,7 @@ Shader "Toony Colors Free/Rim Lighting"
 			_SColor = lerp(_HColor, _SColor, _SColor.a);	//Shadows intensity through alpha
 			ramp = lerp(_SColor.rgb,_HColor.rgb,ramp);
 			fixed4 c;
-			c.rgb = s.Albedo * _LightColor0.rgb * ramp;
+			c.rgb = s.Albedo * _LightColor0.rgb * ramp * fLT;
 			c.a = s.Alpha;
 		#if (POINT || SPOT)
 			c.rgb *= atten;
