@@ -3,7 +3,7 @@
 
 //Enable this to display the default Inspector (in case the custom Inspector is broken)
 //(It will also remove the Toony Colors Pro 2 links)
-//#define SHOW_DEFAULT_INSPECTOR
+#define SHOW_DEFAULT_INSPECTOR
 
 using UnityEngine;
 using UnityEditor;
