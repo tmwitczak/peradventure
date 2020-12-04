@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ToonHand
-  m_Shader: {fileID: 4800000, guid: bcda9a4af3b5d8246a2910cff3e5af44, type: 3}
+  m_Shader: {fileID: 4800000, guid: 81ae609a37b59f043ac4256abae11b2e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -56,13 +56,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: 207cd7d6bdf48884581528e5cefd1cd7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4878e8b0a382c26449edcb1fe24ab2c0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _Distortion: 0.05
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -71,16 +72,25 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimMax: 0.76
-    - _RimMin: 0.3
+    - _Power: 12
+    - _RimMax: 1
+    - _RimMin: 0.55
+    - _SSSDistortion: 0.01
+    - _SSSPower: 1.8
+    - _SSSScale: 3.2
+    - _SSSThickness: 0.84
+    - _Scale: 5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Thickness: 0.89
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _Ambient: {r: 0.9150943, g: 0.6726586, b: 0.5395603, a: 1}
     - _Color: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
-    - _SColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+    - _SColor: {r: 0.3773585, g: 0.29984066, b: 0.008899963, a: 1}
+    - _SSSAmbient: {r: 1, g: 0.6855708, b: 0.41037738, a: 1}
