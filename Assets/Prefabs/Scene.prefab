@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4322083323804919010}
   - component: {fileID: 8676918209722905656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1733069193746857740}
   - component: {fileID: 6625139184376390412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2291052112627663543}
   - component: {fileID: 2291052112627663542}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2291052113703746959}
   - component: {fileID: 2291052113703746958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2291052114080713610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lighting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2291052114394332272}
   - component: {fileID: 2291052114394332273}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2291052114543224260}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2291052114569782489}
   - component: {fileID: 2291052114569782490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3868055444491350171}
   - component: {fileID: 1560032503361008670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,10 +720,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1747901052717546511}
     m_Modifications:
+    - target: {fileID: 115085839506652055, guid: 226b63d0b8f08c7488def71fefe946a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732760569660863930, guid: 226b63d0b8f08c7488def71fefe946a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861746941774981670, guid: 226b63d0b8f08c7488def71fefe946a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4778887415280217496, guid: 226b63d0b8f08c7488def71fefe946a9,
         type: 3}
       propertyPath: m_Name
       value: Hive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778887415280217496, guid: 226b63d0b8f08c7488def71fefe946a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5267474766287927074, guid: 226b63d0b8f08c7488def71fefe946a9,
         type: 3}
@@ -848,6 +868,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Branch
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332914527306424327, guid: a50c07a47a13c7b4ab64099d48f2c5c5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50c07a47a13c7b4ab64099d48f2c5c5, type: 3}
