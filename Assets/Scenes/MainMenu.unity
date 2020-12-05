@@ -121,27 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &5998419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3330888120755438891, guid: d973e457618d1ac4384e51d40d336692,
-    type: 3}
-  m_PrefabInstance: {fileID: 3531297687244610243}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5998421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5998419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &267567657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3531297687367145706, guid: d973e457618d1ac4384e51d40d336692,
@@ -220,27 +199,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &886185617 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3330888122075376512, guid: d973e457618d1ac4384e51d40d336692,
-    type: 3}
-  m_PrefabInstance: {fileID: 3531297687244610243}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &886185619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886185617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1133403543 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
@@ -360,27 +318,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5292360637239158336}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1755229062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 114141748033998428, guid: d973e457618d1ac4384e51d40d336692,
-    type: 3}
-  m_PrefabInstance: {fileID: 3531297687244610243}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1755229064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755229062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1821133143
 GameObject:
   m_ObjectHideFlags: 0
