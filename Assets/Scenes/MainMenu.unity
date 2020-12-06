@@ -793,7 +793,7 @@ PrefabInstance:
     - target: {fileID: 5552791204640880370, guid: d973e457618d1ac4384e51d40d336692,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7107604246552204078, guid: d973e457618d1ac4384e51d40d336692,
         type: 3}
@@ -828,6 +828,21 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1133403543}
+    - target: {fileID: 2729946372677326474, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729946372677326474, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729946372677326474, guid: 0556950b6f3be284d830a5262f747685,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
     - target: {fileID: 4163466427843543220, guid: 0556950b6f3be284d830a5262f747685,
         type: 3}
       propertyPath: MainMenu
