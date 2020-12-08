@@ -25,7 +25,6 @@ public class BirdScript : MonoBehaviour
     private GameObject angerSymbol;
     private float initialAngerSymbolScale;
     private float pingPongSpeed = 2.0f;
-    // private GameObject badWords;
 
     private bool hasCollided = false;
     private void Start()
@@ -41,7 +40,6 @@ public class BirdScript : MonoBehaviour
         Hive = GameObject.FindGameObjectWithTag("Hive");
         honeyCounter = FindObjectOfType<HoneyCounter>();
         initialSpeed = Speed;
-        // badWords = transform.GetChild(0).gameObject;
         angerSymbol = transform.GetChild(1).gameObject;
         initialAngerSymbolScale = angerSymbol.transform.localScale.x;
     }
