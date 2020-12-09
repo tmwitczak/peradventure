@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class DataCollectorScript : MonoBehaviour
 {
-    private HiveLevel HiveLvl;
     private BeesScript BeesScript;
 
     [HideInInspector]
@@ -22,7 +21,6 @@ public class DataCollectorScript : MonoBehaviour
 
     private void Start()
     {
-        HiveLvl = FindObjectOfType<HiveLevel>();
         BeesScript = FindObjectOfType<BeesScript>();
     }
 
@@ -52,6 +50,7 @@ public class DataCollectorScript : MonoBehaviour
             HiveLevel.hiveLevel = gameData.hiveLevel;
             HiveLevel.levelMaxValue = gameData.levelMaxValue;
             HiveLevel.honeyAmount = gameData.honeyAmount;
+            levelsUnlocked = gameData.levelsUnlocked;
         }
         //Debug.Log("Ilosc pszczol: " + gameData.amountOfBees + '\n' + "Level ula: " + gameData.hiveLevel + '\n' + "Ilosc miodu: " + gameData.honeyAmount + '\n' + "Odblokowane poziomy: " + gameData.levelsUnlocked + '\n' + "SliderMaxVal: " + gameData.levelMaxValue);
 
