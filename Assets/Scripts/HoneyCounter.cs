@@ -15,14 +15,13 @@ public class HoneyCounter : MonoBehaviour
     private int amountOfBees;
     private Text text;
     private float honeyAmount;
-    private string initialText;
     
     public float endHoneyAmount { get; set; }
+
     private void Start()
     {
         honeyAmount = 0f;
         text = GetComponent<Text>();
-        initialText = text.text;
         initialSmokeFactor = SmokeFactor;
         
     }
