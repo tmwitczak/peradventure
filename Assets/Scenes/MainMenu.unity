@@ -780,6 +780,11 @@ PrefabInstance:
       propertyPath: LevelMenu
       value: 
       objectReference: {fileID: 1558459538}
+    - target: {fileID: 5451546742198881360, guid: d973e457618d1ac4384e51d40d336692,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -120
+      objectReference: {fileID: 0}
     - target: {fileID: 5552791204604991577, guid: d973e457618d1ac4384e51d40d336692,
         type: 3}
       propertyPath: m_Name
@@ -799,6 +804,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209131233712424743, guid: d973e457618d1ac4384e51d40d336692,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 7933132100958998338, guid: d973e457618d1ac4384e51d40d336692,
         type: 3}
