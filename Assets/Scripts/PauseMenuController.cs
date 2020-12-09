@@ -17,8 +17,6 @@ public class PauseMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -42,6 +40,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
+        TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
         PauseMenu.SetActive(true);
         Time.timeScale = 0.0f;
         isPaused = true;
