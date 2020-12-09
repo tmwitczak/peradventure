@@ -29,6 +29,9 @@ public class HiveLevel : MonoBehaviour
     private bool filled = false;
     private bool beeAmountUp = false;
 
+    private bool sliderNeedsReset = true;
+    private float deltaHoney = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
