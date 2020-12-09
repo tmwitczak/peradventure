@@ -8,29 +8,29 @@ using UnityEngine.SceneManagement;
 public class HiveLevel : MonoBehaviour
 {
     public GameObject EndLevelHelper;
-    public static bool resultsActive = false;
-    public static int hiveLevel;
-    [SerializeField] Text levelNumber;
     public Slider slider;
+    public DataCollectorScript dataCollector;
     private BeesScript beesScript;
+    [SerializeField] 
+    Text levelNumber;
     [HideInInspector]
     public HoneyCounter honeyCounter;
-    public DataCollectorScript dataCollector;
-
     public Image beeLevelUp;
 
-    public static float honeyAmount = 0.0f;
+    public static int hiveLevel;
     public static float levelMaxValue = 0.0f;
+    public static float honeyAmount = 0.0f;
 
+    private float previousLevelMaxValue = 0.0f;
     private float fillSpeed = 1.5f;
     private float startFillTime = 0.0f;
+    private float honeyOverflow = 0.0f;
+    private float honeyForSlider = 0.0f;
 
     private bool endStart = true;
-    private bool filled = false;
+    private bool overflowed = false;
     private bool beeAmountUp = false;
-
-    private bool sliderNeedsReset = true;
-    private float deltaHoney = 0.0f;
+    public static bool resultsActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,10 @@ public class HiveLevel : MonoBehaviour
         }
 
         slider.maxValue = levelMaxValue;
+        previousLevelMaxValue = levelMaxValue;
+
         levelNumber.text = hiveLevel.ToString();
+        honeyForSlider = honeyAmount;
 
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
     }
@@ -55,7 +58,7 @@ public class HiveLevel : MonoBehaviour
     {
         float honeyCovered = (Time.time - startFillTime);
         float honeySmoothing = honeyCovered / fillSpeed;
-        if (resultsActive && !filled)
+        if (resultsActive && !beeAmountUp)
         {
             EndLevelHelper.SetActive(false);
             if (endStart)
@@ -64,37 +67,25 @@ public class HiveLevel : MonoBehaviour
             }
             else
             {
-                slider.value = Mathf.Lerp(honeyAmount, honeyCounter.endHoneyAmount + honeyAmount, honeySmoothing);
-                if (honeySmoothing >= 1.0f)
+                if (honeySmoothing < 1.0f)
                 {
-                    honeyAmount += honeyCounter.endHoneyAmount;
-                    filled = true;
+                    slider.value = Mathf.Lerp(honeyForSlider, !overflowed ? (honeyCounter.endHoneyAmount + honeyForSlider) : honeyOverflow, honeySmoothing);
                 }
             }
 
-            if (slider.value >= levelMaxValue)
+            if (slider.value >= previousLevelMaxValue)
             {
-                LevelUp();
+                slider.maxValue = levelMaxValue;
+                levelNumber.text = hiveLevel.ToString();
+
+                slider.value = 0.0f;
+                honeyForSlider = 0.0f;
+
+                overflowed = true;
                 beeAmountUp = true;
-                if(beeLevelUp.color.a == 1.0f)
-                {
-                    slider.value = 0.0f;
-                }
-            }
-
-            if(filled)
-            {
-                int levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
-                // SceneManager.sceneCountInBuildSettings - 1 >= levelToUnlock
-                // leveltounlock <= 6 is temporary
-                if (dataCollector.levelsUnlocked < levelToUnlock && levelToUnlock <= 6)
-                {
-                    dataCollector.levelsUnlocked = levelToUnlock;
-                }
-                dataCollector.SaveData();
             }
         }
-        else if(filled && beeAmountUp)
+        else if(beeAmountUp)
         {
             StartCoroutine(showBeeAmountUp());
         }
@@ -102,9 +93,18 @@ public class HiveLevel : MonoBehaviour
 
     IEnumerator waitForMenu(float seconds)
     {
-        yield return new WaitForSecondsRealtime(seconds);
         endStart = false;
+        yield return new WaitForSecondsRealtime(seconds);
         startFillTime = Time.time;
+        honeyAmount += honeyCounter.endHoneyAmount;
+
+        if (honeyAmount >= levelMaxValue)
+        {
+            honeyOverflow = honeyAmount - levelMaxValue;
+            LevelUp();
+        }
+
+        Save();
     }
 
     IEnumerator showBeeAmountUp()
@@ -119,7 +119,18 @@ public class HiveLevel : MonoBehaviour
     {
         hiveLevel++;
         beesScript.amountOfBees += 20;
-        levelNumber.text = hiveLevel.ToString();
         levelMaxValue *= 2.0f;
+    }
+
+    private void Save()
+    {
+        int levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
+        // SceneManager.sceneCountInBuildSettings - 1 >= levelToUnlock
+        // leveltounlock <= 6 is temporary
+        if (dataCollector.levelsUnlocked < levelToUnlock && levelToUnlock <= 6)
+        {
+            dataCollector.levelsUnlocked = levelToUnlock;
+        }
+        dataCollector.SaveData();
     }
 }
