@@ -44,7 +44,7 @@ public class HandScript : MonoBehaviour
             honey.SetActive(true);
             transform.position = Vector2.MoveTowards(transform.position, initialPos, step);
             destructionTimer += Time.deltaTime;
-            if (destructionTimer >= 1.0f)
+            if (destructionTimer >= 1.7f)
             {
                 Destroy(gameObject);
             }

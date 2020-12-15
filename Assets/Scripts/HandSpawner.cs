@@ -22,13 +22,13 @@ public class HandSpawner : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-        screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        for (float i = screenMin.x - 5.0f; i < screenMax.x + 5.0f; i += 0.5f)
+        screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)) + new Vector3(-2.0f, -2.0f);
+        screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)) + new Vector3(2.0f, 2.0f);
+        for (float i = screenMin.x - 4.0f; i < screenMax.x + 4.0f; i += 0.75f)
         {
             spawnX.Add(i);
         }
-        for (float i = screenMin.y - 2.0f; i < screenMax.y + 2.0f; i += 0.5f)
+        for (float i = screenMin.y - 1.0f; i < screenMax.y + 1.0f; i += 0.75f)
         {
             spawnY.Add(i);
         }
@@ -69,9 +69,8 @@ public class HandSpawner : MonoBehaviour
 
     private void SpawnHand()
     {
-        seed += 100;
-        Random.InitState(seed);
-        int rand = Random.Range(0, 50);
+        Random.InitState((int)System.DateTime.Now.Ticks);
+        int rand = Random.Range(0, 11);
         if (rand % 3 == 1)
         {
             spawnX = spawnX.Where(value => value <= screenMin.x || value >= screenMax.x).ToList();
