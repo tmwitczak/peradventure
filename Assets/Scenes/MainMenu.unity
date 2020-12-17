@@ -768,7 +768,7 @@ PrefabInstance:
     - target: {fileID: 3531297687367145706, guid: d973e457618d1ac4384e51d40d336692,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4734435309967501982, guid: d973e457618d1ac4384e51d40d336692,
         type: 3}
@@ -838,41 +838,6 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1133403543}
-    - target: {fileID: 1783563700, guid: 0556950b6f3be284d830a5262f747685, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1783563701, guid: 0556950b6f3be284d830a5262f747685, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1783563701, guid: 0556950b6f3be284d830a5262f747685, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 125
-      objectReference: {fileID: 0}
-    - target: {fileID: 1783563701, guid: 0556950b6f3be284d830a5262f747685, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1783563701, guid: 0556950b6f3be284d830a5262f747685, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 125
-      objectReference: {fileID: 0}
-    - target: {fileID: 2729946372677326474, guid: 0556950b6f3be284d830a5262f747685,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.49019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2729946372677326474, guid: 0556950b6f3be284d830a5262f747685,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.49019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2729946372677326474, guid: 0556950b6f3be284d830a5262f747685,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.49019608
-      objectReference: {fileID: 0}
     - target: {fileID: 4163466427843543220, guid: 0556950b6f3be284d830a5262f747685,
         type: 3}
       propertyPath: MainMenu
@@ -891,7 +856,7 @@ PrefabInstance:
     - target: {fileID: 5292360637828190930, guid: 0556950b6f3be284d830a5262f747685,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5292360637828190931, guid: 0556950b6f3be284d830a5262f747685,
         type: 3}
@@ -997,11 +962,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939189298466843391, guid: 0556950b6f3be284d830a5262f747685,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0556950b6f3be284d830a5262f747685, type: 3}
