@@ -76,9 +76,9 @@ Material:
     - _RimMax: 1
     - _RimMin: 0
     - _SSSDistortion: 0
-    - _SSSPower: 20
-    - _SSSScale: 10.2
-    - _SSSThickness: 0.6
+    - _SSSPower: 1
+    - _SSSScale: 20
+    - _SSSThickness: 0.2
     - _Scale: 8.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1753163988487873786, guid: a4ec89a56cb719541a588276e53d042f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2291052114543224260, guid: a4ec89a56cb719541a588276e53d042f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -188,6 +193,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 2291052114569782491, guid: a4ec89a56cb719541a588276e53d042f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749718060681152891, guid: a4ec89a56cb719541a588276e53d042f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6cb0c0f3753cbb44a4284b20dfbc1a8, type: 2}
+    - target: {fileID: 2749718060681152891, guid: a4ec89a56cb719541a588276e53d042f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9652fb479f53c0a4384c37e5cdbdf94b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ec89a56cb719541a588276e53d042f, type: 3}
 --- !u!4 &265024873 stripped
@@ -1024,6 +1044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bees
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825771217771514555, guid: 324c77cb46a8fad48b76401fefbdb4a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 324c77cb46a8fad48b76401fefbdb4a0, type: 3}

@@ -4777,7 +4777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   honeyCounter: {fileID: 0}
-  smokeEffect: 0.005
 --- !u!1 &767825143048045796
 GameObject:
   m_ObjectHideFlags: 0
@@ -9555,7 +9554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   honeyCounter: {fileID: 0}
-  smokeEffect: 0.005
 --- !u!1 &767825143305193335
 GameObject:
   m_ObjectHideFlags: 0
@@ -14333,7 +14331,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   honeyCounter: {fileID: 0}
-  smokeEffect: 0.005
 --- !u!1 &767825143773373095
 GameObject:
   m_ObjectHideFlags: 0
@@ -19111,7 +19108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   honeyCounter: {fileID: 0}
-  smokeEffect: 0.005
 --- !u!1 &767825143953188491
 GameObject:
   m_ObjectHideFlags: 0
@@ -19163,3 +19159,4 @@ MonoBehaviour:
   SmokeRight: {fileID: 767825143305193330}
   SmokeUp: {fileID: 767825143048045795}
   SmokeDown: {fileID: 767825143773373090}
+  smokeCooldown: 2
