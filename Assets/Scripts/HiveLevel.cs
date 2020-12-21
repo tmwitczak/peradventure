@@ -27,6 +27,9 @@ public class HiveLevel : MonoBehaviour
     private float honeyOverflow = 0.0f;
     private float honeyForSlider = 0.0f;
 
+    private Text endText;
+    private string[] endTextsList = { "Sublime!", "Brilliant!", "Great Job!", "Nice!"};
+
     private bool endStart = true;
     private bool overflowed = false;
     private bool beeAmountUp = false;
@@ -51,6 +54,7 @@ public class HiveLevel : MonoBehaviour
         honeyForSlider = honeyAmount;
 
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
+        endText = gameObject.transform.Find("Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -93,6 +97,17 @@ public class HiveLevel : MonoBehaviour
 
     IEnumerator waitForMenu(float seconds)
     {
+        Debug.Log(honeyCounter.endHoneyAmount);
+        if(honeyCounter.endHoneyAmount >= 110.0f) {
+            endText.text = endTextsList[0];
+        } else if (110.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 80.0f)
+        {
+            endText.text = endTextsList[1];
+        } else if (80.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 60.0f)
+        {
+            endText.text = endTextsList[2];
+        } else endText.text = endTextsList[3];
+
         endStart = false;
         yield return new WaitForSecondsRealtime(seconds);
         startFillTime = Time.time;

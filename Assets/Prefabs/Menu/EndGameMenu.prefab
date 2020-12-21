@@ -345,7 +345,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 14.4, y: 65}
-  m_SizeDelta: {x: 328.9, y: 189.7}
+  m_SizeDelta: {x: 420, y: 189.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6586688953391813473
 CanvasRenderer:
@@ -485,10 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndLevelHelper: {fileID: 0}
-  levelNumber: {fileID: 9160870799667093195}
   slider: {fileID: 4878747467076024945}
-  honeyCounter: {fileID: 0}
   dataCollector: {fileID: 0}
+  levelNumber: {fileID: 9160870799667093195}
+  honeyCounter: {fileID: 0}
   beeLevelUp: {fileID: 2586296673004562308}
 --- !u!95 &6586688954446801345
 Animator:

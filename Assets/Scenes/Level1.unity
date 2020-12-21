@@ -164,6 +164,11 @@ PrefabInstance:
       propertyPath: beesScript
       value: 
       objectReference: {fileID: 3825771218210589524}
+    - target: {fileID: 2892882167786812642, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: dataCollector
+      value: 
+      objectReference: {fileID: 1152125012}
     - target: {fileID: 2892882167786812703, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -368,6 +373,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806793330730487219, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_Text
+      value: Geat Job!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806793330730487220, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 9025021777334072212, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
