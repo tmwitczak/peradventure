@@ -14,7 +14,7 @@ public class SmokeBehaviour : MonoBehaviour
     private bool[] startPlaying;
     private float[] startTime;
 
-    private float EMITTING_TIME = 10.0f;
+    private float EMITTING_TIME = 6.0f;
 
     // Start is called before the first frame update
     void Start()
