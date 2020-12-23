@@ -154,9 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3066f397f5178e44bc0411f373f9904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
-  StealAmount: 15
-  Hive: {fileID: 4615227038859752290, guid: f10284a08e1850c4ca3a5dda9b5b0748, type: 3}
+  hive: {fileID: 4615227038859752290, guid: f10284a08e1850c4ca3a5dda9b5b0748, type: 3}
+  moveBack: 0
+  speed: 3
+  stealAmount: 15
 --- !u!1001 &763653202847752249
 PrefabInstance:
   m_ObjectHideFlags: 0

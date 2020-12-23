@@ -137,7 +137,7 @@ public class BladeScript : MonoBehaviour
         {
             if (other.GetComponent<HandScript>().moveBack)
             {
-                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().StealAmount);
+                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().stealAmount);
             }
             Destroy(other.gameObject);
             emitParticles(other.gameObject);

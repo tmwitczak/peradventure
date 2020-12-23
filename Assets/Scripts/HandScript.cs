@@ -1,72 +1,109 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using UnityEngine;
+
+using Random = UnityEngine.Random;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class HandScript : MonoBehaviour
-{
-    public float Speed;
-    public float StealAmount;
-    public GameObject Hive;
-    private GameObject honey;
+public class HandScript : MonoBehaviour {
+  public GameObject hive;
+  public bool moveBack;
+  public float speed;
+  public float stealAmount;
 
-    public bool moveBack;
+  private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
+  private GameObject honey;
+  private HoneyCounter honeyCounter;
+  private Vector3 initialPosition;
+  private float destructionTimer = 0.0f;
+  private float lifetimeAfterTheft = 5.0f;
 
-    private Vector3 initialPos;
+  private void Awake() {
+    Random.InitState((int)System.DateTime.Now.Ticks);
 
-    private HoneyCounter HoneyCounter;
+    honey = gameObject.transform.GetChild(0).gameObject;
+    honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
 
-    private float destructionTimer = 0.0f;
-    // Start is called before the first frame update
-    void Start()
+    initialPosition = transform.position;
+    moveBack = false;
+
+    transform.rotation = rotationTowardsHive();
+
+    // iTween setup
     {
-        moveBack = false;
-        initialPos = transform.position;
-        honey = gameObject.transform.GetChild(0).gameObject;
-        HoneyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
-        transform.rotation = rotationTowardsHive();
+      iTween.Init(gameObject);
+
+      forwardMovementProperties = new List<Hashtable>();
+      backwardMovementProperties = new List<Hashtable>();
+
+      float time = (new Vector2(transform.position.x, transform.position.y).magnitude) / speed;
+
+      // Movement properties: initial position -> hive
+      forwardMovementProperties.Add(iTween.Hash(
+                  "position", hive.transform.position,
+                  "time", 1.0f * time,
+                  "easeType", iTween.EaseType.easeInSine));
+      forwardMovementProperties.Add(iTween.Hash(
+                  "position", hive.transform.position,
+                  "time", 1.2f * time,
+                  "easeType", iTween.EaseType.easeInQuad));
+      forwardMovementProperties.Add(iTween.Hash(
+                  "position", hive.transform.position,
+                  "time", 1.4f * time,
+                  "easeType", iTween.EaseType.easeInCubic));
+      // TODO: These bouncy comments below look cool, but need more work
+      // forwardMovementProperties.Add(iTween.Hash(
+      //         "position", hive.transform.position,
+      //         "time", 1.8f * time,
+      //         "easeType", iTween.EaseType.easeInBounce));
+      // forwardMovementProperties.Add(iTween.Hash(
+      //         "position", hive.transform.position,
+      //         "time", 2.6f * time,
+      //         "easeType", iTween.EaseType.easeInOutBounce));
+
+      // Movement properties: hive -> initial position
+      backwardMovementProperties.Add(iTween.Hash(
+              "position", initialPosition,
+              "time", 1.0f * time,
+              "easeType", iTween.EaseType.easeOutSine));
+      backwardMovementProperties.Add(iTween.Hash(
+              "position", initialPosition,
+              "time", 1.2f * time,
+              "easeType", iTween.EaseType.easeOutQuad));
+      backwardMovementProperties.Add(iTween.Hash(
+              "position", initialPosition,
+              "time", 1.4f * time,
+              "easeType", iTween.EaseType.easeOutCubic));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        float step = Speed * Time.deltaTime;
-        if (!moveBack)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, step);
-        }
-        else
-        {
-            honey.SetActive(true);
-            transform.position = Vector2.MoveTowards(transform.position, initialPos, step);
-            destructionTimer += Time.deltaTime;
-            if (destructionTimer >= 1.7f)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+    iTween.MoveTo(gameObject,
+            forwardMovementProperties[Random.Range(0, forwardMovementProperties.Count)]);
+  }
 
-    private Quaternion rotationTowardsHive()
-    {
-        Vector3 direction = (Hive.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        return Quaternion.AngleAxis(angle, Vector3.forward);
-    }
+  private void Update() {
+    destructionTimer += Convert.ToSingle(moveBack) * Time.deltaTime;
+    gameObject.SetActive(destructionTimer < lifetimeAfterTheft);
+  }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Hive"))
-        {
-            moveBack = true;
-            if (HoneyCounter.getHoneyAmount() - StealAmount <= 0.0f)
-            {
-                HoneyCounter.setHoneyAmount(0.0f);
-            }else HoneyCounter.setHoneyAmount(HoneyCounter.getHoneyAmount() - StealAmount);
-        }
+  private Quaternion rotationTowardsHive() {
+    Vector3 direction = (hive.transform.position - transform.position).normalized;
+    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    return Quaternion.AngleAxis(angle, Vector3.forward);
+  }
+
+  private void OnTriggerEnter2D(Collider2D other) {
+    if (other.CompareTag("Hive")) {
+      honey.SetActive(true);
+      honeyCounter.setHoneyAmount(Mathf.Max(
+                  honeyCounter.getHoneyAmount() - stealAmount, 0.0f));
+
+      moveBack = true;
+      iTween.Stop(gameObject);
+      iTween.MoveTo(gameObject,
+              backwardMovementProperties[Random.Range(0, backwardMovementProperties.Count)]);
     }
+  }
 }
