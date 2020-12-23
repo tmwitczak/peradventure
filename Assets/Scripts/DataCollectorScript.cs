@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,16 @@ public class DataCollectorScript : MonoBehaviour
     private void Start()
     {
         BeesScript = FindObjectOfType<BeesScript>();
+    }
+
+
+    [ContextMenu("Clear save data")]
+    private void ClearData()
+    {
+        if (File.Exists(SaveSystem.path))
+        {
+            File.Delete(SaveSystem.path);
+        }
     }
 
     public void SaveData()
