@@ -17,7 +17,8 @@ public class MenuButtonController : MonoBehaviour
         Resume,
         QuitToMenu,
         Continue,
-        Level
+        Level,
+        Restart
     }
 
     [SerializeField] GameObject MainMenu;
@@ -99,6 +100,10 @@ public class MenuButtonController : MonoBehaviour
                     LoadLevel(buttonName);
                     StopwatchScript.MaxTime = 30.0f;
                     Time.timeScale = 1.0f;
+                    break;
+
+                case ButtonType.Restart:
+                    LoadLevel(SceneManager.GetActiveScene().name);
                     break;
             }
         }

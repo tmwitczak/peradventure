@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 1846452299274305545}
+  Blade: {fileID: 0}
 --- !u!1001 &1741559039044386192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,10 +226,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7341717526895082949}
     m_Modifications:
+    - target: {fileID: 3038726146552045101, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4878747465608952502, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4878747466842747322, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
@@ -413,7 +419,7 @@ PrefabInstance:
     - target: {fileID: 9160870799153024347, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9160870799213267419, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}

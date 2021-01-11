@@ -28,12 +28,16 @@ public class HiveLevel : MonoBehaviour
     private float honeyForSlider = 0.0f;
 
     private Text endText;
-    private string[] endTextsList = { "Sublime!", "Brilliant!", "Great Job!", "Nice!"};
+    private string[] endTextsList = { "Sublime!", "Brilliant!", "Great Job!", "Almost got it :("};
 
     private bool endStart = true;
     private bool overflowed = false;
     private bool beeAmountUp = false;
+    private bool finishedLevel = true;
     public static bool resultsActive = false;
+
+    private GameObject continueButton;
+    private GameObject restartButton;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +59,8 @@ public class HiveLevel : MonoBehaviour
 
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
         endText = gameObject.transform.Find("Text").GetComponent<Text>();
+        continueButton = transform.GetChild(5).gameObject;
+        restartButton = transform.GetChild(6).gameObject;
     }
 
     // Update is called once per frame
@@ -97,17 +103,25 @@ public class HiveLevel : MonoBehaviour
 
     IEnumerator waitForMenu(float seconds)
     {
-        Debug.Log(honeyCounter.endHoneyAmount);
-        if(honeyCounter.endHoneyAmount >= 110.0f) {
+        if (honeyCounter.endHoneyAmount >= 110.0f)
+        {
             endText.text = endTextsList[0];
-        } else if (110.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 80.0f)
+        }
+        else if (110.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 80.0f)
         {
             endText.text = endTextsList[1];
-        } else if (80.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 60.0f)
+        }
+        else if (80.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 60.0f)
         {
             endText.text = endTextsList[2];
-        } else endText.text = endTextsList[3];
-
+        }
+        else
+        {
+            endText.text = endTextsList[3];
+            finishedLevel = false;
+            restartButton.SetActive(true);
+            continueButton.SetActive(false);
+        }
         endStart = false;
         yield return new WaitForSecondsRealtime(seconds);
         startFillTime = Time.time;
@@ -142,7 +156,7 @@ public class HiveLevel : MonoBehaviour
         int levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
         // SceneManager.sceneCountInBuildSettings - 1 >= levelToUnlock
         // leveltounlock <= 6 is temporary
-        if (dataCollector.levelsUnlocked < levelToUnlock && levelToUnlock <= 6)
+        if (dataCollector.levelsUnlocked < levelToUnlock && levelToUnlock <= 6 && finishedLevel)
         {
             dataCollector.levelsUnlocked = levelToUnlock;
         }
