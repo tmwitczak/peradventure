@@ -2,17 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
+    bool firstStart = true;
     public static bool isPaused = false;
     [SerializeField] GameObject PauseMenu;
     [SerializeField] GameObject Blade;
+    [SerializeField] GameObject Overlay;
+    [SerializeField] Animator BackgroundOverlay;
     [SerializeField] IEnumerable<GameObject> TrailClones;
+    public Animator animator;
 
     void Start()
     {
         Blade = GameObject.FindGameObjectWithTag("Blade");
+        Pause();
+        Time.timeScale = 0.0f;
+        iTween.Init(gameObject);
+
+        var beesScript = FindObjectOfType<BeesScript>();
+        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.amountOfBees.ToString();
+        GameObject.Find("LevelNumber").GetComponent<Text>().text =
+            (SceneManager.GetActiveScene().buildIndex + 1).ToString();
+
+        if (firstStart)
+        {
+            firstStart = false;
+            animator.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(
+                    animator.gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -32,22 +53,56 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
-        PauseMenu.SetActive(false);
-        Time.timeScale = 1.0f;
+        animator.SetTrigger("FadeOut");
+        BackgroundOverlay.SetTrigger("FadeOut");
+        // Time.timeScale = 1.0f;
         isPaused = false;
         Blade.SetActive(true);
+        iTween.Stop(gameObject);
+        iTween.ValueTo(gameObject, iTween.Hash(
+            "from", 0.0f,
+            "to", 1.0f,
+            "time", 0.5f,
+            "ignoretimescale", true,
+            "onupdatetarget", gameObject,
+            "onupdate", "tweenOnUpdateCallBack",
+            "easetype", iTween.EaseType.easeOutQuad
+            )
+        );
+    }
+
+    public void Disable()
+    {
+        PauseMenu.SetActive(false);
     }
 
     public void Pause()
     {
+        Overlay.SetActive(true);
         TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
         PauseMenu.SetActive(true);
-        Time.timeScale = 0.0f;
+        // Time.timeScale = 0.0f;
+        iTween.Stop(gameObject);
+        iTween.ValueTo(gameObject, iTween.Hash(
+            "from", Time.timeScale,
+            "to", 0.0f,
+            "time", 0.5f,
+            "ignoretimescale", true,
+            "onupdatetarget", gameObject,
+            "onupdate", "tweenOnUpdateCallBack",
+            "easetype", iTween.EaseType.easeOutQuad
+            )
+        );
         isPaused = true;
         Blade.SetActive(false);
-        foreach(var obj in TrailClones)
+        foreach (var obj in TrailClones)
         {
             Destroy(obj);
         }
+    }
+
+    void tweenOnUpdateCallBack(float newValue)
+    {
+        Time.timeScale = newValue;
     }
 }

@@ -89,7 +89,7 @@ public class MenuButtonController : MonoBehaviour
                 case ButtonType.Continue:
                     if (!LoadNextScene())
                     {
-                        LoadMainMenu();
+                        LoadLevel(0);
                         AnimationEnd();
                     }
                     break;

@@ -527,7 +527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9160870799213267419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1023,6 +1023,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quit
       objectReference: {fileID: 0}
+    - target: {fileID: 8939305131117589766, guid: e5d1b068176d7b141adf2f23c2174003,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d1b068176d7b141adf2f23c2174003, type: 3}
 --- !u!224 &3038726146552045101 stripped
@@ -1307,6 +1312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939305131117589766, guid: e5d1b068176d7b141adf2f23c2174003,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d1b068176d7b141adf2f23c2174003, type: 3}
