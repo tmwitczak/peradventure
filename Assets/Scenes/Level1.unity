@@ -134,11 +134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1846452299274305545, guid: 559fc20f1a931c145b47f535888774e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2892882167786812642, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: beesScript
@@ -149,11 +144,6 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1152125012}
-    - target: {fileID: 6805341594314806152, guid: 559fc20f1a931c145b47f535888774e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: EndLevelHelper
@@ -164,16 +154,6 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1152125012}
-    - target: {fileID: 7125916801642636389, guid: 559fc20f1a931c145b47f535888774e6,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7125916801642636389, guid: 559fc20f1a931c145b47f535888774e6,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7341717526895082948, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_Camera

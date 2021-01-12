@@ -28,7 +28,7 @@ public class HiveLevel : MonoBehaviour
     private float honeyForSlider = 0.0f;
 
     private Text endText;
-    private string[] endTextsList = { "Sublime!", "Brilliant!", "Great Job!", "Almost got it :("};
+    private string[] endTextsList = { "sublime!", "brilliant!", "great job!", "almost\ngot it :("};
 
     private bool endStart = true;
     private bool overflowed = false;

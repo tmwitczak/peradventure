@@ -799,10 +799,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7341717526895082949}
     m_Modifications:
-    - target: {fileID: 3038726146552045101, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+    - target: {fileID: 2292297548022911712, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 8
+      propertyPath: m_Color.r
+      value: 0.9137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 2292297548022911712, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 2292297548022911712, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2292297548022911712, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_Text
+      value: try again
       objectReference: {fileID: 0}
     - target: {fileID: 2803017814277214542, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
@@ -819,10 +834,20 @@ PrefabInstance:
       propertyPath: m_EffectColor.b
       value: 0.76620996
       objectReference: {fileID: 0}
+    - target: {fileID: 3038726146552045101, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3038726147230706896, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -361.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808087648014940477, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 241.4
       objectReference: {fileID: 0}
     - target: {fileID: 4745845815526400554, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
@@ -847,7 +872,7 @@ PrefabInstance:
     - target: {fileID: 4878747465608952502, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4878747465608952502, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
@@ -910,6 +935,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: great job!
       objectReference: {fileID: 0}
+    - target: {fileID: 6586688953391813472, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 0.618
+      objectReference: {fileID: 0}
     - target: {fileID: 6586688953391813479, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -919,6 +949,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586688953391813479, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 356.4
       objectReference: {fileID: 0}
     - target: {fileID: 6860111129789404075, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
@@ -949,6 +984,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 241.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8374716954161617946, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -361.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715890519756759428, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0.9647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715890519756759428, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0.9098039
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715890519756759428, guid: 2e5dea4f071052b4bb7d044bef9a9091,
+        type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0.7647059
       objectReference: {fileID: 0}
     - target: {fileID: 9160870799153024345, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
@@ -1068,7 +1123,7 @@ PrefabInstance:
     - target: {fileID: 9160870799153024347, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9160870799213267419, guid: 2e5dea4f071052b4bb7d044bef9a9091,
         type: 3}
