@@ -19,21 +19,15 @@ public class PauseMenuController : MonoBehaviour
     void Start()
     {
         Blade = GameObject.FindGameObjectWithTag("Blade");
-        Pause();
-        Time.timeScale = 0.0f;
-        iTween.Init(gameObject);
-
-        var beesScript = FindObjectOfType<BeesScript>();
-        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.amountOfBees.ToString();
-        GameObject.Find("LevelNumber").GetComponent<Text>().text =
-            (SceneManager.GetActiveScene().buildIndex + 1).ToString();
-
-        if (firstStart)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            firstStart = false;
-            animator.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(
-                    animator.gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+            // firstStart = false;
+            // animator.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(
+            //         animator.gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+            Pause();
+            // Time.timeScale = 0.0f;
         }
+        iTween.Init(gameObject);
     }
     // Update is called once per frame
     void Update()
@@ -99,6 +93,10 @@ public class PauseMenuController : MonoBehaviour
         {
             Destroy(obj);
         }
+        var beesScript = FindObjectOfType<BeesScript>();
+        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.amountOfBees.ToString();
+        GameObject.Find("LevelNumber").GetComponent<Text>().text =
+            (SceneManager.GetActiveScene().buildIndex + 1).ToString();
     }
 
     void tweenOnUpdateCallBack(float newValue)
