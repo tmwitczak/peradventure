@@ -111,7 +111,7 @@ public class HiveLevel : MonoBehaviour
         {
             endText.text = endTextsList[1];
         }
-        else if (80.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 60.0f)
+        else if (80.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 40.0f)
         {
             endText.text = endTextsList[2];
         }
