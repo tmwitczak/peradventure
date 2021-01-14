@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class BeesScript : MonoBehaviour
 {
-    public int amountOfBees;
+    [SerializeField]
+    private int amountOfBees = 30;
     private ParticleSystem bees;
     [SerializeField] ParticleSystem center;
     private HoneyCounter honeyCounter;
@@ -14,12 +15,14 @@ public class BeesScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         honeyCounter = FindObjectOfType<HoneyCounter>();
         dataCollector = FindObjectOfType<DataCollectorScript>();
         bees = GetComponent<ParticleSystem>();
 
-        dataCollector.LoadData();
+        if (!dataCollector.LoadData())
+        {
+            amountOfBees = 30;
+        }
     }
 
     private void Update()
@@ -34,5 +37,20 @@ public class BeesScript : MonoBehaviour
         centerEmission.rateOverTime = honeyCounter.SmokeFactor * 10.0f;
 
         honeyCounter.Speed = honeyCounter.SmokeFactor;
+    }
+
+    public int getAmountOfBees()
+    {
+        return amountOfBees;
+    }
+
+    public void setAmountOfBees(int val)
+    {
+        amountOfBees = val;
+    }
+
+    public void addAmountOfBees(int val)
+    {
+        amountOfBees += val;
     }
 }
