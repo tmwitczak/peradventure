@@ -134,6 +134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 946921705, guid: 559fc20f1a931c145b47f535888774e6, type: 3}
+      propertyPath: beesScript
+      value: 
+      objectReference: {fileID: 3825771218210589524}
     - target: {fileID: 2892882167786812642, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: beesScript
@@ -154,6 +158,11 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1152125012}
+    - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: beesScript
+      value: 
+      objectReference: {fileID: 3825771218210589524}
     - target: {fileID: 7341717526895082948, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_Camera
@@ -950,6 +959,11 @@ PrefabInstance:
     - target: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
         type: 3}
       propertyPath: BeesScript
+      value: 
+      objectReference: {fileID: 3825771218210589524}
+    - target: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
+        type: 3}
+      propertyPath: beesScript
       value: 
       objectReference: {fileID: 3825771218210589524}
     - target: {fileID: 5322687693897919694, guid: 308f579baca46d14398cc5d7ee859d74,
