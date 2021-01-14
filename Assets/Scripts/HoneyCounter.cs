@@ -49,7 +49,7 @@ public class HoneyCounter : MonoBehaviour
                 levelFactor = 1.0f;
                 break;
         }
-        amountOfBees = beesScript.amountOfBees;
+        amountOfBees = beesScript.getAmountOfBees();
         honeyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor * levelFactor) * Speed;
         text.text = (Mathf.Round(16.54f * honeyAmount)) + "";
     }

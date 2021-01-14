@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class DataCollectorScript : MonoBehaviour
 {
-    private BeesScript BeesScript;
+    public BeesScript beesScript;
 
     // [HideInInspector]
     public int amountOfBees;
@@ -19,12 +19,6 @@ public class DataCollectorScript : MonoBehaviour
     public float levelMaxValue;
     // [HideInInspector] 
     public int levelsUnlocked;
-
-    private void Start()
-    {
-        BeesScript = FindObjectOfType<BeesScript>();
-    }
-
 
     [ContextMenu("Clear save data")]
     private void ClearData()
@@ -39,7 +33,7 @@ public class DataCollectorScript : MonoBehaviour
     public void SaveData()
     {
         hiveLevel = HiveLevel.hiveLevel;
-        amountOfBees = BeesScript.amountOfBees;
+        amountOfBees = beesScript.getAmountOfBees();
         honeyAmount = HiveLevel.honeyAmount;
         levelMaxValue = HiveLevel.levelMaxValue;
         SaveSystem.SaveData(this);
@@ -59,11 +53,11 @@ public class DataCollectorScript : MonoBehaviour
         //     levelsUnlocked = gameData.levelsUnlocked;
         // }else
         // {
-            BeesScript.amountOfBees = gameData.amountOfBees;
-            HiveLevel.hiveLevel = gameData.hiveLevel;
-            HiveLevel.levelMaxValue = gameData.levelMaxValue;
-            HiveLevel.honeyAmount = gameData.honeyAmount;
-            levelsUnlocked = gameData.levelsUnlocked;
+        beesScript.setAmountOfBees(gameData.amountOfBees);
+        HiveLevel.hiveLevel = gameData.hiveLevel;
+        HiveLevel.levelMaxValue = gameData.levelMaxValue;
+        HiveLevel.honeyAmount = gameData.honeyAmount;
+        levelsUnlocked = gameData.levelsUnlocked;
         // }
         //Debug.Log("Ilosc pszczol: " + gameData.amountOfBees + '\n' + "Level ula: " + gameData.hiveLevel + '\n' + "Ilosc miodu: " + gameData.honeyAmount + '\n' + "Odblokowane poziomy: " + gameData.levelsUnlocked + '\n' + "SliderMaxVal: " + gameData.levelMaxValue);
 

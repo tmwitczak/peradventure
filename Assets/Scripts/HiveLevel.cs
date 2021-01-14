@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class HiveLevel : MonoBehaviour
     public GameObject EndLevelHelper;
     public Slider slider;
     public DataCollectorScript dataCollector;
-    private BeesScript beesScript;
+    public BeesScript beesScript;
     [SerializeField] 
     Text levelNumber;
     [HideInInspector]
@@ -43,7 +43,6 @@ public class HiveLevel : MonoBehaviour
     void Start()
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
-        beesScript = FindObjectOfType<BeesScript>();
         
         if (!dataCollector.LoadData())
         {
@@ -132,7 +131,7 @@ public class HiveLevel : MonoBehaviour
             honeyOverflow = honeyAmount - levelMaxValue;
             LevelUp();
         }
-
+        
         Save();
     }
 
@@ -147,7 +146,7 @@ public class HiveLevel : MonoBehaviour
     private void LevelUp()
     {
         hiveLevel++;
-        beesScript.amountOfBees += 20;
+        beesScript.addAmountOfBees(20);
         levelMaxValue *= 2.0f;
     }
 

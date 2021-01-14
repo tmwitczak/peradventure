@@ -94,7 +94,7 @@ public class PauseMenuController : MonoBehaviour
             Destroy(obj);
         }
         var beesScript = FindObjectOfType<BeesScript>();
-        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.amountOfBees.ToString();
+        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.getAmountOfBees().ToString();
         GameObject.Find("LevelNumber").GetComponent<Text>().text =
             (SceneManager.GetActiveScene().buildIndex + 1).ToString();
     }
