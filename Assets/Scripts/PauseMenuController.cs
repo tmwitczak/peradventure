@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +14,7 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] Animator BackgroundOverlay;
     [SerializeField] IEnumerable<GameObject> TrailClones;
     public Animator animator;
+    public BeesScript beesScript;
 
     void Start()
     {
@@ -71,6 +72,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
+        GameObject.Find("DataCollector").GetComponent<DataCollectorScript>().LoadData();
         Overlay.SetActive(true);
         TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
         PauseMenu.SetActive(true);
@@ -92,7 +94,6 @@ public class PauseMenuController : MonoBehaviour
         {
             Destroy(obj);
         }
-        var beesScript = FindObjectOfType<BeesScript>();
         GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.getAmountOfBees().ToString();
         GameObject.Find("LevelNumber").GetComponent<Text>().text =
             (SceneManager.GetActiveScene().buildIndex + 1).ToString();

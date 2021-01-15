@@ -678,6 +678,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7341717526895082953, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: beesScript
+      value: 
+      objectReference: {fileID: 1903274131}
     - target: {fileID: 9025021777334072212, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_AnchorMax.y

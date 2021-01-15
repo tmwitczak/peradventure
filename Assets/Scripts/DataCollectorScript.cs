@@ -11,6 +11,11 @@ public class DataCollectorScript : MonoBehaviour
     public int hiveLevel;
     public int levelsUnlocked;
 
+    void Start()
+    {
+        LoadData();
+    }
+
     [ContextMenu("Clear save data")]
     private void ClearData()
     {
@@ -44,6 +49,11 @@ public class DataCollectorScript : MonoBehaviour
         HiveLevel.honeyAmount = gameData.honeyAmount;
         HiveLevel.levelMaxValue = gameData.levelMaxValue;
         beesScript.setAmountOfBees(gameData.amountOfBees);
+
+        amountOfBees = beesScript.getAmountOfBees();
+        hiveLevel = gameData.hiveLevel;
+        honeyAmount = gameData.honeyAmount;
+        levelMaxValue = gameData.levelMaxValue;
         levelsUnlocked = gameData.levelsUnlocked;
 
         return true;

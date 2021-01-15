@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7341717526895082953, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: beesScript
+      value: 
+      objectReference: {fileID: 3825771218210589524}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 559fc20f1a931c145b47f535888774e6, type: 3}
 --- !u!1001 &610395043
@@ -952,11 +957,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
-        type: 3}
-      propertyPath: BeesScript
-      value: 
-      objectReference: {fileID: 3825771218210589524}
     - target: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
         type: 3}
       propertyPath: beesScript
