@@ -134,10 +134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 946921705, guid: 559fc20f1a931c145b47f535888774e6, type: 3}
-      propertyPath: beesScript
-      value: 
-      objectReference: {fileID: 3825771218210589524}
     - target: {fileID: 2892882167786812642, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: beesScript
