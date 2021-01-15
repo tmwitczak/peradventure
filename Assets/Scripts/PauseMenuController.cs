@@ -1,4 +1,3 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,7 +28,7 @@ public class PauseMenuController : MonoBehaviour
         }
         iTween.Init(gameObject);
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
