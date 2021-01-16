@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class StopwatchScript : MonoBehaviour
@@ -27,7 +24,7 @@ public class StopwatchScript : MonoBehaviour
     {
         if (timer == 1f)
         {
-            honeyCounter.endHoneyAmount = honeyCounter.getHoneyAmount();
+            honeyCounter.endHoneyAmount = honeyCounter.HoneyAmount;
             EndGameMenu.SetActive(true);
             HiveLevel.resultsActive = true;
             Fill.GetComponent<Image>().fillAmount = 1.0f;

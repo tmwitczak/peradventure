@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using UnityEngine;
 
 public class BladeScript : MonoBehaviour
@@ -82,13 +78,7 @@ public class BladeScript : MonoBehaviour
         rigidbody.position = newPos;
 
         float velocity = (newPos - previousPos).magnitude / Time.deltaTime;
-        if (velocity > minCutVelocity)
-        {
-            switchColliders(true);
-        }
-        else {
-            switchColliders(false);
-        }
+        switchColliders(velocity > minCutVelocity);
 
         previousPos = newPos;
     }
@@ -120,25 +110,15 @@ public class BladeScript : MonoBehaviour
 
     void switchColliders(bool onOff)
     {
-        if(!onOff)
-        {
-            circleCollider.enabled = false;
-            circleCollider1.enabled = false;
-        } else
-        {
-            circleCollider.enabled = true;
-            circleCollider1.enabled = true;
-        }
+        circleCollider.enabled = circleCollider1.enabled = onOff;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hand"))
         {
-            if (other.GetComponent<HandScript>().moveBack)
-            {
-                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() + other.GetComponent<HandScript>().stealAmount);
-            }
+            var handScript = other.GetComponent<HandScript>();
+            honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * handScript.stealAmount;
             Destroy(other.gameObject);
             emitParticles(other.gameObject);
         } else if (other.CompareTag("Bird"))

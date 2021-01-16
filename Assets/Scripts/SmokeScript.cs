@@ -19,26 +19,19 @@ public class SmokeScript : MonoBehaviour
 
     private void Update()
     {
-        if(particlesTriggered == 0)
-        {
-            honeyCounter.setSmokeFactor(honeyCounter.getSmokeFactor() + smokeEffect / 100.0f);
-        }
+        honeyCounter.SmokeFactor += 
+            Convert.ToSingle(particlesTriggered == 0) * smokeEffect / 100.0f;
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.CompareTag("Blade"))
-        {
-            honeyCounter.setSmokeFactor(honeyCounter.getSmokeFactor() + smokeEffect * 2.0f);
-        }
+        honeyCounter.SmokeFactor +=
+            Convert.ToSingle(other.CompareTag("Blade")) * smokeEffect * 2.0f;
     }
 
     private void OnParticleTrigger()
     {
         particlesTriggered = particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
-        for (int i = 0; i < particlesTriggered; i++)
-        {
-            honeyCounter.setSmokeFactor(honeyCounter.getSmokeFactor() - smokeEffect);
-        }
+        honeyCounter.SmokeFactor -= particlesTriggered * smokeEffect;
     }
 }

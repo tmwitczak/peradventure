@@ -9,21 +9,21 @@ public class HoneyCounter : MonoBehaviour
 {
     public float Speed;
     public float MinSmokedSpeed = 0.3f;
-    public float SmokeFactor = 1f;
+    public float _smokeFactor = 1f;
     public BeesScript beesScript;
     public DataCollectorScript dataCollector;
     
     private float initialSmokeFactor;
     private int amountOfBees;
     private Text text;
-    private float honeyAmount;
+    private float _honeyAmount;
     private float levelFactor = 1.0f;
     
     public float endHoneyAmount { get; set; }
 
     private void Start()
     {
-        honeyAmount = 0f;
+        HoneyAmount = 0f;
         text = GetComponent<Text>();
         initialSmokeFactor = SmokeFactor;
     }
@@ -50,31 +50,19 @@ public class HoneyCounter : MonoBehaviour
                 break;
         }
         amountOfBees = beesScript.getAmountOfBees();
-        honeyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor * levelFactor) * Speed;
-        text.text = (Mathf.Round(16.54f * honeyAmount)) + "";
+        HoneyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor * levelFactor) * Speed;
+        text.text = (Mathf.Round(16.54f * HoneyAmount)) + "";
     }
 
-    public void setHoneyAmount(float value)
+    public float HoneyAmount
     {
-        honeyAmount = value <= 0f ? 0f : value;
-    }
-    public float getHoneyAmount()
-    {
-        return honeyAmount;
+        get => _honeyAmount;
+        set => _honeyAmount = Mathf.Max(0f, value);
     }
 
-    public float getSmokeFactor()
+    public float SmokeFactor
     {
-        return SmokeFactor;
-    }
-
-    public void setSmokeFactor(float value)
-    {
-        if (value >= MinSmokedSpeed && value <= initialSmokeFactor)
-        {
-            SmokeFactor = value;
-        }
-        else if (value < MinSmokedSpeed) SmokeFactor = MinSmokedSpeed;
-        else SmokeFactor = initialSmokeFactor;
+        get => _smokeFactor;
+        set => _smokeFactor = Mathf.Clamp(value, MinSmokedSpeed, initialSmokeFactor);
     }
 }

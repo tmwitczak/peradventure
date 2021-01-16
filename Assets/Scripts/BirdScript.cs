@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using UnityEngine;
 
 public class BirdScript : MonoBehaviour
 {
@@ -73,13 +70,7 @@ public class BirdScript : MonoBehaviour
         if (collision.CompareTag("Hive") && isTriggered && !hasCollided)
         {
             hasCollided = true;
-            if(honeyCounter.getHoneyAmount() - StealAmount > 0f)
-            {
-                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() - StealAmount);
-            }else
-            {
-                honeyCounter.setHoneyAmount(0f);
-            }
+            honeyCounter.HoneyAmount -= StealAmount;
             Handheld.Vibrate();
             Destroy(gameObject);
         }
@@ -87,19 +78,6 @@ public class BirdScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag("Hive") && isTriggered && !hasCollided)
-        {
-            hasCollided = true;
-            if (honeyCounter.getHoneyAmount() - StealAmount > 0f)
-            {
-                honeyCounter.setHoneyAmount(honeyCounter.getHoneyAmount() - StealAmount);
-            }
-            else
-            {
-                honeyCounter.setHoneyAmount(0f);
-            }
-            Handheld.Vibrate();
-            Destroy(gameObject);
-        }
+        OnTriggerEnter2D(collision);
     }
 }

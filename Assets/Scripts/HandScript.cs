@@ -97,8 +97,7 @@ public class HandScript : MonoBehaviour {
   private void OnTriggerEnter2D(Collider2D other) {
     if (other.CompareTag("Hive")) {
       honey.SetActive(true);
-      honeyCounter.setHoneyAmount(Mathf.Max(
-                  honeyCounter.getHoneyAmount() - stealAmount, 0.0f));
+      honeyCounter.HoneyAmount -= stealAmount;
 
       moveBack = true;
       iTween.Stop(gameObject);
