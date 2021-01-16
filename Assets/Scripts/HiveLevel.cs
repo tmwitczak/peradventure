@@ -36,8 +36,11 @@ public class HiveLevel : MonoBehaviour
     private bool finishedLevel = true;
     public static bool resultsActive = false;
 
-    private GameObject continueButton;
-    private GameObject restartButton;
+    public GameObject continueButton;
+    public GameObject restartButton;
+
+    [SerializeField] GameObject Overlay;
+    [SerializeField] Animator BackgroundOverlay;
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +61,14 @@ public class HiveLevel : MonoBehaviour
 
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
         endText = gameObject.transform.Find("Text").GetComponent<Text>();
-        continueButton = transform.GetChild(5).gameObject;
-        restartButton = transform.GetChild(6).gameObject;
+
+        // Test for lighting change and smooth background transitions
+        Vector3 a = GameObject.Find("Sun").GetComponent<Transform>().eulerAngles;
+        a.x += 30.0f;
+        GameObject.Find("Sun").GetComponent<Transform>().eulerAngles = a;
+        GameObject.Find("PreRenderBackgroundController").GetComponent<PreRenderBackground>().refresh();
+
+        Overlay.SetActive(true);
     }
 
     // Update is called once per frame
@@ -120,6 +129,7 @@ public class HiveLevel : MonoBehaviour
             finishedLevel = false;
             restartButton.SetActive(true);
             continueButton.SetActive(false);
+            endText.gameObject.SetActive(true);
         }
         endStart = false;
         yield return new WaitForSecondsRealtime(seconds);

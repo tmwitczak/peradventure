@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8972327013550604110}
   - component: {fileID: 1837178446392516599}
   - component: {fileID: 5689783197798897998}
-  - component: {fileID: 5960441221312830528}
   m_Layer: 11
   m_Name: Background To Texture Camera
   m_TagString: Untagged
@@ -173,15 +172,3 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
---- !u!114 &5960441221312830528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094743829184451280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2459b328b56ed04cab7d1a516813423, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
