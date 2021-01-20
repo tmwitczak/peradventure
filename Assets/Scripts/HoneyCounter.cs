@@ -17,7 +17,6 @@ public class HoneyCounter : MonoBehaviour
     private int amountOfBees;
     private Text text;
     private float _honeyAmount;
-    private float levelFactor = 1.0f;
     
     public float endHoneyAmount { get; set; }
 
@@ -30,27 +29,8 @@ public class HoneyCounter : MonoBehaviour
 
     private void Update()
     {
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "Level1":
-                if (dataCollector.levelsUnlocked <= 1)
-                {
-                    levelFactor = 1.1f;
-                }
-                else levelFactor = 0.6f;
-                break;
-            case "Level2":
-                levelFactor = 0.75f;
-                break;
-            case "Level3":
-                levelFactor = 0.85f;
-                break;
-            case "Level4":
-                levelFactor = 1.0f;
-                break;
-        }
         amountOfBees = beesScript.getAmountOfBees();
-        HoneyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor * levelFactor) * Speed;
+        HoneyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = (Mathf.Round(16.54f * HoneyAmount)) + "";
     }
 

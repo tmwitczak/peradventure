@@ -44,64 +44,60 @@ public class MenuButtonController : MonoBehaviour
         {
             switch (type)
             {
-                case ButtonType.Start:
-                    MainMenu.SetActive(false);
-                    LevelMenu.SetActive(true);
-                    AnimationEnd();
-                    break;
+                //case ButtonType.Start:
+                //    MainMenu.SetActive(false);
+                //    LevelMenu.SetActive(true);
+                //    AnimationEnd();
+                //    break;
 
-                case ButtonType.Options:
-                    if (!OptionsMenu.activeSelf)
-                    {
-                        MainMenu.SetActive(false);
-                        OptionsMenu.SetActive(true);
-                        SetToFalse();
-                    }
-                    break;
+                //case ButtonType.Options:
+                //    if (!OptionsMenu.activeSelf)
+                //    {
+                //        MainMenu.SetActive(false);
+                //        OptionsMenu.SetActive(true);
+                //        SetToFalse();
+                //    }
+                //    break;
 
-                case ButtonType.Quit:
-                    AnimationEnd();
-                    Application.Quit();
-                    break;
+                //case ButtonType.Quit:
+                //    AnimationEnd();
+                //    Application.Quit();
+                //    break;
 
-                case ButtonType.Back:
-                    if (!MainMenu.activeSelf)
-                    {
-                        MainMenu.SetActive(true);
-                        if(OptionsMenu.activeSelf)
-                        {
-                            OptionsMenu.SetActive(false);
-                        }
-                        if(LevelMenu.activeSelf)
-                        {
-                            LevelMenu.SetActive(false);
-                        }
-                        AnimationEnd();
-                    }
-                    SetToFalse();
-                    break;
+                //case ButtonType.Back:
+                //    if (!MainMenu.activeSelf)
+                //    {
+                //        MainMenu.SetActive(true);
+                //        if(OptionsMenu.activeSelf)
+                //        {
+                //            OptionsMenu.SetActive(false);
+                //        }
+                //        if(LevelMenu.activeSelf)
+                //        {
+                //            LevelMenu.SetActive(false);
+                //        }
+                //        AnimationEnd();
+                //    }
+                //    SetToFalse();
+                //    break;
 
-                case ButtonType.QuitToMenu:
-                    LoadMainMenu();
-                    AnimationEnd();
-                    break;
+                //case ButtonType.QuitToMenu:
+                //    LoadMainMenu();
+                //    AnimationEnd();
+                //    break;
 
                 case ButtonType.Continue:
-                    if (!LoadNextScene())
-                    {
-                        LoadLevel(0);
-                        AnimationEnd();
-                    }
+                    LoadLevel(SceneManager.GetActiveScene().name);
                     break;
 
-                case ButtonType.Level:
-                    string buttonName = gameObject.name;
-                    buttonName = buttonName.Replace(" ", String.Empty);
-                    LoadLevel(buttonName);
-                    StopwatchScript.MaxTime = 30.0f;
-                    Time.timeScale = 1.0f;
-                    break;
-
+                //case ButtonType.Level:
+                //    string buttonName = gameObject.name;
+                //    buttonName = buttonName.Replace(" ", String.Empty);
+                //    LoadLevel(buttonName);
+                //    StopwatchScript.MaxTime = 30.0f;
+                //    Time.timeScale = 1.0f;
+                //    break;
+                
                 case ButtonType.Restart:
                     LoadLevel(SceneManager.GetActiveScene().name);
                     break;
@@ -143,32 +139,32 @@ public class MenuButtonController : MonoBehaviour
         buttonBgColor.color = Color.white;
     }
 
-    private void LoadLevel(int sceneNum)
-    {
-        SceneManager.LoadScene(sceneNum);
-    }
+    //private void LoadLevel(int sceneNum)
+    //{
+    //    SceneManager.LoadScene(sceneNum);
+    //}
 
     private void LoadLevel(string scene)
     {
         SceneManager.LoadScene(scene);
     }
 
-    private bool LoadNextScene()
-    {
-        if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        } else
-        {
-            return false;
-        }
-        return true;
-    }
+    //private bool LoadNextScene()
+    //{
+    //    if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
+    //    {
+    //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    //    } else
+    //    {
+    //        return false;
+    //    }
+    //    return true;
+    //}
 
-    private void LoadMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+    //private void LoadMainMenu()
+    //{
+    //    SceneManager.LoadScene("MainMenu");
+    //}
 
     private void SetToFalse()
     {
