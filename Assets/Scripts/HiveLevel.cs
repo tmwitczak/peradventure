@@ -11,6 +11,7 @@ public class HiveLevel : MonoBehaviour
     public Slider slider;
     public DataCollectorScript dataCollector;
     public BeesScript beesScript;
+    private LevelManager levelManager;
     [SerializeField] 
     Text levelNumber;
     [HideInInspector]
@@ -46,7 +47,8 @@ public class HiveLevel : MonoBehaviour
     void Start()
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
-        
+        levelManager = FindObjectOfType<LevelManager>();
+
         if (!dataCollector.LoadData())
         {
             hiveLevel = 1;
@@ -132,7 +134,11 @@ public class HiveLevel : MonoBehaviour
             endText.gameObject.SetActive(true);
         }
         endStart = false;
+
         yield return new WaitForSecondsRealtime(seconds);
+        levelManager.DestroyHands();
+        levelManager.DestroyBirds();
+
         startFillTime = Time.time;
         honeyAmount += honeyCounter.endHoneyAmount;
 

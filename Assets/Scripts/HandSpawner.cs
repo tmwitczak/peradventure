@@ -23,8 +23,9 @@ public class HandSpawner : MonoBehaviour
     private float spawnTimer = 0.0f;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
-    private int seed = 0;
     private int randomNumber = 0;
+
+    private bool _isSpawning = true;
 
     private void Start()
     {
@@ -49,7 +50,7 @@ public class HandSpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= SpawnCooldown)
+        if (spawnTimer >= SpawnCooldown && isSpawning)
         {
             switch (HandsToSpawn)
             {
@@ -85,7 +86,7 @@ public class HandSpawner : MonoBehaviour
         hands[currentHand++].SetActive(true);
     }
 
-    private void PrespawnHands()
+    public void PrespawnHands()
     {
         for (int i = 0; i < handsToPrespawn; ++i)
         {
@@ -126,5 +127,11 @@ public class HandSpawner : MonoBehaviour
 
             hands.Add(hand);
         }
+    }
+
+    public bool isSpawning
+    {
+        get => _isSpawning;
+        set => _isSpawning = value;
     }
 }

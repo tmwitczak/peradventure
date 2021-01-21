@@ -123,4 +123,17 @@ public class SmokeBehaviour : MonoBehaviour
                 break;
         }
     }
+
+    public void ClearSmoke()
+    {
+        SmokeDown.Stop();
+        SmokeLeft.Stop();
+        SmokeRight.Stop();
+        SmokeUp.Stop();
+
+        SmokeDown.Clear();
+        SmokeLeft.Clear();
+        SmokeRight.Clear();
+        SmokeUp.Clear();
+    }
 }

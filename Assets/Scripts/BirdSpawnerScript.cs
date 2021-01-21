@@ -17,6 +17,9 @@ public class BirdSpawnerScript : MonoBehaviour
     private List<float> spawnY = new List<float>();
     private int seed = 0;
     private int randomNumber = 0;
+    private bool _isSpawning = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +39,7 @@ public class BirdSpawnerScript : MonoBehaviour
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= SpawnCooldown)
+        if (spawnTimer >= SpawnCooldown && isSpawning)
         {
             switch (BirdsToSpawn)
             {
@@ -75,5 +78,11 @@ public class BirdSpawnerScript : MonoBehaviour
         var spawnPosition = new Vector2(spawnX[Random.Range(0, spawnX.Count)], spawnY[Random.Range(0, spawnY.Count)]);
         var bird = Instantiate(Bird, spawnPosition, Quaternion.identity);
         bird.GetComponent<BirdScript>().Speed = BirdSpeed;
+    }
+
+    public bool isSpawning
+    {
+        get => _isSpawning;
+        set => _isSpawning = value;
     }
 }

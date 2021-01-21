@@ -38,4 +38,10 @@ public class StopwatchScript : MonoBehaviour
         }
         else timer = 1f;
     }
+
+    public void resetStopwatch()
+    {
+        timer = 0.0f;
+        Fill.GetComponent<Image>().fillAmount = 0.0f;
+    }
 }
