@@ -29,12 +29,14 @@ public class MenuButtonController : MonoBehaviour
     public AudioSource audioSource;
     private bool buttonPressed = false;
     private bool animEnded = false;
+    private LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -87,7 +89,7 @@ public class MenuButtonController : MonoBehaviour
                 //    break;
 
                 case ButtonType.Continue:
-                    LoadLevel(SceneManager.GetActiveScene().name);
+                    levelManager.LoadLevel();
                     break;
 
                 //case ButtonType.Level:
@@ -99,7 +101,7 @@ public class MenuButtonController : MonoBehaviour
                 //    break;
                 
                 case ButtonType.Restart:
-                    LoadLevel(SceneManager.GetActiveScene().name);
+                    levelManager.LoadLevel();
                     break;
             }
         }
