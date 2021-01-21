@@ -439,6 +439,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 394572764}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &470721159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 955375282051596935, guid: 559fc20f1a931c145b47f535888774e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1551588012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7b1d8babce7bd49a17f3db12d569b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &477202670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1152,6 +1164,11 @@ PrefabInstance:
       propertyPath: beesScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8347204508212443408, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8965793152649715127, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_IsActive
@@ -1303,6 +1320,9 @@ MonoBehaviour:
   BirdSpawner: {fileID: 667121170}
   DataCollector: {fileID: 1587677293}
   HoneyCounter: {fileID: 1111379734}
+  EndLevelHelper: {fileID: 2091228392}
+  EndGameMenu: {fileID: 1680889131}
+  Stopwatch: {fileID: 470721159}
 --- !u!4 &1614414644
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,6 +1429,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2513557427304530193, guid: a751bf4d8e14d1e45abeba811f755db2,
     type: 3}
   m_PrefabInstance: {fileID: 1655428328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1680889131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6805341594314806152, guid: 559fc20f1a931c145b47f535888774e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1551588012}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1837758816
 PrefabInstance:
