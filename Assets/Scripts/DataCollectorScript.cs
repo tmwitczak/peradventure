@@ -14,6 +14,7 @@ public class DataCollectorScript : MonoBehaviour
     void Start()
     {
         LoadData();
+        levelsUnlocked = 1;
     }
 
     [ContextMenu("Clear save data")]
