@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class LevelManager : MonoBehaviour
 {
@@ -8,23 +10,46 @@ public class LevelManager : MonoBehaviour
     public HandSpawner HandSpawner;
     public GameObject BirdSpawner;
     public DataCollectorScript DataCollector;
-    public HoneyCounter HoneyCounter;
+    public HoneyCounter HoneyCounter; 
+    public GameObject EndLevelHelper;
+    public GameObject EndGameMenu;
+    public StopwatchScript Stopwatch;
 
+    private IEnumerable<GameObject> HandClones;
+    private IEnumerable<GameObject> BirdClones;
     private bool settingParams = true;
 
     private void Update()
     {
         if(settingParams)
         {
+            Debug.Log(DataCollector.levelsUnlocked);
             setLevelParameters(DataCollector.levelsUnlocked);
             settingParams = false;
-            HoneyCounter.HoneyAmount = 0.0f;
         }
+    }
+
+    public void LoadLevel()
+    {
+        HandSpawner.PrespawnHands();
+        EndLevelHelper.SetActive(true);
+        EndGameMenu.SetActive(false);
+        resetLevelParameters();
+        Smoke.GetComponent<SmokeBehaviour>().ClearSmoke();
+        Stopwatch.resetStopwatch();
+
+        HoneyCounter.HoneyAmount = 0.0f;
+
+    }
+
+    public void resetLevelParameters()
+    {
+        settingParams = true;
     }
 
     void setLevelParameters(int levelNumber)
     {
-        switch(levelNumber)
+        switch (levelNumber)
         {
             case 1:
                 Smoke.SetActive(false);
@@ -69,8 +94,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void resetLevelParameters()
+    public void DestroyHands()
     {
-        settingParams = true;
+        HandSpawner.isSpawning = false;
+        HandClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Hand(Clone)");
+        foreach (var obj in HandClones)
+        {
+            Destroy(obj);
+        }
+    }
+
+    public void DestroyBirds()
+    {
+        BirdSpawner.GetComponent<BirdSpawnerScript>().isSpawning = false;
+        BirdClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Bird(Clone)");
+        foreach (var obj in BirdClones)
+        {
+            Destroy(obj);
+        }
     }
 }
