@@ -16,9 +16,15 @@ public class PauseMenuController : MonoBehaviour
     public Animator animator;
     public BeesScript beesScript;
 
+    private HandSpawner handSpawner;
+    private BirdSpawnerScript birdSpawner;
+
     void Start()
     {
         Blade = GameObject.FindGameObjectWithTag("Blade");
+        handSpawner = FindObjectOfType<HandSpawner>();
+        birdSpawner = FindObjectOfType<BirdSpawnerScript>();
+
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             // firstStart = false;
@@ -52,6 +58,8 @@ public class PauseMenuController : MonoBehaviour
         // Time.timeScale = 1.0f;
         isPaused = false;
         Blade.SetActive(true);
+        handSpawner.isSpawning = true;
+        birdSpawner.isSpawning = true;
         iTween.Stop(gameObject);
         iTween.ValueTo(gameObject, iTween.Hash(
             "from", 0.0f,
@@ -90,6 +98,9 @@ public class PauseMenuController : MonoBehaviour
         );
         isPaused = true;
         Blade.SetActive(false);
+        handSpawner.isSpawning = false;
+        birdSpawner.isSpawning = false;
+
         foreach (var obj in TrailClones)
         {
             Destroy(obj);
