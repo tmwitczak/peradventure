@@ -12,6 +12,8 @@ public class StopwatchScript : MonoBehaviour
     private float timeDuration;
     private HoneyCounter honeyCounter;
 
+    public bool isTimerFinished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +24,14 @@ public class StopwatchScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer == 1f)
+        if (timer == 1f && !isTimerFinished)
         {
             honeyCounter.endHoneyAmount = honeyCounter.HoneyAmount;
             EndGameMenu.SetActive(true);
             HiveLevel.resultsActive = true;
+            HiveLevel.endStart = true;
             Fill.GetComponent<Image>().fillAmount = 1.0f;
+            isTimerFinished = true;
         }
         if (timer < 1f)
         {

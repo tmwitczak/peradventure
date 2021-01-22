@@ -18,11 +18,6 @@ public class BeesScript : MonoBehaviour
         honeyCounter = FindObjectOfType<HoneyCounter>();
         dataCollector = FindObjectOfType<DataCollectorScript>();
         bees = GetComponent<ParticleSystem>();
-
-        if (!dataCollector.LoadData())
-        {
-            amountOfBees = 30;
-        }
     }
 
     private void Update()

@@ -31,11 +31,11 @@ public class HiveLevel : MonoBehaviour
     private Text endText;
     private string[] endTextsList = { "sublime!", "brilliant!", "great job!", "almost\ngot it :("};
 
-    private bool endStart = true;
     private bool overflowed = false;
-    private bool beeAmountUp = false;
-    private bool finishedLevel = true;
+    public static bool finishedLevel = true;
+    public bool beeAmountUp = false;
     public static bool resultsActive = false;
+    public static bool endStart = true;
 
     public GameObject continueButton;
     public GameObject restartButton;
@@ -48,12 +48,6 @@ public class HiveLevel : MonoBehaviour
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
         levelManager = FindObjectOfType<LevelManager>();
-
-        if (!dataCollector.LoadData())
-        {
-            hiveLevel = 1;
-            levelMaxValue = slider.maxValue;
-        }
 
         slider.maxValue = levelMaxValue;
         previousLevelMaxValue = levelMaxValue;
@@ -80,7 +74,6 @@ public class HiveLevel : MonoBehaviour
         float honeySmoothing = honeyCovered / fillSpeed;
         if (resultsActive && !beeAmountUp)
         {
-            EndLevelHelper.SetActive(false);
             if (endStart)
             {
                 StartCoroutine(waitForMenu(0.5f));
@@ -113,6 +106,7 @@ public class HiveLevel : MonoBehaviour
 
     IEnumerator waitForMenu(float seconds)
     {
+        EndLevelHelper.SetActive(false);
         if (honeyCounter.endHoneyAmount >= 110.0f)
         {
             endText.text = endTextsList[0];
@@ -134,6 +128,7 @@ public class HiveLevel : MonoBehaviour
             endText.gameObject.SetActive(true);
         }
         endStart = false;
+        Debug.Log(endStart);
 
         yield return new WaitForSecondsRealtime(seconds);
         levelManager.DestroyHands();

@@ -11,12 +11,6 @@ public class DataCollectorScript : MonoBehaviour
     public int hiveLevel;
     public int levelsUnlocked;
 
-    void Start()
-    {
-        LoadData();
-        levelsUnlocked = 1;
-    }
-
     [ContextMenu("Clear save data")]
     private void ClearData()
     {

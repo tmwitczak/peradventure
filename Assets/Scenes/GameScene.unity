@@ -528,6 +528,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75c03bc649c40d4a81150005653d2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &560854238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8347204508212443408, guid: 559fc20f1a931c145b47f535888774e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1551588012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &637359421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -539,6 +545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Background Plane Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578374567948802737, guid: f494bbff67954bb4a9f7d7625b4cf09f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6578374567948802749, guid: f494bbff67954bb4a9f7d7625b4cf09f,
         type: 3}
@@ -912,6 +923,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreRenderBackgroundController
       objectReference: {fileID: 0}
+    - target: {fileID: 7593922115194267683, guid: 1b16274d517efa645a4c30f66b56ccff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7593922115194267685, guid: 1b16274d517efa645a4c30f66b56ccff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -989,6 +1005,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1723539346518391824, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1846452299274305545, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_IsActive
@@ -1004,6 +1025,11 @@ PrefabInstance:
       propertyPath: dataCollector
       value: 
       objectReference: {fileID: 1587677293}
+    - target: {fileID: 3320648305556989679, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6805341594314806152, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_IsActive
@@ -1182,7 +1208,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1551588012}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 560854238}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -1323,6 +1349,9 @@ MonoBehaviour:
   EndLevelHelper: {fileID: 2091228392}
   EndGameMenu: {fileID: 1680889131}
   Stopwatch: {fileID: 470721159}
+  BeesScript: {fileID: 477202672}
+  HiveLevel: {fileID: 1680889135}
+  PBOverlay: {fileID: 560854238}
 --- !u!4 &1614414644
 Transform:
   m_ObjectHideFlags: 0
@@ -1436,6 +1465,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1551588012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1680889135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1551588012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680889131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0552121f57370144ac6b055b0c38d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1837758816
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,10 +14,24 @@ public class LevelManager : MonoBehaviour
     public GameObject EndLevelHelper;
     public GameObject EndGameMenu;
     public StopwatchScript Stopwatch;
+    public BeesScript BeesScript;
+    public HiveLevel HiveLevel;
+    public GameObject PBOverlay;
 
     private IEnumerable<GameObject> HandClones;
     private IEnumerable<GameObject> BirdClones;
     private bool settingParams = true;
+
+    private void Start()
+    {
+        if (!DataCollector.LoadData())
+        {
+            DataCollector.levelsUnlocked = 1;
+            BeesScript.setAmountOfBees(30);
+            HiveLevel.hiveLevel = 1;
+            HiveLevel.levelMaxValue = HiveLevel.slider.maxValue;
+        }
+    }
 
     private void Update()
     {
@@ -37,9 +51,16 @@ public class LevelManager : MonoBehaviour
         resetLevelParameters();
         Smoke.GetComponent<SmokeBehaviour>().ClearSmoke();
         Stopwatch.resetStopwatch();
-
+        Stopwatch.isTimerFinished = false;
+        PBOverlay.SetActive(false);
         HoneyCounter.HoneyAmount = 0.0f;
-
+        HandSpawner.isSpawning = true;
+        BirdSpawner.GetComponent<BirdSpawnerScript>().isSpawning = true;
+        HiveLevel.resultsActive = false;
+        HiveLevel.beeAmountUp = false;
+        HiveLevel.finishedLevel = false;
+        HiveLevel.endStart = false;
+        Debug.Log("load level");
     }
 
     public void resetLevelParameters()
@@ -68,8 +89,8 @@ public class LevelManager : MonoBehaviour
                 BirdSpawner.SetActive(true);
                 break;
             case 3:
-                Smoke.SetActive(true);
-                HandSpawner.HandSpeed = 3f;
+                Smoke.SetActive(false);
+                HandSpawner.HandSpeed = 2.5f;
                 HandSpawner.SpawnCooldown = 2;
                 HandSpawner.HandsToSpawn = 1;
                 HandSpawner.handsToPrespawn = 100;
