@@ -17,6 +17,7 @@ public class HandSpawner : MonoBehaviour
 
     private List<GameObject> hands = new List<GameObject>();
     private int currentHand = 0;
+    private GameObject handParent;
 
     private Vector3 screenMin;
     private Vector3 screenMax;
@@ -88,6 +89,8 @@ public class HandSpawner : MonoBehaviour
 
     public void PrespawnHands()
     {
+        handParent = new GameObject("Hands");
+
         for (int i = 0; i < handsToPrespawn; ++i)
         {
             int mode = Random.Range(0, 3);
@@ -121,7 +124,7 @@ public class HandSpawner : MonoBehaviour
                     spawnX[Random.Range(0, spawnX.Count)],
                     spawnY[Random.Range(0, spawnY.Count)]);
 
-            var hand = Instantiate(Hand, spawnPosition, Quaternion.identity);
+            var hand = Instantiate(Hand, spawnPosition, Quaternion.identity, handParent.GetComponent<Transform>());
             hand.SetActive(false);
             hand.GetComponent<HandScript>().speed = HandSpeed;
 
