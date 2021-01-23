@@ -1189,7 +1189,7 @@ PrefabInstance:
         type: 3}
       propertyPath: beesScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 477202672}
     - target: {fileID: 8347204508212443408, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_IsActive

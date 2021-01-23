@@ -106,8 +106,7 @@ public class PauseMenuController : MonoBehaviour
             Destroy(obj);
         }
 
-        //Dla Tomka: Ta linia wywala sie nawet przy dodaniu Bees Script w inspektorze
-        //GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.getAmountOfBees().ToString();
+        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.getAmountOfBees().ToString();
 
         GameObject.Find("LevelNumber").GetComponent<Text>().text =
             Mathf.Max(GameObject.Find("DataCollector").GetComponent<DataCollectorScript>().hiveLevel,
