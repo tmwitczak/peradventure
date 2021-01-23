@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -43,13 +43,15 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel()
     {
+        DestroyHands();
+        DestroyBirds();
+
         HandSpawner.PrespawnHands();
         EndLevelHelper.SetActive(true);
         EndGameMenu.SetActive(false);
         resetLevelParameters();
         Smoke.GetComponent<SmokeBehaviour>().ClearSmoke();
         Stopwatch.resetStopwatch();
-        Stopwatch.isTimerFinished = false;
         PBOverlay.SetActive(false);
         HoneyCounter.HoneyAmount = 0.0f;
         HandSpawner.isSpawning = true;
@@ -117,7 +119,7 @@ public class LevelManager : MonoBehaviour
     {
         HandSpawner.isSpawning = false;
         HandSpawner.DestroyHands();
-        }
+    }
 
     public void DestroyBirds()
     {

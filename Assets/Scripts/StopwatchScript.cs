@@ -24,6 +24,18 @@ public class StopwatchScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timer < 1f)
+        {
+            timer += Time.deltaTime / timeDuration;
+            float timeNormalized = timer % 1f;
+            clockHandTransform.eulerAngles = new Vector3(0, 0, -timeNormalized * 360f);
+            Fill.GetComponent<Image>().fillAmount = timeNormalized;
+        }
+        else
+        {
+            timer = 1f;
+        }
+
         if (timer == 1f && !isTimerFinished)
         {
             honeyCounter.endHoneyAmount = honeyCounter.HoneyAmount;
@@ -33,19 +45,12 @@ public class StopwatchScript : MonoBehaviour
             Fill.GetComponent<Image>().fillAmount = 1.0f;
             isTimerFinished = true;
         }
-        if (timer < 1f)
-        {
-            timer += Time.deltaTime / timeDuration;
-            float timeNormalized = timer % 1f;
-            clockHandTransform.eulerAngles = new Vector3(0, 0, -timeNormalized * 360f);
-            Fill.GetComponent<Image>().fillAmount = timeNormalized;
-        }
-        else timer = 1f;
     }
 
     public void resetStopwatch()
     {
         timer = 0.0f;
         Fill.GetComponent<Image>().fillAmount = 0.0f;
+        isTimerFinished = false;
     }
 }

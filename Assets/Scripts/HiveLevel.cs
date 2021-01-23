@@ -44,7 +44,7 @@ public class HiveLevel : MonoBehaviour
     [SerializeField] Animator BackgroundOverlay;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         honeyCounter = FindObjectOfType<HoneyCounter>();
         levelManager = FindObjectOfType<LevelManager>();
@@ -131,8 +131,6 @@ public class HiveLevel : MonoBehaviour
         Debug.Log(endStart);
 
         yield return new WaitForSecondsRealtime(seconds);
-        levelManager.DestroyHands();
-        levelManager.DestroyBirds();
 
         startFillTime = Time.time;
         honeyAmount += honeyCounter.endHoneyAmount;

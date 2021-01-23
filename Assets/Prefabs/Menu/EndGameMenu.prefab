@@ -833,6 +833,7 @@ MonoBehaviour:
   levelNumber: {fileID: 9160870799667093195}
   honeyCounter: {fileID: 0}
   beeLevelUp: {fileID: 2586296673004562308}
+  beeAmountUp: 0
   continueButton: {fileID: 229465688003982254}
   restartButton: {fileID: 6718376916140688228}
   Overlay: {fileID: 0}

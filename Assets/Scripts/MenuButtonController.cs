@@ -40,70 +40,67 @@ public class MenuButtonController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void handleButtonPress()
     {
-        if (buttonPressed)
+        switch (type)
         {
-            switch (type)
-            {
-                //case ButtonType.Start:
-                //    MainMenu.SetActive(false);
-                //    LevelMenu.SetActive(true);
-                //    AnimationEnd();
-                //    break;
+            //case ButtonType.Start:
+            //    MainMenu.SetActive(false);
+            //    LevelMenu.SetActive(true);
+            //    AnimationEnd();
+            //    break;
 
-                //case ButtonType.Options:
-                //    if (!OptionsMenu.activeSelf)
-                //    {
-                //        MainMenu.SetActive(false);
-                //        OptionsMenu.SetActive(true);
-                //        SetToFalse();
-                //    }
-                //    break;
+            //case ButtonType.Options:
+            //    if (!OptionsMenu.activeSelf)
+            //    {
+            //        MainMenu.SetActive(false);
+            //        OptionsMenu.SetActive(true);
+            //        SetToFalse();
+            //    }
+            //    break;
 
-                //case ButtonType.Quit:
-                //    AnimationEnd();
-                //    Application.Quit();
-                //    break;
+            //case ButtonType.Quit:
+            //    AnimationEnd();
+            //    Application.Quit();
+            //    break;
 
-                //case ButtonType.Back:
-                //    if (!MainMenu.activeSelf)
-                //    {
-                //        MainMenu.SetActive(true);
-                //        if(OptionsMenu.activeSelf)
-                //        {
-                //            OptionsMenu.SetActive(false);
-                //        }
-                //        if(LevelMenu.activeSelf)
-                //        {
-                //            LevelMenu.SetActive(false);
-                //        }
-                //        AnimationEnd();
-                //    }
-                //    SetToFalse();
-                //    break;
+            //case ButtonType.Back:
+            //    if (!MainMenu.activeSelf)
+            //    {
+            //        MainMenu.SetActive(true);
+            //        if(OptionsMenu.activeSelf)
+            //        {
+            //            OptionsMenu.SetActive(false);
+            //        }
+            //        if(LevelMenu.activeSelf)
+            //        {
+            //            LevelMenu.SetActive(false);
+            //        }
+            //        AnimationEnd();
+            //    }
+            //    SetToFalse();
+            //    break;
 
-                //case ButtonType.QuitToMenu:
-                //    LoadMainMenu();
-                //    AnimationEnd();
-                //    break;
+            //case ButtonType.QuitToMenu:
+            //    LoadMainMenu();
+            //    AnimationEnd();
+            //    break;
 
-                case ButtonType.Continue:
-                    levelManager.LoadLevel();
-                    break;
+            case ButtonType.Continue:
+                levelManager.LoadLevel();
+                break;
 
-                //case ButtonType.Level:
-                //    string buttonName = gameObject.name;
-                //    buttonName = buttonName.Replace(" ", String.Empty);
-                //    LoadLevel(buttonName);
-                //    StopwatchScript.MaxTime = 30.0f;
-                //    Time.timeScale = 1.0f;
-                //    break;
-                
-                case ButtonType.Restart:
-                    levelManager.LoadLevel();
-                    break;
-            }
+            //case ButtonType.Level:
+            //    string buttonName = gameObject.name;
+            //    buttonName = buttonName.Replace(" ", String.Empty);
+            //    LoadLevel(buttonName);
+            //    StopwatchScript.MaxTime = 30.0f;
+            //    Time.timeScale = 1.0f;
+            //    break;
+            
+            case ButtonType.Restart:
+                levelManager.LoadLevel();
+                break;
         }
     }
 
@@ -112,14 +109,16 @@ public class MenuButtonController : MonoBehaviour
         animator.SetBool("press", true);
         buttonPressed = true;
         animEnded = false;
+
+        handleButtonPress();
     }
 
-    public void AnimationEnd()
-    {
-        animator.SetBool("press", false);
-        animEnded = true;
-        buttonPressed = false;
-    }
+    // public void AnimationEnd()
+    // {
+    //     animator.SetBool("press", false);
+    //     animEnded = true;
+    //     buttonPressed = false;
+    // }
 
     public void ActivateLevel()
     {
