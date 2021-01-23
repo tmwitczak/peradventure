@@ -1341,17 +1341,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c280308e12ee84a49a1586045bf1c9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BeesScript: {fileID: 477202672}
+  DataCollector: {fileID: 1587677293}
+  BirdSpawner: {fileID: 667121170}
+  EndGameMenu: {fileID: 1680889131}
+  EndLevelHelper: {fileID: 2091228392}
+  PBOverlay: {fileID: 560854238}
   Smoke: {fileID: 1000856915}
   HandSpawner: {fileID: 283326199}
-  BirdSpawner: {fileID: 667121170}
-  DataCollector: {fileID: 1587677293}
-  HoneyCounter: {fileID: 1111379734}
-  EndLevelHelper: {fileID: 2091228392}
-  EndGameMenu: {fileID: 1680889131}
-  Stopwatch: {fileID: 470721159}
-  BeesScript: {fileID: 477202672}
   HiveLevel: {fileID: 1680889135}
-  PBOverlay: {fileID: 560854238}
+  HoneyCounter: {fileID: 1111379734}
+  Stopwatch: {fileID: 470721159}
 --- !u!4 &1614414644
 Transform:
   m_ObjectHideFlags: 0
@@ -1477,6 +1477,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0552121f57370144ac6b055b0c38d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1794994868 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9155447360316808164, guid: 559fc20f1a931c145b47f535888774e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1551588012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1837758816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1492,7 +1504,7 @@ PrefabInstance:
     - target: {fileID: 3733973744021343082, guid: 0d483c29c94c17d4ba95e73882d4fd56,
         type: 3}
       propertyPath: hiveImages.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3733973744021343082, guid: 0d483c29c94c17d4ba95e73882d4fd56,
         type: 3}
@@ -1509,6 +1521,11 @@ PrefabInstance:
       propertyPath: hiveImages.Array.data[0]
       value: 
       objectReference: {fileID: 1551588014}
+    - target: {fileID: 3733973744021343082, guid: 0d483c29c94c17d4ba95e73882d4fd56,
+        type: 3}
+      propertyPath: hiveImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 1794994868}
     - target: {fileID: 3733973744021343083, guid: 0d483c29c94c17d4ba95e73882d4fd56,
         type: 3}
       propertyPath: m_LocalPosition.x
