@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Timekeeper : MonoBehaviour {
-    private List<Material> hiveMaterials;
-
     public DataCollectorScript dataCollector;
     public List<Image> hiveImages;
 
+    private Material masterMaterial;
+
     private void Start() {
-        hiveMaterials = new List<Material>();
-        for (int i = 0; i < hiveImages.Count; ++i) {
-            hiveMaterials.Add(hiveImages[i].material);
+        masterMaterial = Instantiate(hiveImages[0].material);
+
+        foreach (var image in hiveImages) {
+            image.material = masterMaterial;
         }
     }
 
@@ -22,9 +23,7 @@ public class Timekeeper : MonoBehaviour {
             * 100 * Mathf.Pow(2, dataCollector.hiveLevel - 2);
         float fill = (dataCollector.honeyAmount - min) / (max - min);
 
-        foreach (var material in hiveMaterials) {
-            material.SetFloat("_UnscaledTime", Time.unscaledTime);
-            material.SetFloat("_FillRange", fill);
-        }
+        masterMaterial.SetFloat("_UnscaledTime", Time.unscaledTime);
+        masterMaterial.SetFloat("_FillRange", fill);
     }
 }

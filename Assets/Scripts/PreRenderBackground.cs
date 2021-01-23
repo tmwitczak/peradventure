@@ -6,7 +6,8 @@ public class PreRenderBackground : MonoBehaviour {
     public GameObject environment;
     public List<GameObject> backgroundToTextureCameras;
     public List<Image> backgroundPlaneImages;
-    private List<Material> backgroundMaterials;
+
+    private Material masterMaterial;
 
     private int frames = 0;
     private int targetCamera = 0;
@@ -14,9 +15,10 @@ public class PreRenderBackground : MonoBehaviour {
     void Start() {
         iTween.Init(gameObject);
 
-        backgroundMaterials = new List<Material>();
-        for (int i = 0; i < backgroundPlaneImages.Count; ++i) {
-            backgroundMaterials.Add(backgroundPlaneImages[i].material);
+        masterMaterial = Instantiate(backgroundPlaneImages[0].material);
+
+        foreach (var image in backgroundPlaneImages) {
+            image.material = masterMaterial;
         }
 
         setBlending(0);
@@ -41,9 +43,7 @@ public class PreRenderBackground : MonoBehaviour {
     }
 
     private void setBlending(float a) {
-        for (int i = 0; i < backgroundMaterials.Count; ++i) {
-            backgroundMaterials[i].SetFloat("_MixRange", a);
-        }
+        masterMaterial.SetFloat("_MixRange", a);
     }
 
     private void tweenOnUpdateCallBack(float newValue) {
