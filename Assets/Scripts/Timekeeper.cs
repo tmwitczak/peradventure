@@ -1,36 +1,30 @@
-﻿using System.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timekeeper : MonoBehaviour
-{
-    public List<Image> backgroundPlaneImages;
-    private List<Material> backgroundMaterials;
+public class Timekeeper : MonoBehaviour {
+    private List<Material> hiveMaterials;
+
     public DataCollectorScript dataCollector;
-    // public List<GameObject>  
-    // Start is called before the first frame update
-    void Start()
-    {
-        backgroundMaterials = new List<Material>();
-        for (int i = 0; i < backgroundPlaneImages.Count; ++i) {
-            backgroundMaterials.Add(backgroundPlaneImages[i].material);
+    public List<Image> hiveImages;
+
+    private void Start() {
+        hiveMaterials = new List<Material>();
+        for (int i = 0; i < hiveImages.Count; ++i) {
+            hiveMaterials.Add(hiveImages[i].material);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        for (int i = 0; i < backgroundMaterials.Count; ++i) {
-            backgroundMaterials[i].SetFloat("_UnscaledTime", Time.unscaledTime);
+    private void Update() {
+        float max = 100 * Mathf.Pow(2, dataCollector.hiveLevel - 1);
+        float min = Convert.ToSingle(dataCollector.hiveLevel > 1)
+            * 100 * Mathf.Pow(2, dataCollector.hiveLevel - 2);
+        float fill = (dataCollector.honeyAmount - min) / (max - min);
 
-            float max = 100 * Mathf.Pow(2, dataCollector.hiveLevel - 1);
-            float min = Convert.ToSingle(dataCollector.hiveLevel > 1)
-                * 100 * Mathf.Pow(2, dataCollector.hiveLevel - 2);
-            float fill = (dataCollector.honeyAmount - min) / (max - min);
-
-            backgroundMaterials[i].SetFloat("_FillRange", fill);
+        foreach (var material in hiveMaterials) {
+            material.SetFloat("_UnscaledTime", Time.unscaledTime);
+            material.SetFloat("_FillRange", fill);
         }
     }
 }
