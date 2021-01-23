@@ -89,6 +89,8 @@ public class HandSpawner : MonoBehaviour
 
     public void PrespawnHands()
     {
+        DestroyHands();
+
         handParent = new GameObject("Hands");
 
         for (int i = 0; i < handsToPrespawn; ++i)
@@ -130,6 +132,16 @@ public class HandSpawner : MonoBehaviour
 
             hands.Add(hand);
         }
+    }
+
+    public void DestroyHands()
+    {
+        foreach (var hand in hands) {
+            Destroy(hand);
+        }
+        currentHand = 0;
+        hands.Clear();
+        Destroy(handParent);
     }
 
     public bool isSpawning

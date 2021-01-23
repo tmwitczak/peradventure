@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -116,12 +116,8 @@ public class LevelManager : MonoBehaviour
     public void DestroyHands()
     {
         HandSpawner.isSpawning = false;
-        HandClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Hand(Clone)");
-        foreach (var obj in HandClones)
-        {
-            Destroy(obj);
+        HandSpawner.DestroyHands();
         }
-    }
 
     public void DestroyBirds()
     {
