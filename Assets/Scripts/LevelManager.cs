@@ -1,25 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class LevelManager : MonoBehaviour
 {
+    public BeesScript BeesScript;
+    public DataCollectorScript DataCollector;
+    public GameObject BirdSpawner;
+    public GameObject EndGameMenu;
+    public GameObject EndLevelHelper;
+    public GameObject PBOverlay;
     public GameObject Smoke;
     public HandSpawner HandSpawner;
-    public GameObject BirdSpawner;
-    public DataCollectorScript DataCollector;
-    public HoneyCounter HoneyCounter; 
-    public GameObject EndLevelHelper;
-    public GameObject EndGameMenu;
-    public StopwatchScript Stopwatch;
-    public BeesScript BeesScript;
     public HiveLevel HiveLevel;
-    public GameObject PBOverlay;
+    public HoneyCounter HoneyCounter;
+    public StopwatchScript Stopwatch;
 
-    private IEnumerable<GameObject> HandClones;
     private IEnumerable<GameObject> BirdClones;
+    private IEnumerable<GameObject> HandClones;
     private bool settingParams = true;
 
     private void Start()
@@ -35,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if(settingParams)
+        if (settingParams)
         {
             Debug.Log(DataCollector.levelsUnlocked);
             setLevelParameters(DataCollector.levelsUnlocked);
