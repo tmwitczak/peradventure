@@ -1,47 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class HoneyCounter : MonoBehaviour
-{
-    public float Speed;
-    public float MinSmokedSpeed = 0.3f;
-    public float _smokeFactor = 1f;
+public class HoneyCounter : MonoBehaviour {
     public BeesScript beesScript;
     public DataCollectorScript dataCollector;
-    
-    private float initialSmokeFactor;
-    private int amountOfBees;
+    public float MinSmokedSpeed = 0.3f;
+    public float Speed;
+    public float _smokeFactor = 1f;
+
     private Text text;
     private float _honeyAmount;
-    
+    private float initialSmokeFactor;
+    private int amountOfBees;
+
     public float endHoneyAmount { get; set; }
 
-    private void Start()
-    {
+    private void Start() {
         HoneyAmount = 0f;
         text = GetComponent<Text>();
         initialSmokeFactor = SmokeFactor;
     }
 
-    private void Update()
-    {
+    private void Update() {
         amountOfBees = beesScript.getAmountOfBees();
         HoneyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = (Mathf.Round(16.54f * HoneyAmount)) + "";
     }
 
-    public float HoneyAmount
-    {
+    public float HoneyAmount {
         get => _honeyAmount;
         set => _honeyAmount = Mathf.Max(0f, value);
     }
 
-    public float SmokeFactor
-    {
+    public float SmokeFactor {
         get => _smokeFactor;
         set => _smokeFactor = Mathf.Clamp(value, MinSmokedSpeed, initialSmokeFactor);
     }

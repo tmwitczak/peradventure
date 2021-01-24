@@ -1050,6 +1050,16 @@ PrefabInstance:
       propertyPath: beesScript
       value: 
       objectReference: {fileID: 477202672}
+    - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1614414643}
+    - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: honeyCounter
+      value: 
+      objectReference: {fileID: 1111379734}
     - target: {fileID: 7125916801642636389, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_AnchorMax.x

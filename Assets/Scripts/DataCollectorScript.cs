@@ -1,8 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-public class DataCollectorScript : MonoBehaviour
-{
+public class DataCollectorScript : MonoBehaviour {
     public BeesScript beesScript;
 
     public float honeyAmount;
@@ -12,17 +11,14 @@ public class DataCollectorScript : MonoBehaviour
     public int levelsUnlocked;
 
     [ContextMenu("Clear save data")]
-    private void ClearData()
-    {
-        if (File.Exists(SaveSystem.path))
-        {
+    private void ClearData() {
+        if (File.Exists(SaveSystem.path)) {
             File.Delete(SaveSystem.path);
         }
     }
 
     [ContextMenu("Write save data")]
-    public void SaveData()
-    {
+    public void SaveData() {
         amountOfBees = beesScript.getAmountOfBees();
         hiveLevel = HiveLevel.hiveLevel;
         honeyAmount = HiveLevel.honeyAmount;
@@ -32,11 +28,9 @@ public class DataCollectorScript : MonoBehaviour
     }
 
     [ContextMenu("Read save data")]
-    public bool LoadData()
-    {
+    public bool LoadData() {
         GameData gameData = SaveSystem.LoadGameData();
-        if (gameData == null)
-        {
+        if (gameData == null) {
             return false;
         }
 
