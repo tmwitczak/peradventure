@@ -106,9 +106,6 @@ public class PauseMenuController : MonoBehaviour
         }
 
         GameObject.Find("BeesCount").GetComponent<Text>().text = Global.amountOfBees.ToString();
-
-        GameObject.Find("LevelNumber").GetComponent<Text>().text =
-            Mathf.Max(Global.hiveLevel, 1).ToString();
     }
 
     void tweenOnUpdateCallBack(float newValue)
