@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour {
 
         HandSpawner.PrespawnHands();
         EndLevelHelper.SetActive(true);
-        EndGameMenu.SetActive(false);
+        // EndGameMenu.SetActive(false);
         resetLevelParameters();
         Smoke.GetComponent<SmokeBehaviour>().ClearSmoke();
         Stopwatch.resetStopwatch();

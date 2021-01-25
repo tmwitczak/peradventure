@@ -6,8 +6,6 @@ public class HiveLevel : MonoBehaviour {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private HoneyCounter honeyCounter;
 
-    [HideInInspector]
-    [SerializeField] Text levelNumber;
     public BeesScript beesScript;
     public GameObject EndLevelHelper;
     public Image beeLevelUp;
@@ -34,11 +32,12 @@ public class HiveLevel : MonoBehaviour {
     [SerializeField] Animator BackgroundOverlay;
     [SerializeField] GameObject Overlay;
 
+    public Animator animator;
+
     void OnEnable() {
         slider.maxValue = Global.levelMaxValue;
         previousLevelMaxValue = Global.levelMaxValue;
 
-        levelNumber.text = Global.hiveLevel.ToString();
         honeyForSlider = Global.honeyAmount;
 
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
@@ -51,30 +50,45 @@ public class HiveLevel : MonoBehaviour {
         GameObject.Find("PreRenderBackgroundController").GetComponent<PreRenderBackground>().refresh();
 
         Overlay.SetActive(true);
+
+        iTween.Init(gameObject);
     }
 
-    void Update() {
-        float honeyCovered = (Time.time - startFillTime);
-        float honeySmoothing = honeyCovered / fillSpeed;
+    public void Resume()
+    {
+        animator.SetTrigger("FadeOut");
+        BackgroundOverlay.SetTrigger("FadeOut");
+        // iTween.Stop(gameObject);
+        // iTween.ValueTo(gameObject, iTween.Hash(
+        //     "from", 0.0f,
+        //     "to", 1.0f,
+        //     "time", 0.5f,
+        //     "ignoretimescale", true,
+        //     "onupdatetarget", gameObject,
+        //     "onupdate", "tweenOnUpdateCallBack",
+        //     "easetype", iTween.EaseType.easeOutQuad
+        //     )
+        // );
+        levelManager.LoadLevel();
+    }
+
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void Update() {
         if (resultsActive && !beeAmountUp) {
             if (endStart) {
-                StartCoroutine(waitForMenu(0.5f));
+                StartCoroutine(waitForMenu(0.0f));
             } else {
-                if (honeySmoothing < 1.0f) {
-                    slider.value = Mathf.Lerp(honeyForSlider,
-                            !overflowed ? (honeyCounter.endHoneyAmount + honeyForSlider) : honeyOverflow, honeySmoothing);
-                }
             }
 
-            if (slider.value >= previousLevelMaxValue) {
-                slider.maxValue = Global.levelMaxValue;
-                levelNumber.text = Global.hiveLevel.ToString();
-
-                slider.value = 0.0f;
-                honeyForSlider = 0.0f;
-
-                overflowed = true;
+            if (Global.honeyAmount >= Global.levelMaxValue) {
+                honeyOverflow = Global.honeyAmount - Global.levelMaxValue;
+                LevelUp();
                 beeAmountUp = true;
+                Global.SaveData();
             }
         } else if (beeAmountUp) {
             StartCoroutine(showBeeAmountUp());
@@ -102,13 +116,30 @@ public class HiveLevel : MonoBehaviour {
         yield return new WaitForSecondsRealtime(seconds);
 
         startFillTime = Time.time;
-        Global.honeyAmount += honeyCounter.endHoneyAmount;
 
-        if (Global.honeyAmount >= Global.levelMaxValue) {
-            honeyOverflow = Global.honeyAmount - Global.levelMaxValue;
-            LevelUp();
-        }
+        iTween.Stop(gameObject);
+        iTween.ValueTo(gameObject, iTween.Hash(
+            "from", Global.honeyAmount,
+            "to", Global.honeyAmount + honeyCounter.endHoneyAmount,
+            "time", 3.0f,
+            "ignoretimescale", true,
+            "onupdatetarget", gameObject,
+            "onupdate", "tweenOnUpdateCallBack",
+            "oncompletetarget", gameObject,
+            "oncomplete", "tweenOnCompleteCallback",
+            "easetype", iTween.EaseType.easeOutQuad
+            )
+        );
         Save();
+    }
+
+    void tweenOnUpdateCallBack(float newValue) {
+        Global.honeyAmount = newValue;
+    }
+
+    void tweenOnCompleteCallback() {
+        Debug.Log("fully filled");
+        Global.SaveData();
     }
 
     IEnumerator showBeeAmountUp() {
