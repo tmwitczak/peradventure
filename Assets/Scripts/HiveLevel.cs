@@ -111,7 +111,6 @@ public class HiveLevel : MonoBehaviour {
             endText.gameObject.SetActive(true);
         }
         endStart = false;
-        Debug.Log(endStart);
 
         yield return new WaitForSecondsRealtime(seconds);
 

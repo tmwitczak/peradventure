@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -32,10 +32,8 @@ public class LevelManager : MonoBehaviour {
     public void LoadLevel() {
         DestroyHands();
         DestroyBirds();
-
         HandSpawner.PrespawnHands();
         EndLevelHelper.SetActive(true);
-        // EndGameMenu.SetActive(false);
         resetLevelParameters();
         Smoke.GetComponent<SmokeBehaviour>().ClearSmoke();
         Stopwatch.resetStopwatch();
