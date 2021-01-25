@@ -8,6 +8,7 @@ public class PauseMenuController : MonoBehaviour
 {
     bool firstStart = true;
     public static bool isPaused = false;
+    private float timerLimit = 1f - 0.5f/30f;
     [SerializeField] GameObject PauseMenu;
     [SerializeField] GameObject Blade;
     [SerializeField] GameObject Overlay;
@@ -80,6 +81,10 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
+        if (StopwatchScript.timer > timerLimit)
+        {
+            return;
+        }
         Overlay.SetActive(true);
         TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
         PauseMenu.SetActive(true);

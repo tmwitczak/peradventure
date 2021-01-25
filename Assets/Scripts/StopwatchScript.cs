@@ -8,7 +8,7 @@ public class StopwatchScript : MonoBehaviour
     [SerializeField] GameObject EndGameMenu;
     [SerializeField] GameObject Fill;
     
-    private float timer = 0.0f;
+    public static float timer = 0.0f;
     private float timeDuration;
     private HoneyCounter honeyCounter;
 
