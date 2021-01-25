@@ -80,7 +80,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
-        GameObject.Find("DataCollector").GetComponent<DataCollectorScript>().LoadData();
         Overlay.SetActive(true);
         TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
         PauseMenu.SetActive(true);
@@ -106,11 +105,10 @@ public class PauseMenuController : MonoBehaviour
             Destroy(obj);
         }
 
-        GameObject.Find("BeesCount").GetComponent<Text>().text = beesScript.getAmountOfBees().ToString();
+        GameObject.Find("BeesCount").GetComponent<Text>().text = Global.amountOfBees.ToString();
 
         GameObject.Find("LevelNumber").GetComponent<Text>().text =
-            Mathf.Max(GameObject.Find("DataCollector").GetComponent<DataCollectorScript>().hiveLevel,
-                      1).ToString();
+            Mathf.Max(Global.hiveLevel, 1).ToString();
     }
 
     void tweenOnUpdateCallBack(float newValue)

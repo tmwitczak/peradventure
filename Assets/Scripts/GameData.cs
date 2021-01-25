@@ -1,16 +1,8 @@
 ﻿[System.Serializable]
 public class GameData {
-    public float honeyAmount;
-    public float levelMaxValue;
-    public int amountOfBees;
-    public int hiveLevel;
-    public int levelsUnlocked;
-
-    public GameData(DataCollectorScript dataCollector) {
-        amountOfBees = dataCollector.amountOfBees;
-        hiveLevel = dataCollector.hiveLevel;
-        honeyAmount = dataCollector.honeyAmount;
-        levelMaxValue = dataCollector.levelMaxValue;
-        levelsUnlocked = dataCollector.levelsUnlocked;
-    }
+    public float _honeyAmount = 0;
+    public float _levelMaxValue = 100;
+    public int _amountOfBees = 30;
+    public int _hiveLevel = 1;
+    public int _levelsUnlocked = 1;
 }

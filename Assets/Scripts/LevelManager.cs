@@ -2,10 +2,8 @@
 using System.Linq;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
-{
+public class LevelManager : MonoBehaviour {
     public BeesScript BeesScript;
-    public DataCollectorScript DataCollector;
     public GameObject BirdSpawner;
     public GameObject EndGameMenu;
     public GameObject EndLevelHelper;
@@ -20,29 +18,18 @@ public class LevelManager : MonoBehaviour
     private IEnumerable<GameObject> HandClones;
     private bool settingParams = true;
 
-    private void Start()
-    {
-        if (!DataCollector.LoadData())
-        {
-            DataCollector.levelsUnlocked = 1;
-            BeesScript.setAmountOfBees(30);
-            HiveLevel.hiveLevel = 1;
-            HiveLevel.levelMaxValue = HiveLevel.slider.maxValue;
-        }
+    private void Start() {
     }
 
-    private void Update()
-    {
-        if (settingParams)
-        {
-            Debug.Log(DataCollector.levelsUnlocked);
-            setLevelParameters(DataCollector.levelsUnlocked);
+    private void Update() {
+        if (settingParams) {
+            Debug.Log(Global.levelsUnlocked);
+            setLevelParameters(Global.levelsUnlocked);
             settingParams = false;
         }
     }
 
-    public void LoadLevel()
-    {
+    public void LoadLevel() {
         DestroyHands();
         DestroyBirds();
 
@@ -63,15 +50,12 @@ public class LevelManager : MonoBehaviour
         Debug.Log("load level");
     }
 
-    public void resetLevelParameters()
-    {
+    public void resetLevelParameters() {
         settingParams = true;
     }
 
-    void setLevelParameters(int levelNumber)
-    {
-        switch (levelNumber)
-        {
+    void setLevelParameters(int levelNumber) {
+        switch (levelNumber) {
             case 1:
                 Smoke.SetActive(false);
                 HandSpawner.HandSpeed = 2;
@@ -115,18 +99,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void DestroyHands()
-    {
+    public void DestroyHands() {
         HandSpawner.isSpawning = false;
         HandSpawner.DestroyHands();
     }
 
-    public void DestroyBirds()
-    {
+    public void DestroyBirds() {
         BirdSpawner.GetComponent<BirdSpawnerScript>().isSpawning = false;
         BirdClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Bird(Clone)");
-        foreach (var obj in BirdClones)
-        {
+        foreach (var obj in BirdClones) {
             Destroy(obj);
         }
     }

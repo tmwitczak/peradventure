@@ -1,29 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BeesScript : MonoBehaviour
-{
-    [SerializeField]
-    private int amountOfBees = 30;
+public class BeesScript : MonoBehaviour {
     private ParticleSystem bees;
     [SerializeField] ParticleSystem center;
     private HoneyCounter honeyCounter;
-    private DataCollectorScript dataCollector;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         honeyCounter = FindObjectOfType<HoneyCounter>();
-        dataCollector = FindObjectOfType<DataCollectorScript>();
         bees = GetComponent<ParticleSystem>();
     }
 
-    private void Update()
-    {
+    private void Update() {
         var emissionRateOverTime = bees.emission;
-        emissionRateOverTime.rateOverTime = amountOfBees;
+        emissionRateOverTime.rateOverTime = Global.amountOfBees;
 
         var velocity = bees.velocityOverLifetime;
         velocity.speedModifier = honeyCounter.SmokeFactor;
@@ -32,20 +21,5 @@ public class BeesScript : MonoBehaviour
         centerEmission.rateOverTime = honeyCounter.SmokeFactor * 10.0f;
 
         honeyCounter.Speed = honeyCounter.SmokeFactor;
-    }
-
-    public int getAmountOfBees()
-    {
-        return amountOfBees;
-    }
-
-    public void setAmountOfBees(int val)
-    {
-        amountOfBees = val;
-    }
-
-    public void addAmountOfBees(int val)
-    {
-        amountOfBees += val;
     }
 }

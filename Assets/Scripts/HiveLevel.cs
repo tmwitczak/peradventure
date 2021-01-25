@@ -9,14 +9,9 @@ public class HiveLevel : MonoBehaviour {
     [HideInInspector]
     [SerializeField] Text levelNumber;
     public BeesScript beesScript;
-    public DataCollectorScript dataCollector;
     public GameObject EndLevelHelper;
     public Image beeLevelUp;
     public Slider slider;
-
-    public static float honeyAmount = 0.0f;
-    public static float levelMaxValue = 0.0f;
-    public static int hiveLevel;
 
     private float fillSpeed = 1.5f;
     private float honeyForSlider = 0.0f;
@@ -40,11 +35,11 @@ public class HiveLevel : MonoBehaviour {
     [SerializeField] GameObject Overlay;
 
     void OnEnable() {
-        slider.maxValue = levelMaxValue;
-        previousLevelMaxValue = levelMaxValue;
+        slider.maxValue = Global.levelMaxValue;
+        previousLevelMaxValue = Global.levelMaxValue;
 
-        levelNumber.text = hiveLevel.ToString();
-        honeyForSlider = honeyAmount;
+        levelNumber.text = Global.hiveLevel.ToString();
+        honeyForSlider = Global.honeyAmount;
 
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
         endText = gameObject.transform.Find("Text").GetComponent<Text>();
@@ -72,8 +67,8 @@ public class HiveLevel : MonoBehaviour {
             }
 
             if (slider.value >= previousLevelMaxValue) {
-                slider.maxValue = levelMaxValue;
-                levelNumber.text = hiveLevel.ToString();
+                slider.maxValue = Global.levelMaxValue;
+                levelNumber.text = Global.hiveLevel.ToString();
 
                 slider.value = 0.0f;
                 honeyForSlider = 0.0f;
@@ -107,10 +102,10 @@ public class HiveLevel : MonoBehaviour {
         yield return new WaitForSecondsRealtime(seconds);
 
         startFillTime = Time.time;
-        honeyAmount += honeyCounter.endHoneyAmount;
+        Global.honeyAmount += honeyCounter.endHoneyAmount;
 
-        if (honeyAmount >= levelMaxValue) {
-            honeyOverflow = honeyAmount - levelMaxValue;
+        if (Global.honeyAmount >= Global.levelMaxValue) {
+            honeyOverflow = Global.honeyAmount - Global.levelMaxValue;
             LevelUp();
         }
         Save();
@@ -124,15 +119,15 @@ public class HiveLevel : MonoBehaviour {
     }
 
     private void LevelUp() {
-        hiveLevel++;
-        beesScript.addAmountOfBees(20);
-        levelMaxValue *= 2.0f;
+        Global.hiveLevel++;
+        Global.amountOfBees += 20;
+        Global.levelMaxValue *= 2.0f;
     }
 
     private void Save() {
         if (finishedLevel) {
-            dataCollector.levelsUnlocked += 1;
+            Global.levelsUnlocked += 1;
         }
-        dataCollector.SaveData();
+        Global.SaveData();
     }
 }

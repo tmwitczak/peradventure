@@ -40,12 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5322687693897919694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4d340e4d5034546bb3b99c2c64d0ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 48cee5b7d3842b940a49b348c49fe92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beesScript: {fileID: 0}
-  honeyAmount: 0
-  levelMaxValue: 0
-  amountOfBees: 0
-  hiveLevel: 0
-  levelsUnlocked: 0
+  lookupData:
+    honeyAmount: 0
+    levelMaxValue: 100
+    amountOfBees: 30
+    hiveLevel: 1
+    levelsUnlocked: 1

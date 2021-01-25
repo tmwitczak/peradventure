@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class HoneyCounter : MonoBehaviour {
     public BeesScript beesScript;
-    public DataCollectorScript dataCollector;
     public float MinSmokedSpeed = 0.3f;
     public float Speed;
     public float _smokeFactor = 1f;
@@ -22,7 +21,7 @@ public class HoneyCounter : MonoBehaviour {
     }
 
     private void Update() {
-        amountOfBees = beesScript.getAmountOfBees();
+        amountOfBees = Global.amountOfBees;
         HoneyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = (Mathf.Round(16.54f * HoneyAmount)) + "";
     }
