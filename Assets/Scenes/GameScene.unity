@@ -1057,9 +1057,33 @@ PrefabInstance:
       propertyPath: beesScript
       value: 
       objectReference: {fileID: 477202672}
+    - target: {fileID: 1377315219, guid: 559fc20f1a931c145b47f535888774e6, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 955375282051596934, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 955375282051596934, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320552851620567688, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1498249782204412332, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715493314493286013, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1723539346518391824, guid: 559fc20f1a931c145b47f535888774e6,
@@ -1071,6 +1095,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205932261047193284, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843563213471290170, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2892882167786812642, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
@@ -1096,6 +1130,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399405948089707972, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5534478981350418408, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406060980086448606, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6718366848836576534, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
@@ -1277,6 +1326,11 @@ PrefabInstance:
       propertyPath: beesScript
       value: 
       objectReference: {fileID: 477202672}
+    - target: {fileID: 7353559319642590289, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8252679931301662116, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_IsActive
@@ -1287,6 +1341,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8435066883298363094, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8468039492006479269, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1296,6 +1355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612193812604011034, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8806793330730487219, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
@@ -1330,7 +1394,7 @@ PrefabInstance:
     - target: {fileID: 8806793330730487219, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_FontData.m_LineSpacing
-      value: 0.88
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8806793330730487219, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
