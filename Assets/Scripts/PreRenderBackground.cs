@@ -57,10 +57,9 @@ public class PreRenderBackground : MonoBehaviour {
 
         environment.SetActive(activate);
 
-        if(activate) {
+        if (activate) {
             frames = 0;
-        }
-        else {
+        } else {
             targetCamera = (targetCamera + 1) % backgroundToTextureCameras.Count;
         }
     }

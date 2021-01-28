@@ -21,9 +21,9 @@ public class Global : MonoBehaviour {
         get => gameData._hiveLevel;
         set => gameData._hiveLevel = value;
     }
-    public static int levelsUnlocked {
-        get => gameData._levelsUnlocked;
-        set => gameData._levelsUnlocked = value;
+    public static int currentGameplayLevel {
+        get => gameData._currentGameplayLevel;
+        set => gameData._currentGameplayLevel = value;
     }
 
     private void Awake() {

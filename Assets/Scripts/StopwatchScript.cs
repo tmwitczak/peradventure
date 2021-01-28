@@ -50,8 +50,8 @@ public class StopwatchScript : MonoBehaviour {
         if (timer == 1f && !isTimerFinished) {
             honeyCounter.endHoneyAmount = honeyCounter.HoneyAmount;
             EndGameMenu.SetActive(true);
-            HiveLevel.resultsActive = true;
-            HiveLevel.endStart = true;
+            EndgameMenu.resultsActive = true;
+            EndgameMenu.endStart = true;
             Fill.GetComponent<Image>().fillAmount = 1.0f;
             isTimerFinished = true;
         }

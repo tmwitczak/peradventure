@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Timekeeper : MonoBehaviour {
-    // public DataCollectorScript dataCollector;
     public List<Image> hiveImages;
 
     private Material masterMaterial;

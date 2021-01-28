@@ -564,12 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75c03bc649c40d4a81150005653d2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &560854238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8347204508212443408, guid: 559fc20f1a931c145b47f535888774e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1551588012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &637359421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1439,7 +1433,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1551588012}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560854238}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -1577,16 +1571,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c280308e12ee84a49a1586045bf1c9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeesScript: {fileID: 477202672}
-  BirdSpawner: {fileID: 667121170}
-  EndGameMenu: {fileID: 1680889131}
-  EndLevelHelper: {fileID: 2091228392}
-  PBOverlay: {fileID: 560854238}
-  Smoke: {fileID: 1000856915}
-  HandSpawner: {fileID: 283326199}
-  HiveLevel: {fileID: 1680889135}
-  HoneyCounter: {fileID: 1111379734}
-  Stopwatch: {fileID: 470721159}
+  endgameMenu: {fileID: 1680889135}
+  birdSpawner: {fileID: 667121170}
+  endLevelHelper: {fileID: 2091228392}
+  smoke: {fileID: 1000856915}
+  handSpawner: {fileID: 283326199}
+  honeyCounter: {fileID: 1111379734}
+  stopwatch: {fileID: 470721159}
 --- !u!4 &1614414644
 Transform:
   m_ObjectHideFlags: 0
@@ -1694,12 +1685,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1655428328}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1680889131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6805341594314806152, guid: 559fc20f1a931c145b47f535888774e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1551588012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1680889134 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8806793331517077266, guid: 559fc20f1a931c145b47f535888774e6,
@@ -1712,7 +1697,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1551588012}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680889131}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0552121f57370144ac6b055b0c38d9d, type: 3}

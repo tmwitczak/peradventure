@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class BirdScript : MonoBehaviour
-{
+public class BirdScript : MonoBehaviour {
     public float StealAmount;
     [HideInInspector]
     public float Speed;
@@ -24,11 +23,9 @@ public class BirdScript : MonoBehaviour
     private float pingPongSpeed = 2.0f;
 
     private bool hasCollided = false;
-    private void Start()
-    {
+    private void Start() {
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        if(transform.position.x > screenMax.x)
-        {
+        if (transform.position.x > screenMax.x) {
             Vector3 localScale = transform.localScale;
             localScale.x *= -1;
             transform.localScale = localScale;
@@ -40,35 +37,31 @@ public class BirdScript : MonoBehaviour
         angerSymbol = transform.GetChild(1).gameObject;
         initialAngerSymbolScale = angerSymbol.transform.localScale.x;
     }
-    private void Update()
-    {
+
+    private void Update() {
         lifeTimer += Time.deltaTime;
-        if(headsRight && !isTriggered)
-        {
+        if (headsRight && !isTriggered) {
             transform.position += Vector3.right * Time.deltaTime * Speed;
-        } else if(!headsRight && !isTriggered)
-        {
+        } else if (!headsRight && !isTriggered) {
             transform.position += Vector3.left * Time.deltaTime * Speed;
-        } else
-        {
+        } else {
             angerSymbol.SetActive(true);
-            angerSymbol.transform.localScale = new Vector3(Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale, Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale, transform.localScale.y); ;
+            angerSymbol.transform.localScale = new Vector3(
+                    Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale,
+                    Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale,
+                    transform.localScale.y);
             Speed = initialSpeed * 1.5f;
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, Speed * Time.deltaTime);
-            
             hiveDirection = Hive.transform.position - transform.position;
             transform.right = (headsRight ? 1 : -1) * hiveDirection;
         }
-        if(lifeTimer >= lifeTime)
-        {
+        if (lifeTimer >= lifeTime) {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Hive") && isTriggered && !hasCollided)
-        {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Hive") && isTriggered && !hasCollided) {
             hasCollided = true;
             honeyCounter.HoneyAmount -= StealAmount;
             Handheld.Vibrate();
@@ -76,8 +69,7 @@ public class BirdScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
+    private void OnTriggerStay2D(Collider2D collision) {
         OnTriggerEnter2D(collision);
     }
 }

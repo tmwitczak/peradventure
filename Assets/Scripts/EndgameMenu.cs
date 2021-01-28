@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HiveLevel : MonoBehaviour {
+public class EndgameMenu : MonoBehaviour {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private HoneyCounter honeyCounter;
 
@@ -23,7 +23,7 @@ public class HiveLevel : MonoBehaviour {
     private bool overflowed = false;
     public bool beeAmountUp = false;
     public static bool endStart = true;
-    public static bool finishedLevel = true;
+    public static bool levelFailed = false;
     public static bool resultsActive = false;
 
     public GameObject continueButton;
@@ -33,6 +33,10 @@ public class HiveLevel : MonoBehaviour {
     [SerializeField] GameObject Overlay;
 
     public Animator animator;
+
+    public void Reset() {
+        beeAmountUp = endStart = levelFailed = resultsActive = false;
+    }
 
     void OnEnable() {
         slider.maxValue = Global.levelMaxValue;
@@ -54,8 +58,7 @@ public class HiveLevel : MonoBehaviour {
         iTween.Init(gameObject);
     }
 
-    public void Resume()
-    {
+    public void Resume() {
         animator.SetTrigger("FadeOut");
         BackgroundOverlay.SetTrigger("FadeOut");
         // iTween.Stop(gameObject);
@@ -69,11 +72,10 @@ public class HiveLevel : MonoBehaviour {
         //     "easetype", iTween.EaseType.easeOutQuad
         //     )
         // );
-        levelManager.LoadLevel();
+        levelManager.loadLevel(Global.currentGameplayLevel);
     }
 
-    public void Disable()
-    {
+    public void Disable() {
         gameObject.SetActive(false);
     }
 
@@ -96,7 +98,6 @@ public class HiveLevel : MonoBehaviour {
     }
 
     IEnumerator waitForMenu(float seconds) {
-        EndLevelHelper.SetActive(false);
         if (honeyCounter.endHoneyAmount >= 110.0f) {
             endText.text = endTextsList[0];
         } else if (110.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 80.0f) {
@@ -105,7 +106,7 @@ public class HiveLevel : MonoBehaviour {
             endText.text = endTextsList[2];
         } else {
             endText.text = endTextsList[3];
-            finishedLevel = false;
+            levelFailed = true;
             restartButton.SetActive(true);
             continueButton.SetActive(false);
             endText.gameObject.SetActive(true);
@@ -155,8 +156,8 @@ public class HiveLevel : MonoBehaviour {
     }
 
     private void Save() {
-        if (finishedLevel) {
-            Global.levelsUnlocked += 1;
+        if (!levelFailed) {
+            Global.currentGameplayLevel += 1;
         }
         Global.SaveData();
     }

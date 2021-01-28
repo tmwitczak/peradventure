@@ -19506,8 +19506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7173c1c861dce0847af2101a7dacd24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SmokeDown: {fileID: 767825143773373090}
   SmokeLeft: {fileID: 767825142438995220}
   SmokeRight: {fileID: 767825143305193330}
   SmokeUp: {fileID: 767825143048045795}
-  SmokeDown: {fileID: 767825143773373090}
+  smokeParticleSystems:
+  - {fileID: 767825142438995220}
+  - {fileID: 767825143305193330}
+  - {fileID: 767825143048045795}
+  - {fileID: 767825143773373090}
   smokeCooldown: 2

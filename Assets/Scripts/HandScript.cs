@@ -22,8 +22,6 @@ public class HandScript : MonoBehaviour {
   private float lifetimeAfterTheft = 5.0f;
 
   private void Awake() {
-    Random.InitState((int)System.DateTime.Now.Ticks);
-
     honey = gameObject.transform.GetChild(0).gameObject;
     honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
 

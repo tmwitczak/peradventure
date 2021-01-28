@@ -5,11 +5,11 @@ public class LevelMenuScript : MonoBehaviour {
     public GameObject[] levelsButton;
 
     void Start() {
-        for (int i = 1; i < Global.levelsUnlocked; i++) {
+        for (int i = 1; i < Global.currentGameplayLevel; i++) {
             if (i >= 4) continue;
             unlockLevel(i);
         }
-        for (int i = 0; i < Global.levelsUnlocked - 1; i++) {
+        for (int i = 0; i < Global.currentGameplayLevel - 1; i++) {
             if (i >= 5) continue;
             tickFinishedLevels(i);
         }

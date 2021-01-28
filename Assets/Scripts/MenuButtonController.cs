@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuButtonController : MonoBehaviour
-{
-    private enum ButtonType
-    {
+public class MenuButtonController : MonoBehaviour {
+    private enum ButtonType {
         None,
         Start,
         Options,
@@ -31,19 +27,14 @@ public class MenuButtonController : MonoBehaviour
     private bool animEnded = false;
     private LevelManager levelManager;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         levelManager = FindObjectOfType<LevelManager>();
     }
 
-    // Update is called once per frame
-    void handleButtonPress()
-    {
-        switch (type)
-        {
+    void handleButtonPress() {
+        switch (type) {
             //case ButtonType.Start:
             //    MainMenu.SetActive(false);
             //    LevelMenu.SetActive(true);
@@ -86,10 +77,6 @@ public class MenuButtonController : MonoBehaviour
             //    AnimationEnd();
             //    break;
 
-            case ButtonType.Continue:
-                levelManager.LoadLevel();
-                break;
-
             //case ButtonType.Level:
             //    string buttonName = gameObject.name;
             //    buttonName = buttonName.Replace(" ", String.Empty);
@@ -97,15 +84,15 @@ public class MenuButtonController : MonoBehaviour
             //    StopwatchScript.MaxTime = 30.0f;
             //    Time.timeScale = 1.0f;
             //    break;
-            
+
+            case ButtonType.Continue:
             case ButtonType.Restart:
-                levelManager.LoadLevel();
+                levelManager.loadLevel(Global.currentGameplayLevel);
                 break;
         }
     }
 
-    public void PressButton()
-    {
+    public void PressButton() {
         animator.SetBool("press", true);
         buttonPressed = true;
         animEnded = false;
@@ -120,8 +107,7 @@ public class MenuButtonController : MonoBehaviour
     //     buttonPressed = false;
     // }
 
-    public void ActivateLevel()
-    {
+    public void ActivateLevel() {
         var button = gameObject.GetComponentInChildren<Button>();
         var lockImage = button.transform.Find("Image").gameObject;
         var buttonText = button.GetComponentInChildren<Text>();
@@ -130,10 +116,8 @@ public class MenuButtonController : MonoBehaviour
 
         button.interactable = true;
         lockImage.SetActive(false);
-        for (int i = 0; i < buttonName.Length; i++)
-        {
-            if (Char.IsDigit(buttonName[i]))
-            {
+        for (int i = 0; i < buttonName.Length; i++) {
+            if (Char.IsDigit(buttonName[i])) {
                 buttonText.text += buttonName[i];
             }
         }
@@ -145,8 +129,7 @@ public class MenuButtonController : MonoBehaviour
     //    SceneManager.LoadScene(sceneNum);
     //}
 
-    private void LoadLevel(string scene)
-    {
+    private void LoadLevel(string scene) {
         SceneManager.LoadScene(scene);
     }
 
@@ -167,8 +150,7 @@ public class MenuButtonController : MonoBehaviour
     //    SceneManager.LoadScene("MainMenu");
     //}
 
-    private void SetToFalse()
-    {
+    private void SetToFalse() {
         animEnded = false;
         buttonPressed = false;
     }

@@ -10,7 +10,6 @@ public class HoneyCounter : MonoBehaviour {
     private Text text;
     private float _honeyAmount;
     private float initialSmokeFactor;
-    private int amountOfBees;
 
     public float endHoneyAmount { get; set; }
 
@@ -21,9 +20,12 @@ public class HoneyCounter : MonoBehaviour {
     }
 
     private void Update() {
-        amountOfBees = Global.amountOfBees;
-        HoneyAmount += Time.deltaTime * ((amountOfBees / 10f) * SmokeFactor) * Speed;
+        HoneyAmount += Time.deltaTime * ((Global.amountOfBees / 10f) * SmokeFactor) * Speed;
         text.text = (Mathf.Round(16.54f * HoneyAmount)) + "";
+    }
+
+    public void reset() {
+        HoneyAmount = 0f;
     }
 
     public float HoneyAmount {
