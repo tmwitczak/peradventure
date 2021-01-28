@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour {
         BirdSpawner.GetComponent<BirdSpawnerScript>().isSpawning = true;
         HiveLevel.resultsActive = false;
         HiveLevel.beeAmountUp = false;
-        HiveLevel.finishedLevel = false;
+        HiveLevel.finishedLevel = true;
         HiveLevel.endStart = false;
         Debug.Log("load level");
     }
