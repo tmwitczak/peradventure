@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class LevelNumber : MonoBehaviour {
     private Text text;
 
-    void Start() {
+    private void Start() {
         text = gameObject.GetComponent<Text>();
     }
 
-    void Update() {
+    private void Update() {
         text.text = Mathf.Max(Global.hiveLevel, 1).ToString();
     }
 }

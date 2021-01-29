@@ -27,13 +27,13 @@ public class MenuButtonController : MonoBehaviour {
     private bool animEnded = false;
     private LevelManager levelManager;
 
-    void Start() {
+    private void Start() {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         levelManager = FindObjectOfType<LevelManager>();
     }
 
-    void handleButtonPress() {
+    private void handleButtonPress() {
         switch (type) {
             //case ButtonType.Start:
             //    MainMenu.SetActive(false);

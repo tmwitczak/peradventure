@@ -20,7 +20,7 @@ public class BladeScript : MonoBehaviour {
 
     private bool isCutting = false;
 
-    void Start() {
+    private void Start() {
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
@@ -28,7 +28,7 @@ public class BladeScript : MonoBehaviour {
         switchColliders(false);
     }
 
-    void Update() {
+    private void Update() {
         #region Mouse Inputs
         if (Input.GetMouseButtonDown(0)) {
             StartCut();
@@ -58,7 +58,7 @@ public class BladeScript : MonoBehaviour {
         }
     }
 
-    void UpdateCut() {
+    private void UpdateCut() {
         Vector2 newPos = camera.ScreenToWorldPoint(Input.mousePosition);
         rigidbody.position = newPos;
 
@@ -68,21 +68,21 @@ public class BladeScript : MonoBehaviour {
         previousPos = newPos;
     }
 
-    void StartCut() {
+    private void StartCut() {
         isCutting = true;
         previousPos = camera.ScreenToWorldPoint(Input.mousePosition);
         currentTrail = Instantiate(Trail);
         switchColliders(false);
     }
 
-    void StopCutting() {
+    private void StopCutting() {
         isCutting = false;
         Destroy(currentTrail, 1f);
         currentTrail = null;
         switchColliders(false);
     }
 
-    void emitParticles(GameObject hand) {
+    private void emitParticles(GameObject hand) {
         particleSystem = Instantiate(starParticles);
         particleSystem.transform.position = new Vector3(
                     Mathf.Lerp(transform.position.x, hand.transform.position.x, 0.2f),
@@ -91,7 +91,7 @@ public class BladeScript : MonoBehaviour {
         Destroy(particleSystem, 1.0f);
     }
 
-    void switchColliders(bool onOff) {
+    private void switchColliders(bool onOff) {
         circleCollider.enabled = circleCollider1.enabled = onOff;
     }
 

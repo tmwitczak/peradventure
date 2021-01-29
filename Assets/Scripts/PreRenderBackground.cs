@@ -12,7 +12,7 @@ public class PreRenderBackground : MonoBehaviour {
     private int frames = 0;
     private int targetCamera = 0;
 
-    void Start() {
+    private void Start() {
         iTween.Init(gameObject);
 
         masterMaterial = Instantiate(backgroundPlaneImages[0].material);

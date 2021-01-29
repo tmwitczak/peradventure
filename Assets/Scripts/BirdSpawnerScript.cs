@@ -15,7 +15,7 @@ public class BirdSpawnerScript : MonoBehaviour {
     private List<float> spawnY = new List<float>();
     private int randomNumber = 0;
 
-    void Start() {
+    private void Start() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         for (float i = screenMin.x - 5.0f; i < screenMax.x + 5.0f; i += 0.5f) {
@@ -26,7 +26,7 @@ public class BirdSpawnerScript : MonoBehaviour {
         }
     }
 
-    void Update() {
+    private void Update() {
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= SpawnCooldown) {
             spawnTimer = 0.0f;

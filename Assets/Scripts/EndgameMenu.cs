@@ -38,7 +38,7 @@ public class EndgameMenu : MonoBehaviour {
         beeAmountUp = endStart = levelFailed = resultsActive = false;
     }
 
-    void OnEnable() {
+    private void OnEnable() {
         slider.maxValue = Global.levelMaxValue;
         previousLevelMaxValue = Global.levelMaxValue;
 
@@ -97,7 +97,7 @@ public class EndgameMenu : MonoBehaviour {
         }
     }
 
-    IEnumerator waitForMenu(float seconds) {
+    private IEnumerator waitForMenu(float seconds) {
         if (honeyCounter.endHoneyAmount >= 110.0f) {
             endText.text = endTextsList[0];
         } else if (110.0f > honeyCounter.endHoneyAmount && honeyCounter.endHoneyAmount >= 80.0f) {
@@ -133,16 +133,16 @@ public class EndgameMenu : MonoBehaviour {
         Save();
     }
 
-    void tweenOnUpdateCallBack(float newValue) {
+    private void tweenOnUpdateCallBack(float newValue) {
         Global.honeyAmount = newValue;
     }
 
-    void tweenOnCompleteCallback() {
+    private void tweenOnCompleteCallback() {
         Debug.Log("fully filled");
         Global.SaveData();
     }
 
-    IEnumerator showBeeAmountUp() {
+    private IEnumerator showBeeAmountUp() {
         beeLevelUp.CrossFadeAlpha(1.0f, 0.1f, false);
         yield return new WaitForSecondsRealtime(0.5f);
         beeLevelUp.CrossFadeAlpha(0.0f, 0.1f, false);

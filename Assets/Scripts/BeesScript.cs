@@ -5,7 +5,7 @@ public class BeesScript : MonoBehaviour {
     [SerializeField] ParticleSystem center;
     private HoneyCounter honeyCounter;
 
-    void Start() {
+    private void Start() {
         honeyCounter = FindObjectOfType<HoneyCounter>();
         bees = GetComponent<ParticleSystem>();
     }

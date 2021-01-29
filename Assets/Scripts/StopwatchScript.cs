@@ -27,13 +27,13 @@ public class StopwatchScript : MonoBehaviour {
         return (-scale * a) / (Mathf.Sin(b) - a * Mathf.Cos(b));
     }
 
-    void Start() {
+    private void Start() {
         timeDuration = MaxTime;
         honeyCounter = FindObjectOfType<HoneyCounter>();
         clockHandStickOriginalScale = clockHandStick.localScale;
     }
 
-    void Update() {
+    private void Update() {
         if (timer < 1f) {
             timer += Time.deltaTime / timeDuration;
             float timeNormalized = timer % 1f;

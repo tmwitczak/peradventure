@@ -5,7 +5,7 @@ public class TrailRendererHelper : MonoBehaviour {
     protected TrailRenderer mTrail;
     protected float mTime = 0f;
 
-    void Awake() {
+    private void Awake() {
         mTrail = gameObject.GetComponent<TrailRenderer>();
         if (null == mTrail) {
             return;
@@ -13,7 +13,7 @@ public class TrailRendererHelper : MonoBehaviour {
         mTime = mTrail.time;
     }
 
-    void OnEnable() {
+    private void OnEnable() {
         if (null == mTrail) {
             return;
         }
@@ -21,7 +21,7 @@ public class TrailRendererHelper : MonoBehaviour {
         StartCoroutine(ResetTrails());
     }
 
-    IEnumerator ResetTrails() {
+    private IEnumerator ResetTrails() {
         mTrail.time = -1f;
         yield return new WaitForEndOfFrame();
         mTrail.time = mTime;

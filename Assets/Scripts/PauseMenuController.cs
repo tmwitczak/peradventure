@@ -19,7 +19,7 @@ public class PauseMenuController : MonoBehaviour {
     private HandSpawner handSpawner;
     private BirdSpawnerScript birdSpawner;
 
-    void Start() {
+    private void Start() {
         Blade = GameObject.FindGameObjectWithTag("Blade");
         handSpawner = FindObjectOfType<HandSpawner>();
         birdSpawner = FindObjectOfType<BirdSpawnerScript>();
@@ -34,7 +34,7 @@ public class PauseMenuController : MonoBehaviour {
         iTween.Init(gameObject);
     }
 
-    void Update() {
+    private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isPaused) {
                 Resume();
@@ -96,7 +96,7 @@ public class PauseMenuController : MonoBehaviour {
         GameObject.Find("BeesCount").GetComponent<Text>().text = Global.amountOfBees.ToString();
     }
 
-    void tweenOnUpdateCallBack(float newValue) {
+    private void tweenOnUpdateCallBack(float newValue) {
         Time.timeScale = newValue;
     }
 }
