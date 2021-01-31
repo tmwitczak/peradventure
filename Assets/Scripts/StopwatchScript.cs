@@ -10,8 +10,7 @@ public class StopwatchScript : MonoBehaviour {
     [SerializeField] GameObject Fill;
 
     public static float timer = 0.0f;
-    private float timeDuration;
-    private HoneyCounter honeyCounter;
+    [SerializeField] private HoneyCounter honeyCounter;
 
     public bool isTimerFinished = false;
 
@@ -27,15 +26,13 @@ public class StopwatchScript : MonoBehaviour {
         return (-scale * a) / (Mathf.Sin(b) - a * Mathf.Cos(b));
     }
 
-    private void Start() {
-        timeDuration = MaxTime;
-        honeyCounter = FindObjectOfType<HoneyCounter>();
+    private void Awake() {
         clockHandStickOriginalScale = clockHandStick.localScale;
     }
 
     private void Update() {
         if (timer < 1f) {
-            timer += Time.deltaTime / timeDuration;
+            timer += Time.deltaTime / MaxTime;
             float timeNormalized = timer % 1f;
             clockHandTransform.eulerAngles = new Vector3(0, 0, -timeNormalized * 360f);
             clockHandStick.localScale = new Vector3(

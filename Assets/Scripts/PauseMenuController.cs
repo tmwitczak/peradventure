@@ -1,37 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour {
     bool firstStart = true;
     public static bool isPaused = false;
     private float timerLimit = 1f - 0.5f / 30f;
-    [SerializeField] GameObject PauseMenu;
-    [SerializeField] GameObject Blade;
-    [SerializeField] GameObject Overlay;
-    [SerializeField] Animator BackgroundOverlay;
-    [SerializeField] IEnumerable<GameObject> TrailClones;
-    public Animator animator;
-    public BeesScript beesScript;
 
-    private HandSpawner handSpawner;
-    private BirdSpawnerScript birdSpawner;
+    [SerializeField] private BeesScript beesScript;
+    [SerializeField] private BirdSpawnerScript birdSpawner;
+    [SerializeField] private GameObject blade;
+    [SerializeField] private GameObject overlay;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private HandSpawner handSpawner;
+
+    private float originalTimescale;
+
+    private void Awake() {
+        iTween.Init(gameObject);
+        originalTimescale = Time.timeScale;
+    }
 
     private void Start() {
-        Blade = GameObject.FindGameObjectWithTag("Blade");
-        handSpawner = FindObjectOfType<HandSpawner>();
-        birdSpawner = FindObjectOfType<BirdSpawnerScript>();
+        // firstStart = false;
 
-        if (SceneManager.GetActiveScene().buildIndex == 0) {
-            // firstStart = false;
-            // animator.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(
-            //         animator.gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-            Pause();
-            // Time.timeScale = 0.0f;
-        }
-        iTween.Init(gameObject);
+        Pause(true);
+
+        // iTween.Stop(gameObject);
+        // Time.timeScale = 0.0f;
+
+        // Animator animator = GetComponent<Animator>();
+        // animator.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(
+        //         animator.gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
     }
 
     private void Update() {
@@ -44,59 +43,56 @@ public class PauseMenuController : MonoBehaviour {
         }
     }
 
-    public void Resume() {
-        animator.SetTrigger("FadeOut");
-        BackgroundOverlay.SetTrigger("FadeOut");
-        // Time.timeScale = 1.0f;
-        isPaused = false;
-        Blade.SetActive(true);
-        iTween.Stop(gameObject);
-        iTween.ValueTo(gameObject, iTween.Hash(
-            "from", 0.0f,
-            "to", 1.0f,
-            "time", 0.5f,
-            "ignoretimescale", true,
-            "onupdatetarget", gameObject,
-            "onupdate", "tweenOnUpdateCallBack",
-            "easetype", iTween.EaseType.easeOutQuad
-            )
-        );
-    }
-
-    public void Disable() {
-        PauseMenu.SetActive(false);
-    }
-
-    public void Pause() {
+    public void Pause(bool firstStart = false) {
         if (StopwatchScript.timer > timerLimit) {
             return;
         }
-        Overlay.SetActive(true);
-        TrailClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
-        PauseMenu.SetActive(true);
-        // Time.timeScale = 0.0f;
+
+        isPaused = true;
+
+        // gameObject.SetActive(true);
+        overlay.SetActive(true);
+        if (!firstStart) {
+            GetComponent<Animator>().SetTrigger("FadeIn");
+            overlay.GetComponent<Animator>().SetTrigger("FadeIn");
+        }
+
+        changeTimescale(originalTimescale, 0.0f);
+
+        blade.SetActive(false);
+    }
+
+
+    public void Resume() {
+        isPaused = false;
+
+        GetComponent<Animator>().SetTrigger("FadeOut");
+        overlay.GetComponent<Animator>().SetTrigger("FadeOut");
+
+        changeTimescale(0.0f, originalTimescale);
+
+        blade.SetActive(true);
+    }
+
+    public void Disable() {
+        // gameObject.SetActive(false);
+    }
+
+    private void changeTimescale(float from, float to) {
         iTween.Stop(gameObject);
         iTween.ValueTo(gameObject, iTween.Hash(
-            "from", Time.timeScale,
-            "to", 0.0f,
+            "from", from,
+            "to", to,
             "time", 0.5f,
             "ignoretimescale", true,
-            "onupdatetarget", gameObject,
-            "onupdate", "tweenOnUpdateCallBack",
+            // "onupdatetarget", gameObject,
+            "onupdate", "tweenOnUpdateTimescaleCallback",
             "easetype", iTween.EaseType.easeOutQuad
             )
         );
-        isPaused = true;
-        Blade.SetActive(false);
-
-        foreach (var obj in TrailClones) {
-            Destroy(obj);
-        }
-
-        GameObject.Find("BeesCount").GetComponent<Text>().text = Global.amountOfBees.ToString();
     }
 
-    private void tweenOnUpdateCallBack(float newValue) {
-        Time.timeScale = newValue;
+    private void tweenOnUpdateTimescaleCallback(float value) {
+        Time.timeScale = value;
     }
 }

@@ -100,56 +100,6 @@ public class MenuButtonController : MonoBehaviour {
         handleButtonPress();
     }
 
-    // public void AnimationEnd()
-    // {
-    //     animator.SetBool("press", false);
-    //     animEnded = true;
-    //     buttonPressed = false;
-    // }
-
-    public void ActivateLevel() {
-        var button = gameObject.GetComponentInChildren<Button>();
-        var lockImage = button.transform.Find("Image").gameObject;
-        var buttonText = button.GetComponentInChildren<Text>();
-        var buttonName = gameObject.name;
-        var buttonBgColor = button.GetComponent<Image>();
-
-        button.interactable = true;
-        lockImage.SetActive(false);
-        for (int i = 0; i < buttonName.Length; i++) {
-            if (Char.IsDigit(buttonName[i])) {
-                buttonText.text += buttonName[i];
-            }
-        }
-        buttonBgColor.color = Color.white;
-    }
-
-    //private void LoadLevel(int sceneNum)
-    //{
-    //    SceneManager.LoadScene(sceneNum);
-    //}
-
-    private void LoadLevel(string scene) {
-        SceneManager.LoadScene(scene);
-    }
-
-    //private bool LoadNextScene()
-    //{
-    //    if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
-    //    {
-    //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    //    } else
-    //    {
-    //        return false;
-    //    }
-    //    return true;
-    //}
-
-    //private void LoadMainMenu()
-    //{
-    //    SceneManager.LoadScene("MainMenu");
-    //}
-
     private void SetToFalse() {
         animEnded = false;
         buttonPressed = false;

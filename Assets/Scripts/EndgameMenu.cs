@@ -5,17 +5,17 @@ using UnityEngine.UI;
 public class EndgameMenu : MonoBehaviour {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private HoneyCounter honeyCounter;
+    [SerializeField] private GameObject blade;
+    [SerializeField] private GameObject handSpawner;
+    [SerializeField] private GameObject birdSpawner;
+    [SerializeField] private GameObject hiveScript;
 
     public BeesScript beesScript;
     public GameObject EndLevelHelper;
     public Image beeLevelUp;
-    public Slider slider;
 
     private float fillSpeed = 1.5f;
-    private float honeyForSlider = 0.0f;
     private float honeyOverflow = 0.0f;
-    private float previousLevelMaxValue = 0.0f;
-    private float startFillTime = 0.0f;
 
     private Text endText;
     private string[] endTextsList = { "sublime!", "brilliant!", "great job!", "almost\ngot it :(" };
@@ -29,21 +29,17 @@ public class EndgameMenu : MonoBehaviour {
     public GameObject continueButton;
     public GameObject restartButton;
 
-    [SerializeField] Animator BackgroundOverlay;
-    [SerializeField] GameObject Overlay;
-
-    public Animator animator;
+    [SerializeField] GameObject overlay;
 
     public void Reset() {
         beeAmountUp = endStart = levelFailed = resultsActive = false;
     }
 
+    private void Awake() {
+        iTween.Init(gameObject);
+    }
+
     private void OnEnable() {
-        slider.maxValue = Global.levelMaxValue;
-        previousLevelMaxValue = Global.levelMaxValue;
-
-        honeyForSlider = Global.honeyAmount;
-
         beeLevelUp.canvasRenderer.SetAlpha(0.0f);
         endText = gameObject.transform.Find("Text").GetComponent<Text>();
 
@@ -53,14 +49,17 @@ public class EndgameMenu : MonoBehaviour {
         GameObject.Find("Sun").GetComponent<Transform>().eulerAngles = a;
         GameObject.Find("PreRenderBackgroundController").GetComponent<PreRenderBackground>().refresh();
 
-        Overlay.SetActive(true);
-
-        iTween.Init(gameObject);
+        overlay.SetActive(true);
+        overlay.GetComponent<Animator>().SetTrigger("FadeIn");
+        GetComponent<Animator>().SetTrigger("FadeIn");
     }
 
     public void Resume() {
-        animator.SetTrigger("FadeOut");
-        BackgroundOverlay.SetTrigger("FadeOut");
+        GetComponent<Animator>().SetTrigger("FadeOut");
+        overlay.GetComponent<Animator>().SetTrigger("FadeOut");
+
+        blade.SetActive(true);
+        hiveScript.SetActive(true);
         // iTween.Stop(gameObject);
         // iTween.ValueTo(gameObject, iTween.Hash(
         //     "from", 0.0f,
@@ -80,20 +79,20 @@ public class EndgameMenu : MonoBehaviour {
     }
 
     private void Update() {
-        if (resultsActive && !beeAmountUp) {
+        if (beeAmountUp) {
+            StartCoroutine(showBeeAmountUp());
+        }
+
+        if (resultsActive) {
             if (endStart) {
                 StartCoroutine(waitForMenu(0.0f));
-            } else {
             }
-
             if (Global.honeyAmount >= Global.levelMaxValue) {
                 honeyOverflow = Global.honeyAmount - Global.levelMaxValue;
                 LevelUp();
                 beeAmountUp = true;
                 Global.SaveData();
             }
-        } else if (beeAmountUp) {
-            StartCoroutine(showBeeAmountUp());
         }
     }
 
@@ -113,9 +112,11 @@ public class EndgameMenu : MonoBehaviour {
         }
         endStart = false;
 
-        yield return new WaitForSecondsRealtime(seconds);
+        handSpawner.SetActive(false);
+        birdSpawner.SetActive(false);
+        hiveScript.SetActive(false);
 
-        startFillTime = Time.time;
+        yield return new WaitForSecondsRealtime(seconds);
 
         iTween.Stop(gameObject);
         iTween.ValueTo(gameObject, iTween.Hash(
@@ -123,9 +124,9 @@ public class EndgameMenu : MonoBehaviour {
             "to", Global.honeyAmount + honeyCounter.endHoneyAmount,
             "time", 3.0f,
             "ignoretimescale", true,
-            "onupdatetarget", gameObject,
+            // "onupdatetarget", gameObject,
             "onupdate", "tweenOnUpdateCallBack",
-            "oncompletetarget", gameObject,
+            // "oncompletetarget", gameObject,
             "oncomplete", "tweenOnCompleteCallback",
             "easetype", iTween.EaseType.easeOutQuad
             )
@@ -144,7 +145,7 @@ public class EndgameMenu : MonoBehaviour {
 
     private IEnumerator showBeeAmountUp() {
         beeLevelUp.CrossFadeAlpha(1.0f, 0.1f, false);
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(1.0f);
         beeLevelUp.CrossFadeAlpha(0.0f, 0.1f, false);
         beeAmountUp = false;
     }

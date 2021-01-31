@@ -10,7 +10,7 @@ public class HandSpawner : MonoBehaviour {
     public float HandSpeed;
     public float SpawnCooldown;
     public int HandsToSpawn;
-    public int handsToPrespawn = 100;
+    [SerializeField] private int handsToPrespawn = 100;
     public float innerPadding;
     public float outerPadding;
 
@@ -25,7 +25,7 @@ public class HandSpawner : MonoBehaviour {
     private List<float> spawnY = new List<float>();
     private int randomNumber = 0;
 
-    private void Start() {
+    private void Awake() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)) + new Vector3(-2.0f, -2.0f);
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height))
             + new Vector3(2.0f, 2.0f);

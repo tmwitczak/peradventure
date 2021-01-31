@@ -25,6 +25,12 @@ public class Global : MonoBehaviour {
         get => gameData._currentGameplayLevel;
         set => gameData._currentGameplayLevel = value;
     }
+    public static Vector2 screenMinWorldPoint {
+        get => Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+    }
+    public static Vector2 screenMaxWorldPoint {
+        get => Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+    }
 
     private void Awake() {
         LoadData();

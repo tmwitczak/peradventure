@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelNumber : MonoBehaviour {
+public class BeeCount : MonoBehaviour {
     private Text text;
 
     private void Awake() {
@@ -9,6 +9,6 @@ public class LevelNumber : MonoBehaviour {
     }
 
     private void Update() {
-        text.text = Global.hiveLevel.ToString();
+        text.text = Global.amountOfBees.ToString();
     }
 }

@@ -9,7 +9,7 @@ public class SmokeScript : MonoBehaviour {
     private int particlesTriggered = 0;
     public HoneyCounter honeyCounter;
 
-    private void Start() {
+    private void Awake() {
         particleSystem = GetComponent<ParticleSystem>();
     }
 

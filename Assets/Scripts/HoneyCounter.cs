@@ -13,9 +13,12 @@ public class HoneyCounter : MonoBehaviour {
 
     public float endHoneyAmount { get; set; }
 
-    private void Start() {
-        HoneyAmount = 0f;
+    private void Awake() {
         text = GetComponent<Text>();
+        reset();
+    }
+
+    private void Start() {
         initialSmokeFactor = SmokeFactor;
     }
 

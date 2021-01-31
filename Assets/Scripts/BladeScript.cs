@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BladeScript : MonoBehaviour {
@@ -11,7 +13,6 @@ public class BladeScript : MonoBehaviour {
     [SerializeField] CircleCollider2D circleCollider1;
 
     private Rigidbody2D rigidbody;
-    private Camera camera;
     private HoneyCounter honeyCounter;
 
     private Vector2 previousPos;
@@ -20,12 +21,14 @@ public class BladeScript : MonoBehaviour {
 
     private bool isCutting = false;
 
-    private void Start() {
-        honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
+    private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
-        camera = Camera.main;
         particleSystem = starParticles;
         switchColliders(false);
+    }
+
+    private void Start() {
+        honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
     }
 
     private void Update() {
@@ -38,7 +41,6 @@ public class BladeScript : MonoBehaviour {
         #endregion
 
         #region Mobile Inputs
-
         if (Input.touchCount > 0) {
             if (Input.touches[0].phase == TouchPhase.Began) {
                 StartCut();
@@ -46,7 +48,6 @@ public class BladeScript : MonoBehaviour {
                 StopCutting();
             }
         }
-
         #endregion
 
         if (isCutting) {
@@ -59,7 +60,7 @@ public class BladeScript : MonoBehaviour {
     }
 
     private void UpdateCut() {
-        Vector2 newPos = camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         rigidbody.position = newPos;
 
         float velocity = (newPos - previousPos).magnitude / Time.deltaTime;
@@ -70,9 +71,17 @@ public class BladeScript : MonoBehaviour {
 
     private void StartCut() {
         isCutting = true;
-        previousPos = camera.ScreenToWorldPoint(Input.mousePosition);
+        previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currentTrail = Instantiate(Trail);
         switchColliders(false);
+    }
+
+    public void destroyAllTrails() {
+        IEnumerable<GameObject> trails =
+            Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Trail(Clone)");
+        foreach (var trail in trails) {
+            Destroy(trail);
+        }
     }
 
     private void StopCutting() {
@@ -101,8 +110,14 @@ public class BladeScript : MonoBehaviour {
             honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * handScript.stealAmount;
             Destroy(other.gameObject);
             emitParticles(other.gameObject);
-        } else if (other.CompareTag("Bird")) {
-            other.gameObject.GetComponent<BirdScript>().isTriggered = true;
         }
+    }
+
+    private void OnEnable() {
+        destroyAllTrails();
+    }
+
+    private void OnDisable() {
+        destroyAllTrails();
     }
 }

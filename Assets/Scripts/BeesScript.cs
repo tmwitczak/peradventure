@@ -5,9 +5,12 @@ public class BeesScript : MonoBehaviour {
     [SerializeField] ParticleSystem center;
     private HoneyCounter honeyCounter;
 
+    private void Awake() {
+        bees = GetComponent<ParticleSystem>();
+    }
+
     private void Start() {
         honeyCounter = FindObjectOfType<HoneyCounter>();
-        bees = GetComponent<ParticleSystem>();
     }
 
     private void Update() {

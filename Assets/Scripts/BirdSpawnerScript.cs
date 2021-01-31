@@ -15,7 +15,7 @@ public class BirdSpawnerScript : MonoBehaviour {
     private List<float> spawnY = new List<float>();
     private int randomNumber = 0;
 
-    private void Start() {
+    private void Awake() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         for (float i = screenMin.x - 5.0f; i < screenMax.x + 5.0f; i += 0.5f) {
@@ -43,6 +43,6 @@ public class BirdSpawnerScript : MonoBehaviour {
         spawnY = spawnY.Where(value => value >= screenMin.y || value <= screenMax.y).ToList();
         var spawnPosition = new Vector2(spawnX[Random.Range(0, spawnX.Count)], spawnY[Random.Range(0, spawnY.Count)]);
         var bird = Instantiate(Bird, spawnPosition, Quaternion.identity);
-        bird.GetComponent<BirdScript>().Speed = BirdSpeed;
+        bird.GetComponent<BirdScript>().speed = BirdSpeed;
     }
 }
