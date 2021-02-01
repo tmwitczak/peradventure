@@ -65,6 +65,9 @@ public class LevelManager : MonoBehaviour {
                 handSpawner.SpawnCooldown = 3;
                 handSpawner.HandsToSpawn = 1;
                 birdSpawner.SetActive(false);
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
+                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
                 break;
             case 2:
                 smoke.SetActive(false);
@@ -73,6 +76,9 @@ public class LevelManager : MonoBehaviour {
                 handSpawner.SpawnCooldown = 2;
                 handSpawner.HandsToSpawn = 1;
                 birdSpawner.SetActive(true);
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
+                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
                 break;
             case 3:
                 smoke.SetActive(false);
@@ -81,6 +87,9 @@ public class LevelManager : MonoBehaviour {
                 handSpawner.SpawnCooldown = 2;
                 handSpawner.HandsToSpawn = 1;
                 birdSpawner.SetActive(true);
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
+                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
                 break;
             case 4:
                 smoke.SetActive(true);
@@ -89,11 +98,17 @@ public class LevelManager : MonoBehaviour {
                 handSpawner.SpawnCooldown = 1.5f;
                 handSpawner.HandsToSpawn = 1;
                 birdSpawner.SetActive(true);
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
+                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
                 break;
             default:
                 smoke.SetActive(false);
                 handSpawner.gameObject.SetActive(true);
                 birdSpawner.SetActive(false);
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
+                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
+                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
                 handSpawner.HandSpeed = 2f;
                 handSpawner.SpawnCooldown = 2;
                 handSpawner.HandsToSpawn = 1;
