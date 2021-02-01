@@ -44,7 +44,7 @@ public class PauseMenuController : MonoBehaviour {
     }
 
     public void Pause(bool firstStart = false) {
-        if (StopwatchScript.timer > timerLimit) {
+        if (isPaused || StopwatchScript.timer > timerLimit) {
             return;
         }
 
@@ -64,6 +64,10 @@ public class PauseMenuController : MonoBehaviour {
 
 
     public void Resume() {
+        if (!isPaused) {
+            return;
+        }
+
         isPaused = false;
 
         GetComponent<Animator>().SetTrigger("FadeOut");
