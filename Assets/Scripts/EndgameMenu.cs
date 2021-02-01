@@ -115,6 +115,7 @@ public class EndgameMenu : MonoBehaviour {
         handSpawner.SetActive(false);
         birdSpawner.SetActive(false);
         hiveScript.SetActive(false);
+        blade.SetActive(false);
 
         yield return new WaitForSecondsRealtime(seconds);
 
