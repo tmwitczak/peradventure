@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour {
 
         // Hands
         handSpawner.destroyAllHands();
-        handSpawner.PrespawnHands();
+        handSpawner.prespawnHands();
 
         // Birds
         var birdClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(
@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour {
         }
 
         // Smoke
-        smoke.GetComponent<SmokeBehaviour>().ClearSmoke();
+        smoke.GetComponent<SmokeBehaviour>().clearSmoke();
 
         // Stopwatch
         stopwatch.resetStopwatch();

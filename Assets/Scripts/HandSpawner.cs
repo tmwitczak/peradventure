@@ -54,7 +54,7 @@ public class HandSpawner : MonoBehaviour {
         hands[currentHand++].SetActive(true);
     }
 
-    public void PrespawnHands() {
+    public void prespawnHands() {
         destroyAllHands();
 
         handParent = new GameObject("Hands");

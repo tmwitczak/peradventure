@@ -818,6 +818,27 @@ PrefabInstance:
       propertyPath: BirdSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 589469783077399864, guid: 3a13fb68ac4970041b44c970302e497a,
+        type: 3}
+      propertyPath: birdPrefab
+      value: 
+      objectReference: {fileID: 8185866364461830480, guid: 3c257ec3f5e72564aba5d5b7de0fe9d7,
+        type: 3}
+    - target: {fileID: 589469783077399864, guid: 3a13fb68ac4970041b44c970302e497a,
+        type: 3}
+      propertyPath: birdSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 589469783077399864, guid: 3a13fb68ac4970041b44c970302e497a,
+        type: 3}
+      propertyPath: spawnCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 589469783077399864, guid: 3a13fb68ac4970041b44c970302e497a,
+        type: 3}
+      propertyPath: birdsToSpawn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 589469783077399865, guid: 3a13fb68ac4970041b44c970302e497a,
         type: 3}
       propertyPath: m_LocalPosition.x

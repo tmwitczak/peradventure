@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class BirdSpawnerScript : MonoBehaviour {
-    public GameObject Bird;
-    public float BirdSpeed;
-    public float SpawnCooldown;
-    public int BirdsToSpawn;
+    public GameObject birdPrefab;
+    public float birdSpeed;
+    public float spawnCooldown;
+    public int birdsToSpawn;
 
     private float spawnTimer = 0.0f;
     private List<float> spawnX = new List<float>();
@@ -27,16 +27,16 @@ public class BirdSpawnerScript : MonoBehaviour {
 
     private void Update() {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= SpawnCooldown) {
+        if (spawnTimer >= spawnCooldown) {
             spawnTimer = 0.0f;
 
-            for (int i = 0; i < BirdsToSpawn; i++) {
-                SpawnBird();
+            for (int i = 0; i < birdsToSpawn; i++) {
+                spawnBird();
             }
         }
     }
 
-    private void SpawnBird() {
+    private void spawnBird() {
         spawnX = spawnX.Where(value =>
                 value <= Global.screenMinWorldPoint.x ||
                 value >= Global.screenMaxWorldPoint.x).ToList();
@@ -48,7 +48,7 @@ public class BirdSpawnerScript : MonoBehaviour {
                 spawnX[Random.Range(0, spawnX.Count)],
                 spawnY[Random.Range(0, spawnY.Count)]);
 
-        var bird = Instantiate(Bird, spawnPosition, Quaternion.identity);
-        bird.GetComponent<BirdScript>().speed = BirdSpeed;
+        var bird = Instantiate(birdPrefab, spawnPosition, Quaternion.identity);
+        bird.GetComponent<BirdScript>().speed = birdSpeed;
     }
 }

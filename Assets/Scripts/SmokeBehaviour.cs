@@ -21,7 +21,7 @@ public class SmokeBehaviour : MonoBehaviour {
     private void Update() {
         smokeTimer += Time.deltaTime;
         if (smokeTimer >= smokeCooldown) {
-            ActivateSmoke((int)Random.Range(0, 4));
+            activateSmoke((int)Random.Range(0, 4));
             smokeTimer = 0.0f;
             smokeCooldown = Random.Range(1, 10);
         }
@@ -38,14 +38,14 @@ public class SmokeBehaviour : MonoBehaviour {
         }
     }
 
-    private void ActivateSmoke(int i) {
+    private void activateSmoke(int i) {
         Assert.IsTrue(i >= 0 && i < smokeParticleSystems.Count);
 
         smokeParticleSystems[i].Play();
         elapsedTime[i] = 0.0f;
     }
 
-    public void ClearSmoke() {
+    public void clearSmoke() {
         foreach (var system in smokeParticleSystems) {
             system.Stop();
             system.Clear();
