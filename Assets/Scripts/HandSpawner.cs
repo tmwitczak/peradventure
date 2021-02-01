@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -23,7 +23,6 @@ public class HandSpawner : MonoBehaviour {
     private float spawnTimer = 0.0f;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
-    private int randomNumber = 0;
 
     private void Awake() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)) + new Vector3(-2.0f, -2.0f);

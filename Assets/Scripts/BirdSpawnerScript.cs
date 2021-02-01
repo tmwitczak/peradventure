@@ -11,7 +11,6 @@ public class BirdSpawnerScript : MonoBehaviour {
     private float spawnTimer = 0.0f;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
-    private int randomNumber = 0;
 
     private void Awake() {
         for (float i = Global.screenMinWorldPoint.x - 5.0f;
