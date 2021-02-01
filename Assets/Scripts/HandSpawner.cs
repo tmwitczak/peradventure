@@ -55,7 +55,7 @@ public class HandSpawner : MonoBehaviour {
     }
 
     public void PrespawnHands() {
-        DestroyHands();
+        destroyAllHands();
 
         handParent = new GameObject("Hands");
 
@@ -98,7 +98,7 @@ public class HandSpawner : MonoBehaviour {
         }
     }
 
-    public void DestroyHands() {
+    public void destroyAllHands() {
         foreach (var hand in hands) {
             Destroy(hand);
         }

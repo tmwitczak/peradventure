@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
         Debug.Log("Scene reset");
 
         // Hands
-        handSpawner.DestroyHands();
+        handSpawner.destroyAllHands();
         handSpawner.PrespawnHands();
 
         // Birds
