@@ -8,20 +8,20 @@ public class BirdSpawnerScript : MonoBehaviour {
     public float SpawnCooldown;
     public int BirdsToSpawn;
 
-    private Vector3 screenMin;
-    private Vector3 screenMax;
     private float spawnTimer = 0.0f;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
     private int randomNumber = 0;
 
     private void Awake() {
-        screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-        screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        for (float i = screenMin.x - 5.0f; i < screenMax.x + 5.0f; i += 0.5f) {
+        for (float i = Global.screenMinWorldPoint.x - 5.0f;
+                i < Global.screenMaxWorldPoint.x + 5.0f;
+                i += 0.5f) {
             spawnX.Add(i);
         }
-        for (float i = screenMin.y; i < screenMax.y; i += 0.5f) {
+        for (float i = Global.screenMinWorldPoint.y;
+                i < Global.screenMaxWorldPoint.y;
+                i += 0.5f) {
             spawnY.Add(i);
         }
     }
@@ -38,10 +38,17 @@ public class BirdSpawnerScript : MonoBehaviour {
     }
 
     private void SpawnBird() {
-        int rand = Random.Range(0, 50);
-        spawnX = spawnX.Where(value => value <= screenMin.x || value >= screenMax.x).ToList();
-        spawnY = spawnY.Where(value => value >= screenMin.y || value <= screenMax.y).ToList();
-        var spawnPosition = new Vector2(spawnX[Random.Range(0, spawnX.Count)], spawnY[Random.Range(0, spawnY.Count)]);
+        spawnX = spawnX.Where(value =>
+                value <= Global.screenMinWorldPoint.x ||
+                value >= Global.screenMaxWorldPoint.x).ToList();
+        spawnY = spawnY.Where(value =>
+                value >= Global.screenMinWorldPoint.y ||
+                value <= Global.screenMaxWorldPoint.y).ToList();
+
+        var spawnPosition = new Vector2(
+                spawnX[Random.Range(0, spawnX.Count)],
+                spawnY[Random.Range(0, spawnY.Count)]);
+
         var bird = Instantiate(Bird, spawnPosition, Quaternion.identity);
         bird.GetComponent<BirdScript>().speed = BirdSpeed;
     }
