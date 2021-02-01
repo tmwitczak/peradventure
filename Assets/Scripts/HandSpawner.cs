@@ -36,8 +36,6 @@ public class HandSpawner : MonoBehaviour {
         for (float i = screenMin.y - outerPadding; i < screenMax.y + outerPadding; i += 0.01f) {
             spawnY.Add(i);
         }
-
-        PrespawnHands();
     }
 
     private void Update() {
