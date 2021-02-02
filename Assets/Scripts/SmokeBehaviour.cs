@@ -23,7 +23,6 @@ public class SmokeBehaviour : MonoBehaviour {
         if (smokeTimer >= smokeCooldown) {
             activateSmoke((int)Random.Range(0, 4));
             smokeTimer = 0.0f;
-            smokeCooldown = Random.Range(1, 10);
         }
 
         for (int i = 0; i < smokeParticleSystems.Count; ++i) {
