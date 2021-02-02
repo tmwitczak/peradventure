@@ -11,6 +11,9 @@ public class SmokeBehaviour : MonoBehaviour {
 
     private float EMITTING_TIME = 6.0f;
 
+    private List<int> randomSmokeActivations;
+    private IEnumerator<int> randomSmokeActivation;
+
     private void Start() {
         elapsedTime = new List<float>(smokeParticleSystems.Count);
         for (int i = 0; i < smokeParticleSystems.Count; ++i) {
@@ -21,7 +24,8 @@ public class SmokeBehaviour : MonoBehaviour {
     private void Update() {
         smokeTimer += Time.deltaTime;
         if (smokeTimer >= smokeCooldown) {
-            activateSmoke((int)Random.Range(0, 4));
+            randomSmokeActivation.MoveNext();
+            activateSmoke(randomSmokeActivation.Current);
             smokeTimer = 0.0f;
         }
 
@@ -53,6 +57,20 @@ public class SmokeBehaviour : MonoBehaviour {
 
     public void reset() {
         smokeTimer = 0f;
+        precalculateRandomness();
         clearSmoke();
+    }
+
+    private int totalSmokeSpawnCount {
+        get => Mathf.FloorToInt(StopwatchScript.MaxTime / smokeCooldown);
+    }
+
+    public void precalculateRandomness() {
+        randomSmokeActivations = new List<int>();
+        for (int i = 0; i < totalSmokeSpawnCount; ++i) {
+            randomSmokeActivations.Add((int)Random.Range(0, 4));
+        }
+
+        randomSmokeActivation = randomSmokeActivations.GetEnumerator();
     }
 }
