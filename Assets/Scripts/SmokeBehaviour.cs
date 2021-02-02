@@ -7,7 +7,7 @@ public class SmokeBehaviour : MonoBehaviour {
     public float smokeCooldown = 2.0f;
 
     private List<float> elapsedTime;
-    private float smokeTimer = 0.0f;
+    private float smokeTimer;
 
     private float EMITTING_TIME = 6.0f;
 
@@ -52,6 +52,7 @@ public class SmokeBehaviour : MonoBehaviour {
     }
 
     public void reset() {
+        smokeTimer = 0f;
         clearSmoke();
     }
 }

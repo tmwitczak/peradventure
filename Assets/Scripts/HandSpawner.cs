@@ -20,7 +20,7 @@ public class HandSpawner : MonoBehaviour {
 
     private Vector3 screenMin;
     private Vector3 screenMax;
-    private float spawnTimer = 0.0f;
+    private float spawnTimer;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
 
@@ -108,6 +108,7 @@ public class HandSpawner : MonoBehaviour {
     }
 
     public void reset() {
+        spawnTimer = 0f;
         destroyAllHands();
         prespawnHands();
     }

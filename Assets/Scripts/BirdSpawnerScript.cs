@@ -8,7 +8,7 @@ public class BirdSpawnerScript : MonoBehaviour {
     public float spawnCooldown;
     public int birdsToSpawn;
 
-    private float spawnTimer = 0.0f;
+    private float spawnTimer;
     private List<float> spawnX = new List<float>();
     private List<float> spawnY = new List<float>();
 
@@ -61,6 +61,7 @@ public class BirdSpawnerScript : MonoBehaviour {
     }
 
     public void reset() {
+        spawnTimer = 0f;
         destroyAllBirds();
     }
 }
