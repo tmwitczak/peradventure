@@ -29,18 +29,13 @@ public class LevelManager : MonoBehaviour {
         Debug.Log("Scene reset");
 
         // Hands
-        handSpawner.destroyAllHands();
-        handSpawner.prespawnHands();
+        handSpawner.reset();
 
         // Birds
-        var birdClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(
-                obj => obj.name == "Bird(Clone)");
-        foreach (var bird in birdClones) {
-            Destroy(bird);
-        }
+        birdSpawner.GetComponent<BirdSpawnerScript>().reset();
 
         // Smoke
-        smoke.GetComponent<SmokeBehaviour>().clearSmoke();
+        smoke.GetComponent<SmokeBehaviour>().reset();
 
         // Stopwatch
         stopwatch.resetStopwatch();

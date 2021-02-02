@@ -50,4 +50,8 @@ public class SmokeBehaviour : MonoBehaviour {
             system.Clear();
         }
     }
+
+    public void reset() {
+        clearSmoke();
+    }
 }

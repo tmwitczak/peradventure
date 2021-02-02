@@ -106,4 +106,9 @@ public class HandSpawner : MonoBehaviour {
         hands.Clear();
         Destroy(handParent);
     }
+
+    public void reset() {
+        destroyAllHands();
+        prespawnHands();
+    }
 }

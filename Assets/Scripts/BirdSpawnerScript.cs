@@ -51,4 +51,16 @@ public class BirdSpawnerScript : MonoBehaviour {
         var bird = Instantiate(birdPrefab, spawnPosition, Quaternion.identity);
         bird.GetComponent<BirdScript>().speed = birdSpeed;
     }
+
+    private void destroyAllBirds() {
+        var birdClones = Resources.FindObjectsOfTypeAll<GameObject>().Where(
+                obj => obj.name == "Bird(Clone)");
+        foreach (var bird in birdClones) {
+            Destroy(bird);
+        }
+    }
+
+    public void reset() {
+        destroyAllBirds();
+    }
 }
