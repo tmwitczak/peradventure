@@ -107,7 +107,13 @@ public class BladeScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Hand")) {
             var handScript = other.GetComponent<HandScript>();
-            honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * handScript.stealAmount;
+            if(handScript.prevHoneyAmount > 0)
+            {
+                honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * handScript.stealAmount;
+            } else
+            {
+                honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * (handScript.stealAmount + handScript.prevHoneyAmount);
+            }
             Destroy(other.gameObject);
             emitParticles(other.gameObject);
         }

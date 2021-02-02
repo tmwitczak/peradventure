@@ -13,6 +13,7 @@ public class HandScript : MonoBehaviour {
   public bool moveBack;
   public float speed;
   public float stealAmount;
+  public float prevHoneyAmount;
 
   private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
   private GameObject honey;
@@ -95,6 +96,7 @@ public class HandScript : MonoBehaviour {
   private void OnTriggerEnter2D(Collider2D other) {
     if (other.CompareTag("Hive")) {
       honey.SetActive(true);
+      prevHoneyAmount = honeyCounter.HoneyAmount - stealAmount;
       honeyCounter.HoneyAmount -= stealAmount;
 
       moveBack = true;
