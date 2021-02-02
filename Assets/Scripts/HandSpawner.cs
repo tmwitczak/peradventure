@@ -21,17 +21,20 @@ public class HandSpawner : MonoBehaviour {
     private Vector3 screenMin;
     private Vector3 screenMax;
     private float spawnTimer;
-    private List<float> spawnX = new List<float>();
-    private List<float> spawnY = new List<float>();
+    private List<float> spawnX;
+    private List<float> spawnY;
 
     private void Awake() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)) + new Vector3(-2.0f, -2.0f);
         screenMax = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height))
             + new Vector3(2.0f, 2.0f);
 
+        spawnX = new List<float>();
         for (float i = screenMin.x - outerPadding; i < screenMax.x + outerPadding; i += 0.01f) {
             spawnX.Add(i);
         }
+
+        spawnY = new List<float>();
         for (float i = screenMin.y - outerPadding; i < screenMax.y + outerPadding; i += 0.01f) {
             spawnY.Add(i);
         }

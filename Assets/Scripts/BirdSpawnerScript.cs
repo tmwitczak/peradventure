@@ -9,20 +9,29 @@ public class BirdSpawnerScript : MonoBehaviour {
     public int birdsToSpawn;
 
     private float spawnTimer;
-    private List<float> spawnX = new List<float>();
-    private List<float> spawnY = new List<float>();
+    private List<float> spawnX;
+    private List<float> spawnY;
 
     private void Awake() {
+        spawnX = new List<float>();
         for (float i = Global.screenMinWorldPoint.x - 5.0f;
                 i < Global.screenMaxWorldPoint.x + 5.0f;
                 i += 0.5f) {
             spawnX.Add(i);
         }
+        spawnX = spawnX.Where(value =>
+                value <= Global.screenMinWorldPoint.x ||
+                value >= Global.screenMaxWorldPoint.x).ToList();
+
+        spawnY = new List<float>();
         for (float i = Global.screenMinWorldPoint.y;
                 i < Global.screenMaxWorldPoint.y;
                 i += 0.5f) {
             spawnY.Add(i);
         }
+        spawnY = spawnY.Where(value =>
+                value >= Global.screenMinWorldPoint.y ||
+                value <= Global.screenMaxWorldPoint.y).ToList();
     }
 
     private void Update() {
@@ -37,12 +46,6 @@ public class BirdSpawnerScript : MonoBehaviour {
     }
 
     private void spawnBird() {
-        spawnX = spawnX.Where(value =>
-                value <= Global.screenMinWorldPoint.x ||
-                value >= Global.screenMaxWorldPoint.x).ToList();
-        spawnY = spawnY.Where(value =>
-                value >= Global.screenMinWorldPoint.y ||
-                value <= Global.screenMaxWorldPoint.y).ToList();
 
         var spawnPosition = new Vector2(
                 spawnX[Random.Range(0, spawnX.Count)],
