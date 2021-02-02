@@ -93,6 +93,7 @@ public class LevelManager : MonoBehaviour {
                 break;
             case 4:
                 smoke.SetActive(true);
+                smoke.GetComponent<SmokeBehaviour>().smokeCooldown = 8.0f;
                 handSpawner.gameObject.SetActive(true);
                 handSpawner.HandSpeed = 3f;
                 handSpawner.SpawnCooldown = 1.5f;
