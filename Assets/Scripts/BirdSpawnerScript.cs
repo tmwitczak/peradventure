@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,6 +11,9 @@ public class BirdSpawnerScript : MonoBehaviour {
     private float spawnTimer;
     private List<float> spawnX;
     private List<float> spawnY;
+
+    private List<Vector2Int> randomSpawnIndices;
+    private IEnumerator<Vector2Int> randomSpawnIndex;
 
     private void Awake() {
         spawnX = new List<float>();
@@ -45,11 +48,26 @@ public class BirdSpawnerScript : MonoBehaviour {
         }
     }
 
-    private void spawnBird() {
+    private int totalBirdSpawnCount {
+        get => birdsToSpawn * Mathf.FloorToInt(StopwatchScript.MaxTime / spawnCooldown);
+    }
 
+    public void precalculateRandomness() {
+        randomSpawnIndices = new List<Vector2Int>();
+        for (int i = 0; i < totalBirdSpawnCount; ++i) {
+            randomSpawnIndices.Add(new Vector2Int(
+                        Random.Range(0, spawnX.Count),
+                        Random.Range(0, spawnY.Count)));
+        }
+
+        randomSpawnIndex = randomSpawnIndices.GetEnumerator();
+    }
+
+    private void spawnBird() {
+        randomSpawnIndex.MoveNext();
         var spawnPosition = new Vector2(
-                spawnX[Random.Range(0, spawnX.Count)],
-                spawnY[Random.Range(0, spawnY.Count)]);
+                spawnX[randomSpawnIndex.Current.x],
+                spawnY[randomSpawnIndex.Current.y]);
 
         var bird = Instantiate(birdPrefab, spawnPosition, Quaternion.identity);
         bird.GetComponent<BirdScript>().speed = birdSpeed;
@@ -65,6 +83,7 @@ public class BirdSpawnerScript : MonoBehaviour {
 
     public void reset() {
         spawnTimer = 0f;
+        precalculateRandomness();
         destroyAllBirds();
     }
 }
