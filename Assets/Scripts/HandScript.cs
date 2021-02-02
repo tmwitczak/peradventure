@@ -13,8 +13,8 @@ public class HandScript : MonoBehaviour {
   public bool moveBack;
   public float speed;
   public float stealAmount;
-  public float prevHoneyAmount;
 
+  private float stolenHoney;
   private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
   private GameObject honey;
   private HoneyCounter honeyCounter;
@@ -82,6 +82,10 @@ public class HandScript : MonoBehaviour {
             forwardMovementProperties[Random.Range(0, forwardMovementProperties.Count)]);
   }
 
+  private void OnEnable() {
+    stolenHoney = 0f;
+  }
+
   private void Update() {
     destructionTimer += Convert.ToSingle(moveBack) * Time.deltaTime;
     gameObject.SetActive(destructionTimer < lifetimeAfterTheft);
@@ -96,13 +100,22 @@ public class HandScript : MonoBehaviour {
   private void OnTriggerEnter2D(Collider2D other) {
     if (other.CompareTag("Hive")) {
       honey.SetActive(true);
-      prevHoneyAmount = honeyCounter.HoneyAmount - stealAmount;
-      honeyCounter.HoneyAmount -= stealAmount;
+      steal();
 
       moveBack = true;
       iTween.Stop(gameObject);
       iTween.MoveTo(gameObject,
               backwardMovementProperties[Random.Range(0, backwardMovementProperties.Count)]);
     }
+  }
+
+  public void steal() {
+    stolenHoney = Mathf.Min(honeyCounter.HoneyAmount, stealAmount);
+    honeyCounter.HoneyAmount -= Convert.ToSingle(!moveBack) * stolenHoney;
+  }
+
+  public void giveBack() {
+    honeyCounter.HoneyAmount += Convert.ToSingle(moveBack) * stolenHoney;
+    stolenHoney = 0f;
   }
 }

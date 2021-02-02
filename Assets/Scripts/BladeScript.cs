@@ -13,7 +13,6 @@ public class BladeScript : MonoBehaviour {
     [SerializeField] CircleCollider2D circleCollider1;
 
     private Rigidbody2D rigidbody;
-    private HoneyCounter honeyCounter;
 
     private Vector2 previousPos;
 
@@ -25,10 +24,6 @@ public class BladeScript : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody2D>();
         particleSystem = starParticles;
         switchColliders(false);
-    }
-
-    private void Start() {
-        honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
     }
 
     private void Update() {
@@ -106,14 +101,7 @@ public class BladeScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Hand")) {
-            var handScript = other.GetComponent<HandScript>();
-            if(handScript.prevHoneyAmount > 0)
-            {
-                honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * handScript.stealAmount;
-            } else
-            {
-                honeyCounter.HoneyAmount += Convert.ToSingle(handScript.moveBack) * (handScript.stealAmount + handScript.prevHoneyAmount);
-            }
+            other.GetComponent<HandScript>().giveBack();
             Destroy(other.gameObject);
             emitParticles(other.gameObject);
         }
