@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,8 +12,12 @@ public class LevelManager : MonoBehaviour {
     public HoneyCounter honeyCounter;
     public StopwatchScript stopwatch;
 
+    private List<LevelParameters> startupLevelParameters;
+
     private void Awake() {
         mainMenu.SetActive(true);
+
+        setupLevelParameters();
     }
 
     private void Start() {
@@ -51,64 +56,77 @@ public class LevelManager : MonoBehaviour {
         endgameMenu.Reset();
     }
 
+    public class LevelParameters {
+        public class Description {
+            public bool active;
+            public int spawnCountAtOnce;
+            public float velocity;
+            public float interval;
+
+            public Description(bool active, int spawnCountAtOnce, float velocity, float interval) {
+                this.active = active;
+                this.spawnCountAtOnce = spawnCountAtOnce;
+                this.velocity = velocity;
+                this.interval = interval;
+            }
+        }
+
+        public Description hands;
+        public Description birds;
+        public Description smoke;
+
+        public LevelParameters(Description hands, Description birds, Description smoke) {
+            this.hands = hands;
+            this.birds = birds;
+            this.smoke = smoke;
+        }
+    }
+
+    private void setupLevelParameters() {
+        // TODO: Rewrite the level management as JSON-centric
+        startupLevelParameters = new List<LevelParameters>();
+
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 1, 2f, 3f),
+                    /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
+                    /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
+                    /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 1, 3f, 1.5f),
+                    /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
+                    /* smoke */ new LevelParameters.Description(true, 0, 0f, 8f)));
+    }
+
     private void setLevelParameters(int levelNumber) {
-        switch (levelNumber) {
-            case 1:
-                smoke.SetActive(false);
-                handSpawner.gameObject.SetActive(true);
-                handSpawner.HandSpeed = 2;
-                handSpawner.SpawnCooldown = 3;
-                handSpawner.HandsToSpawn = 1;
-                birdSpawner.SetActive(false);
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
-                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
-                break;
-            case 2:
-                smoke.SetActive(false);
-                handSpawner.gameObject.SetActive(true);
-                handSpawner.HandSpeed = 2.5f;
-                handSpawner.SpawnCooldown = 2;
-                handSpawner.HandsToSpawn = 1;
-                birdSpawner.SetActive(true);
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
-                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
-                break;
-            case 3:
-                smoke.SetActive(false);
-                handSpawner.gameObject.SetActive(true);
-                handSpawner.HandSpeed = 2.5f;
-                handSpawner.SpawnCooldown = 2;
-                handSpawner.HandsToSpawn = 1;
-                birdSpawner.SetActive(true);
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
-                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
-                break;
-            case 4:
-                smoke.SetActive(true);
-                smoke.GetComponent<SmokeBehaviour>().smokeCooldown = 8.0f;
-                handSpawner.gameObject.SetActive(true);
-                handSpawner.HandSpeed = 3f;
-                handSpawner.SpawnCooldown = 1.5f;
-                handSpawner.HandsToSpawn = 1;
-                birdSpawner.SetActive(true);
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
-                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
-                break;
-            default:
-                smoke.SetActive(false);
-                handSpawner.gameObject.SetActive(true);
-                birdSpawner.SetActive(false);
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = 2;
-                birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = 3;
-                birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = 1;
-                handSpawner.HandSpeed = 2f;
-                handSpawner.SpawnCooldown = 2;
-                handSpawner.HandsToSpawn = 1;
-                break;
+        var parameters = startupLevelParameters.ElementAt((levelNumber - 1) % startupLevelParameters.Count);
+
+        // Hands
+        handSpawner.gameObject.SetActive(parameters.hands.active);
+        if (handSpawner.gameObject.activeSelf) {
+            handSpawner.HandsToSpawn = parameters.hands.spawnCountAtOnce;
+            handSpawner.SpawnCooldown = parameters.hands.interval;
+            handSpawner.HandSpeed = parameters.hands.velocity;
+        }
+
+        // Birds
+        birdSpawner.SetActive(parameters.birds.active);
+        if (birdSpawner.activeSelf) {
+            birdSpawner.GetComponent<BirdSpawnerScript>().birdsToSpawn = parameters.birds.spawnCountAtOnce;
+            birdSpawner.GetComponent<BirdSpawnerScript>().spawnCooldown = parameters.birds.interval;
+            birdSpawner.GetComponent<BirdSpawnerScript>().birdSpeed = parameters.birds.velocity;
+        }
+
+        // Smoke
+        smoke.SetActive(parameters.smoke.active);
+        if (smoke.activeSelf) {
+            smoke.GetComponent<SmokeBehaviour>().smokeCooldown = parameters.smoke.interval;
         }
     }
 }
