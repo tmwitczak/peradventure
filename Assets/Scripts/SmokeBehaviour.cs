@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine.Assertions;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class SmokeBehaviour : MonoBehaviour {
     public List<ParticleSystem> smokeParticleSystems;
