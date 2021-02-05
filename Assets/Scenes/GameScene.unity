@@ -1051,6 +1051,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a398ec81f644cadff3bad0681dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1124965472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3733973744021343082, guid: 0d483c29c94c17d4ba95e73882d4fd56,
+    type: 3}
+  m_PrefabInstance: {fileID: 1837758816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393d0ac31c7675a4485e467871d62924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1223299512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8806793330730487221, guid: 559fc20f1a931c145b47f535888774e6,
@@ -1226,6 +1238,10 @@ PrefabInstance:
       propertyPath: handSpawner
       value: 
       objectReference: {fileID: 283326199}
+    - target: {fileID: 946921705, guid: 559fc20f1a931c145b47f535888774e6, type: 3}
+      propertyPath: timekeeper
+      value: 
+      objectReference: {fileID: 1124965472}
     - target: {fileID: 1377315219, guid: 559fc20f1a931c145b47f535888774e6, type: 3}
       propertyPath: m_PreserveAspect
       value: 1

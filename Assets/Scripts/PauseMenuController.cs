@@ -12,13 +12,7 @@ public class PauseMenuController : MonoBehaviour {
     [SerializeField] private GameObject overlay;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private HandSpawner handSpawner;
-
-    private float originalTimescale;
-
-    private void Awake() {
-        iTween.Init(gameObject);
-        originalTimescale = Time.timeScale;
-    }
+    [SerializeField] private Timekeeper timekeeper;
 
     private void Start() {
         // firstStart = false;
@@ -57,7 +51,7 @@ public class PauseMenuController : MonoBehaviour {
             overlay.GetComponent<Animator>().SetTrigger("FadeIn");
         }
 
-        changeTimescale(originalTimescale, 0.0f);
+        timekeeper.slowdownTimescale();
 
         blade.SetActive(false);
     }
@@ -73,30 +67,12 @@ public class PauseMenuController : MonoBehaviour {
         GetComponent<Animator>().SetTrigger("FadeOut");
         overlay.GetComponent<Animator>().SetTrigger("FadeOut");
 
-        changeTimescale(0.0f, originalTimescale);
+        timekeeper.speedupTimescale();
 
         blade.SetActive(true);
     }
 
     public void Disable() {
         // gameObject.SetActive(false);
-    }
-
-    private void changeTimescale(float from, float to) {
-        iTween.Stop(gameObject);
-        iTween.ValueTo(gameObject, iTween.Hash(
-            "from", from,
-            "to", to,
-            "time", 0.5f,
-            "ignoretimescale", true,
-            // "onupdatetarget", gameObject,
-            "onupdate", "tweenOnUpdateTimescaleCallback",
-            "easetype", iTween.EaseType.easeOutQuad
-            )
-        );
-    }
-
-    private void tweenOnUpdateTimescaleCallback(float value) {
-        Time.timeScale = value;
     }
 }
