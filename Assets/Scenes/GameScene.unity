@@ -1416,6 +1416,11 @@ PrefabInstance:
       propertyPath: hiveScript
       value: 
       objectReference: {fileID: 36364360}
+    - target: {fileID: 6805341594314806156, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: timekeeper
+      value: 
+      objectReference: {fileID: 1124965472}
     - target: {fileID: 7125916801642636389, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1690,6 +1695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 269.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806793331517077266, guid: 559fc20f1a931c145b47f535888774e6,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8823371454156917631, guid: 559fc20f1a931c145b47f535888774e6,
         type: 3}

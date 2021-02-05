@@ -9,6 +9,7 @@ public class EndgameMenu : MonoBehaviour {
     [SerializeField] private GameObject handSpawner;
     [SerializeField] private GameObject birdSpawner;
     [SerializeField] private GameObject hiveScript;
+    [SerializeField] private Timekeeper timekeeper;
 
     public BeesScript beesScript;
     public GameObject EndLevelHelper;
@@ -52,6 +53,8 @@ public class EndgameMenu : MonoBehaviour {
         overlay.SetActive(true);
         overlay.GetComponent<Animator>().SetTrigger("FadeIn");
         GetComponent<Animator>().SetTrigger("FadeIn");
+
+        timekeeper.slowdownTimescale();
     }
 
     public void Resume() {
@@ -72,6 +75,8 @@ public class EndgameMenu : MonoBehaviour {
         //     )
         // );
         levelManager.loadLevel(Global.currentGameplayLevel);
+
+        timekeeper.speedupTimescale();
     }
 
     public void Disable() {
