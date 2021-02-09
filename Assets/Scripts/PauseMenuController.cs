@@ -45,6 +45,7 @@ public class PauseMenuController : MonoBehaviour {
 
         // gameObject.SetActive(true);
         overlay.SetActive(true);
+        overlay.GetComponent<Overlay>().fadeIn = true;
         if (!firstStart) {
             GetComponent<Animator>().SetTrigger("FadeIn");
             overlay.GetComponent<Animator>().SetTrigger("FadeIn");
@@ -62,6 +63,8 @@ public class PauseMenuController : MonoBehaviour {
         }
 
         isPaused = false;
+
+        overlay.GetComponent<Overlay>().fadeIn = false;
 
         GetComponent<Animator>().SetTrigger("FadeOut");
         overlay.GetComponent<Animator>().SetTrigger("FadeOut");
