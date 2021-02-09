@@ -29,7 +29,9 @@ public class PauseMenuController : MonoBehaviour {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isPaused) {
-                Resume();
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.ExitPlaymode();
+#endif
             } else {
                 Pause();
             }
@@ -54,6 +56,8 @@ public class PauseMenuController : MonoBehaviour {
         timekeeper.slowdownTimescale();
 
         blade.SetActive(false);
+
+        Input.backButtonLeavesApp = true;
     }
 
 
@@ -72,6 +76,8 @@ public class PauseMenuController : MonoBehaviour {
         timekeeper.speedupTimescale();
 
         blade.SetActive(true);
+
+        Input.backButtonLeavesApp = false;
     }
 
     public void Disable() {

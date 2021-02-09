@@ -55,6 +55,8 @@ public class EndgameMenu : MonoBehaviour {
         GetComponent<Animator>().SetTrigger("FadeIn");
 
         timekeeper.slowdownTimescale();
+
+        Input.backButtonLeavesApp = true;
     }
 
     public void Resume() {
@@ -77,6 +79,8 @@ public class EndgameMenu : MonoBehaviour {
         levelManager.loadLevel(Global.currentGameplayLevel);
 
         timekeeper.speedupTimescale();
+
+        Input.backButtonLeavesApp = false;
     }
 
     public void Disable() {
