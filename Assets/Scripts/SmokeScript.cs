@@ -6,6 +6,7 @@ public class SmokeScript : MonoBehaviour {
     List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
     private new ParticleSystem particleSystem;
     private float smokeEffect = 0.003f;
+    private float recoverySpeed = 30.0f;
     private int particlesTriggered = 0;
     public HoneyCounter honeyCounter;
 
@@ -15,7 +16,7 @@ public class SmokeScript : MonoBehaviour {
 
     private void Update() {
         honeyCounter.SmokeFactor +=
-            Convert.ToSingle(particlesTriggered == 0) * smokeEffect / 100.0f;
+            Convert.ToSingle(particlesTriggered == 0) * smokeEffect / recoverySpeed;
     }
 
     private void OnParticleCollision(GameObject other) {

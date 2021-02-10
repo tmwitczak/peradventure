@@ -1824,25 +1824,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
-        type: 3}
-      propertyPath: beesScript
-      value: 
-      objectReference: {fileID: 477202672}
-    - target: {fileID: 5322687693897919689, guid: 308f579baca46d14398cc5d7ee859d74,
-        type: 3}
-      propertyPath: lookupData._currentGameplayLevel
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5322687693897919694, guid: 308f579baca46d14398cc5d7ee859d74,
         type: 3}
       propertyPath: m_Name
       value: Global
-      objectReference: {fileID: 0}
-    - target: {fileID: 5322687693897919694, guid: 308f579baca46d14398cc5d7ee859d74,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 308f579baca46d14398cc5d7ee859d74, type: 3}
