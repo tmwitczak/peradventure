@@ -26,6 +26,7 @@ public class HoneyCounter : MonoBehaviour {
 
     public void reset() {
         HoneyAmount = 0f;
+        SmokeFactor = initialSmokeFactor;
     }
 
     public float HoneyAmount {

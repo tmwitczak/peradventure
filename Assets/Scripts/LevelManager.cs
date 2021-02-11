@@ -52,7 +52,6 @@ public class LevelManager : MonoBehaviour {
 
         // Honey counter
         honeyCounter.reset();
-        honeyCounter.SmokeFactor = 1.0f;
 
         // End level helper
         endLevelHelper.SetActive(false);
