@@ -59,4 +59,9 @@ public class StopwatchScript : MonoBehaviour {
         Fill.GetComponent<Image>().fillAmount = 0.0f;
         isTimerFinished = false;
     }
+
+    [ContextMenu("Force level finish")]
+    public void forceLevelFinish() {
+        timer = 1f;
+    }
 }
