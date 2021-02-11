@@ -10,23 +10,27 @@ using Vector3 = UnityEngine.Vector3;
 public class HandScript : MonoBehaviour {
     public GameObject hive;
     public bool moveBack;
+    public bool wasUsed;
     public float speed;
     public float stealAmount;
+    public Vector3 initialPosition; 
+    public HandSpawner handSpawner;
 
     private float stolenHoney;
     private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
     private GameObject honey;
     private HoneyCounter honeyCounter;
-    private Vector3 initialPosition;
     private float destructionTimer = 0.0f;
     private float lifetimeAfterTheft = 5.0f;
 
     private void Awake() {
         honey = gameObject.transform.GetChild(0).gameObject;
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
+        handSpawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
 
         initialPosition = transform.position;
         moveBack = false;
+        wasUsed = false;
 
         transform.rotation = rotationTowardsHive();
 
@@ -81,10 +85,6 @@ public class HandScript : MonoBehaviour {
                 forwardMovementProperties[Random.Range(0, forwardMovementProperties.Count)]);
     }
 
-    private void OnEnable() {
-        stolenHoney = 0f;
-    }
-
     private void Update() {
         destructionTimer += Convert.ToSingle(moveBack) * Time.deltaTime;
         gameObject.SetActive(destructionTimer < lifetimeAfterTheft);
@@ -116,5 +116,31 @@ public class HandScript : MonoBehaviour {
     public void giveBack() {
         honeyCounter.HoneyAmount += Convert.ToSingle(moveBack) * stolenHoney;
         stolenHoney = 0f;
+    }
+
+    private void OnEnable()
+    {
+        stolenHoney = 0f;
+
+        if (!handSpawner.activeHands.Contains(gameObject))
+        {
+            handSpawner.activeHands.Add(gameObject);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (handSpawner.activeHands.Contains(gameObject))
+        {
+            handSpawner.activeHands.Remove(gameObject);
+        }
+        if (destructionTimer > lifetimeAfterTheft)
+        {
+            wasUsed = true;
+        }
+    }
+    private void OnDestroy()
+    {
+        handSpawner.hands.Remove(gameObject);
     }
 }
