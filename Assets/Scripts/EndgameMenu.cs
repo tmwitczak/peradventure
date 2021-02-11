@@ -151,9 +151,9 @@ public class EndgameMenu : MonoBehaviour {
     }
 
     private IEnumerator showBeeAmountUp() {
-        beeLevelUp.CrossFadeAlpha(1.0f, 0.1f, false);
+        beeLevelUp.CrossFadeAlpha(1.0f, 0.1f, true);
         yield return new WaitForSecondsRealtime(1.0f);
-        beeLevelUp.CrossFadeAlpha(0.0f, 0.1f, false);
+        beeLevelUp.CrossFadeAlpha(0.0f, 0.1f, true);
         beeAmountUp = false;
     }
 
