@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HoneyCounter : MonoBehaviour {
@@ -15,11 +15,8 @@ public class HoneyCounter : MonoBehaviour {
 
     private void Awake() {
         text = GetComponent<Text>();
+        initialSmokeFactor = _smokeFactor;
         reset();
-    }
-
-    private void Start() {
-        initialSmokeFactor = SmokeFactor;
     }
 
     private void Update() {
