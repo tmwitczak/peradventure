@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
+    public BackgroundVariantGenerator backgroundVariantGenerator;
     public EndgameMenu endgameMenu;
     public GameObject birdSpawner;
     public GameObject endLevelHelper;
@@ -10,6 +11,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject smoke;
     public HandSpawner handSpawner;
     public HoneyCounter honeyCounter;
+    public PreRenderBackground preRenderBackground;
     public StopwatchScript stopwatch;
 
     private List<LevelParameters> startupLevelParameters;
@@ -22,6 +24,9 @@ public class LevelManager : MonoBehaviour {
 
     private void Start() {
         loadLevel(Global.currentGameplayLevel);
+        backgroundVariantGenerator.setLighting(Global.currentGameplayLevel);
+        preRenderBackground.setBackgroundTextures(Global.currentGameplayLevel);
+        preRenderBackground.refresh();
     }
 
     public void loadLevel(int level) {

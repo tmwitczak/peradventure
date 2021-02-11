@@ -1,34 +1,48 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PreRenderBackground : MonoBehaviour {
+    public BackgroundVariantGenerator backgroundVariantGenerator;
     public GameObject environment;
     public List<GameObject> backgroundToTextureCameras;
     public List<Image> backgroundPlaneImages;
 
     private Material masterMaterial;
 
-    private int frames = 0;
-    private int targetCamera = 0;
+    private int frames;
+    public int targetCamera;
 
-    private void Start() {
+    private void Awake() {
+        frames = 0;
+        targetCamera = 0;
+
         iTween.Init(gameObject);
 
-        masterMaterial = Instantiate(backgroundPlaneImages[0].material);
+        masterMaterial = Instantiate(backgroundPlaneImages[1].material);
 
-        foreach (var image in backgroundPlaneImages) {
-            image.material = masterMaterial;
+        for (int i = 0; i < backgroundPlaneImages.Count; ++i) {
+            backgroundPlaneImages[i].material = masterMaterial;
         }
 
         setBlending(0);
+
+        for (int i = 0; i < backgroundToTextureCameras.Count; ++i) {
+            GameObject.Destroy(backgroundToTextureCameras[i]);
+        }
+        GameObject.Destroy(environment);
     }
 
     [ContextMenu("Refresh")]
-    public void refresh() => toggleRendering(true);
+    public void refresh() {
+        targetCamera = 1 - targetCamera; // Flip between 0 and 1
+    }
+
+    private int l, nl, tc;
 
     [ContextMenu("Run transition")]
-    public void runTransition() {
+    public void runTransition(int level, int nextLevel) {
         iTween.Stop(gameObject);
         iTween.ValueTo(gameObject, iTween.Hash(
             "from", targetCamera,
@@ -40,38 +54,36 @@ public class PreRenderBackground : MonoBehaviour {
             "easetype", iTween.EaseType.easeInOutSine
             )
         );
+        l = level;
+        nl = nextLevel;
+        tc = targetCamera;
     }
 
     private void setBlending(float a) {
         masterMaterial.SetFloat("_MixRange", a);
+
+        // Nasty way of refreshing the unruly shaders
+        for (int i = 0; i < backgroundPlaneImages.Count; ++i) {
+            // Force refresh all materials
+            var enabled = backgroundPlaneImages[i].enabled;
+            backgroundPlaneImages[i].enabled = false;
+            backgroundPlaneImages[i].enabled = true;
+        }
     }
 
     private void tweenOnUpdateCallBack(float newValue) {
         setBlending(newValue);
+        backgroundVariantGenerator.lerpRotation(l, nl, tc == 1 ? 1 - newValue : newValue);
     }
 
-    private void toggleRendering(bool activate) {
-        for (int i = 0; i < backgroundToTextureCameras.Count; ++i) {
-            backgroundToTextureCameras[i].SetActive(activate & i == targetCamera);
-        }
+    public void setBackgroundTextures(int level) {
+        Debug.Log("Background texture update");
 
-        environment.SetActive(activate);
-
-        if (activate) {
-            frames = 0;
-        } else {
-            targetCamera = (targetCamera + 1) % backgroundToTextureCameras.Count;
-        }
-    }
-
-    private void Update() {
-        // Disable after two frames
-        if (frames == 0 || frames == 1) {
-            frames++;
-        } else if (frames == 2) {
-            frames++;
-            toggleRendering(false);
-            runTransition();
-        }
+        masterMaterial.SetTexture("_MainTex",
+                backgroundVariantGenerator.backgroundTextures[
+                    backgroundVariantGenerator.rotationAtLevel(level + Convert.ToInt32(targetCamera))]);
+        masterMaterial.SetTexture("_SecTex",
+                backgroundVariantGenerator.backgroundTextures[
+                    backgroundVariantGenerator.rotationAtLevel(level + Convert.ToInt32(1 - targetCamera))]);
     }
 }

@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EndgameMenu : MonoBehaviour {
-    [SerializeField] private LevelManager levelManager;
-    [SerializeField] private HoneyCounter honeyCounter;
+    [SerializeField] private BackgroundVariantGenerator backgroundVariantGenerator;
+    [SerializeField] private GameObject birdSpawner;
     [SerializeField] private GameObject blade;
     [SerializeField] private GameObject handSpawner;
-    [SerializeField] private GameObject birdSpawner;
     [SerializeField] private GameObject hiveScript;
+    [SerializeField] private HoneyCounter honeyCounter;
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private PreRenderBackground preRenderBackground;
     [SerializeField] private Timekeeper timekeeper;
 
     public BeesScript beesScript;
@@ -45,10 +47,9 @@ public class EndgameMenu : MonoBehaviour {
         endText = gameObject.transform.Find("Text").GetComponent<Text>();
 
         // Test for lighting change and smooth background transitions
-        Vector3 a = GameObject.Find("Sun").GetComponent<Transform>().eulerAngles;
-        a.x += 30.0f;
-        GameObject.Find("Sun").GetComponent<Transform>().eulerAngles = a;
-        GameObject.Find("PreRenderBackgroundController").GetComponent<PreRenderBackground>().refresh();
+        preRenderBackground.setBackgroundTextures(Global.currentGameplayLevel);
+        preRenderBackground.runTransition(Global.currentGameplayLevel, Global.currentGameplayLevel + 1);
+        preRenderBackground.refresh();
 
         overlay.SetActive(true);
         overlay.GetComponent<Animator>().SetTrigger("FadeIn");
