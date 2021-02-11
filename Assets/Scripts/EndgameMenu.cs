@@ -19,7 +19,7 @@ public class EndgameMenu : MonoBehaviour {
     private float honeyOverflow = 0.0f;
 
     private Text endText;
-    private string[] endTextsList = { "sublime!", "brilliant!", "great job!", "almost\ngot it :(" };
+    private string[] endTextsList = { "sublime!", "brilliant!", "great job!", "almost!" };
 
     private bool overflowed = false;
     public bool beeAmountUp = false;
@@ -114,10 +114,6 @@ public class EndgameMenu : MonoBehaviour {
             endText.text = endTextsList[2];
         } else {
             endText.text = endTextsList[3];
-            levelFailed = true;
-            restartButton.SetActive(true);
-            continueButton.SetActive(false);
-            endText.gameObject.SetActive(true);
         }
         endStart = false;
 
@@ -167,9 +163,7 @@ public class EndgameMenu : MonoBehaviour {
     }
 
     private void Save() {
-        if (!levelFailed) {
-            Global.currentGameplayLevel += 1;
-        }
+        Global.currentGameplayLevel += 1;
         Global.SaveData();
     }
 }
