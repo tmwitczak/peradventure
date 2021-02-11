@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-
+using UnityEngine.XR;
 using Random = UnityEngine.Random;
 
 public class HandSpawner : MonoBehaviour {
@@ -13,10 +13,13 @@ public class HandSpawner : MonoBehaviour {
     [SerializeField] private int handsToPrespawn = 100;
     public float innerPadding;
     public float outerPadding;
+    public List<GameObject> activeHands = new List<GameObject>();
 
     private List<GameObject> hands = new List<GameObject>();
     private int currentHand = 0;
     private GameObject handParent;
+    private Vector2 handSize;
+    private Vector3 lastHandSpawnedInitialPosition;
 
     private Vector3 screenMin;
     private Vector3 screenMax;
@@ -38,6 +41,9 @@ public class HandSpawner : MonoBehaviour {
         for (float i = screenMin.y - outerPadding; i < screenMax.y + outerPadding; i += 0.01f) {
             spawnY.Add(i);
         }
+
+        handSize = new Vector2(Hand.GetComponent<BoxCollider2D>().size.x, Hand.GetComponent<BoxCollider2D>().size.y);
+        lastHandSpawnedInitialPosition = new Vector3(0.0f, 0.0f);
     }
 
     private void Update() {
@@ -52,9 +58,48 @@ public class HandSpawner : MonoBehaviour {
     }
 
     private void SpawnHand() {
-        Assert.IsTrue(currentHand < hands.Count);
+        if(currentHand < hands.Count)
+        {
+            bool hasSpawned = false;
+            while (!hasSpawned)
+            {
+                var previousHand = currentHand <= 0 ? new Vector3(0.0f, 0.0f) : lastHandSpawnedInitialPosition;
+                var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
+                int handsChecked = 0;
+                foreach (var hand in activeHands)
+                {
+                    var handPosition = hand.GetComponent<HandScript>().initialPosition;
+                    if (
+                    nextHand.x < handPosition.x - handSize.x ||
+                    nextHand.x > handPosition.x + handSize.x ||
+                    nextHand.y < handPosition.y - handSize.y ||
+                    nextHand.y > handPosition.y + handSize.y)
+                    {
+                        handsChecked++;
+                    }
+                }
+                if (handsChecked == activeHands.Count() &&
+                (currentHand == 0 ||
+                nextHand.x < previousHand.x - handSize.x ||
+                nextHand.x > previousHand.x + handSize.x ||
+                nextHand.y < previousHand.y - handSize.y ||
+                nextHand.y > previousHand.y + handSize.y))
+                {
+                    lastHandSpawnedInitialPosition = nextHand;
+                    activeHands.Add(hands[currentHand]);
+                    hands[currentHand++].SetActive(true);
+                    hasSpawned = true;
+                }
+                else
+                {
+                    currentHand++;
+                }
+            }
+        } else if (currentHand > hands.Count && hands.Count > 0)
+        {
+            currentHand = 0;
+        }
 
-        hands[currentHand++].SetActive(true);
     }
 
     public void prespawnHands() {

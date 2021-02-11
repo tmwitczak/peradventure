@@ -12,18 +12,21 @@ public class HandScript : MonoBehaviour {
     public bool moveBack;
     public float speed;
     public float stealAmount;
+    public Vector3 initialPosition; 
+    public HandSpawner handSpawner;
 
     private float stolenHoney;
     private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
     private GameObject honey;
     private HoneyCounter honeyCounter;
-    private Vector3 initialPosition;
     private float destructionTimer = 0.0f;
     private float lifetimeAfterTheft = 5.0f;
 
     private void Awake() {
         honey = gameObject.transform.GetChild(0).gameObject;
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
+
+        handSpawner = FindObjectOfType<HandSpawner>();
 
         initialPosition = transform.position;
         moveBack = false;
@@ -116,5 +119,21 @@ public class HandScript : MonoBehaviour {
     public void giveBack() {
         honeyCounter.HoneyAmount += Convert.ToSingle(moveBack) * stolenHoney;
         stolenHoney = 0f;
+    }
+
+    private void OnDestroy()
+    {
+        if(handSpawner.activeHands.Contains(gameObject))
+        {
+            handSpawner.activeHands.Remove(gameObject);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (handSpawner.activeHands.Contains(gameObject))
+        {
+            handSpawner.activeHands.Remove(gameObject);
+        }
     }
 }
