@@ -26,7 +26,7 @@ public class HandScript : MonoBehaviour {
         honey = gameObject.transform.GetChild(0).gameObject;
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
 
-        handSpawner = FindObjectOfType<HandSpawner>();
+        handSpawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
 
         initialPosition = transform.position;
         moveBack = false;
@@ -119,14 +119,6 @@ public class HandScript : MonoBehaviour {
     public void giveBack() {
         honeyCounter.HoneyAmount += Convert.ToSingle(moveBack) * stolenHoney;
         stolenHoney = 0f;
-    }
-
-    private void OnDestroy()
-    {
-        if(handSpawner.activeHands.Contains(gameObject))
-        {
-            handSpawner.activeHands.Remove(gameObject);
-        }
     }
 
     private void OnDisable()

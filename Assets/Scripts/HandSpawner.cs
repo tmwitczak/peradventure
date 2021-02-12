@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.XR;
 using Random = UnityEngine.Random;
 
 public class HandSpawner : MonoBehaviour {
@@ -157,6 +155,7 @@ public class HandSpawner : MonoBehaviour {
 
     public void reset() {
         spawnTimer = 0f;
+        activeHands.Clear();
         destroyAllHands();
         prespawnHands();
     }
