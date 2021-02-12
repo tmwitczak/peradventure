@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 using Random = UnityEngine.Random;
 
 public class HandSpawner : MonoBehaviour {
@@ -15,6 +16,7 @@ public class HandSpawner : MonoBehaviour {
     [HideInInspector] public List<GameObject> hands = new List<GameObject>();
     public bool isSpawning;
 
+    private double maxAngle = 20;
     private int currentHand = 0;
     private GameObject handParent;
     private Vector2 handSize;
@@ -59,32 +61,30 @@ public class HandSpawner : MonoBehaviour {
     }
 
     private void SpawnHand() {
-        if(currentHand < hands.Count && !hands[currentHand].GetComponent<HandScript>().wasUsed)
+        if(currentHand < hands.Count() && findUnusedHand())
         {
             bool hasSpawned = false;
-            while (!hasSpawned)
+            while (!hasSpawned && currentHand < hands.Count())
             {
                 var previousHand = currentHand <= 0 ? new Vector3(0.0f, 0.0f) : lastHandSpawnedInitialPosition;
                 var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
                 int handsChecked = 0;
+                int activeHandsCount = activeHands.Count();
                 foreach (var hand in activeHands)
                 {
-                    var handPosition = hand.GetComponent<HandScript>().initialPosition;
-                    if (
-                    nextHand.x < handPosition.x - handSize.x ||
-                    nextHand.x > handPosition.x + handSize.x ||
-                    nextHand.y < handPosition.y - handSize.y ||
-                    nextHand.y > handPosition.y + handSize.y)
+                    var activeHandAngle = calculateAngle(hand.transform.position, nextHand);
+                    if (activeHandAngle >= maxAngle)
                     {
                         handsChecked++;
+                    } else
+                    {
+                        break;
                     }
                 }
-                if (handsChecked == activeHands.Count() &&
-                (currentHand == 0 ||
-                nextHand.x < previousHand.x - handSize.x ||
-                nextHand.x > previousHand.x + handSize.x ||
-                nextHand.y < previousHand.y - handSize.y ||
-                nextHand.y > previousHand.y + handSize.y))
+
+                var angle = calculateAngle(previousHand, nextHand);
+                if (handsChecked == activeHandsCount &&
+                (currentHand == 0 || angle >= maxAngle ))
                 {
                     lastHandSpawnedInitialPosition = nextHand;
                     hands[currentHand++].SetActive(true);
@@ -95,14 +95,33 @@ public class HandSpawner : MonoBehaviour {
                     currentHand++;
                 }
             }
-        } else if (currentHand >= hands.Count && hands.Count > 0)
+        } else if (currentHand >= hands.Count - 1 && hands.Count > 0)
         {
             currentHand = 0;
         } else
         {
             isSpawning = false;
         }
+    }
 
+    private bool findUnusedHand()
+    {
+        for(; currentHand < hands.Count(); currentHand++)
+        {
+            if (!hands[currentHand].GetComponent<HandScript>().wasUsed)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private double calculateAngle(Vector3 hand, Vector3 nextHand)
+    {
+        var d1 = Math.Sqrt(Math.Pow(hand.x, 2) + Math.Pow(hand.y, 2));
+        var d2 = Math.Sqrt(Math.Pow(nextHand.x, 2) + Math.Pow(nextHand.y, 2));
+        var d3 = Math.Sqrt(Math.Pow(hand.x - nextHand.x, 2) + Math.Pow(hand.y - nextHand.y, 2));
+        return (Math.Acos((-Math.Pow(d3, 2) + Math.Pow(d2, 2) + Math.Pow(d1, 2)) / (2 * d1 * d2)) / Math.PI) * 180;
     }
 
     public void prespawnHands() {
