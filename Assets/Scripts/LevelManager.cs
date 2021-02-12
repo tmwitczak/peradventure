@@ -113,8 +113,8 @@ public class LevelManager : MonoBehaviour {
         var parameters = startupLevelParameters.ElementAt((levelNumber - 1) % startupLevelParameters.Count);
 
         // Hands
-        handSpawner.gameObject.SetActive(parameters.hands.active);
-        if (handSpawner.gameObject.activeSelf) {
+        handSpawner.gameObject.GetComponent<HandSpawner>().isSpawning = parameters.hands.active;
+        if (handSpawner.gameObject.GetComponent<HandSpawner>().isSpawning) {
             handSpawner.HandsToSpawn = parameters.hands.spawnCountAtOnce;
             handSpawner.SpawnCooldown = parameters.hands.interval;
             handSpawner.HandSpeed = parameters.hands.velocity;

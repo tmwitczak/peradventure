@@ -12,6 +12,7 @@ public class HandSpawner : MonoBehaviour {
     public float innerPadding;
     public float outerPadding;
     public List<GameObject> activeHands = new List<GameObject>();
+    public bool isSpawning;
 
     private List<GameObject> hands = new List<GameObject>();
     private int currentHand = 0;
@@ -42,11 +43,13 @@ public class HandSpawner : MonoBehaviour {
 
         handSize = new Vector2(Hand.GetComponent<BoxCollider2D>().size.x, Hand.GetComponent<BoxCollider2D>().size.y);
         lastHandSpawnedInitialPosition = new Vector3(0.0f, 0.0f);
+
+        isSpawning = true;
     }
 
     private void Update() {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= SpawnCooldown) {
+        if (spawnTimer >= SpawnCooldown && isSpawning) {
             spawnTimer = 0.0f;
 
             for (int i = 0; i < HandsToSpawn; ++i) {
@@ -84,7 +87,6 @@ public class HandSpawner : MonoBehaviour {
                 nextHand.y > previousHand.y + handSize.y))
                 {
                     lastHandSpawnedInitialPosition = nextHand;
-                    activeHands.Add(hands[currentHand]);
                     hands[currentHand++].SetActive(true);
                     hasSpawned = true;
                 }
@@ -150,12 +152,12 @@ public class HandSpawner : MonoBehaviour {
         }
         currentHand = 0;
         hands.Clear();
+        activeHands.Clear();
         Destroy(handParent);
     }
 
     public void reset() {
         spawnTimer = 0f;
-        activeHands.Clear();
         destroyAllHands();
         prespawnHands();
     }
