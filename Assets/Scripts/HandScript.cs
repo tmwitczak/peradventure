@@ -10,6 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 public class HandScript : MonoBehaviour {
     public GameObject hive;
     public bool moveBack;
+    public bool wasUsed;
     public float speed;
     public float stealAmount;
     public Vector3 initialPosition; 
@@ -29,6 +30,7 @@ public class HandScript : MonoBehaviour {
 
         initialPosition = transform.position;
         moveBack = false;
+        wasUsed = false;
 
         transform.rotation = rotationTowardsHive();
 
@@ -85,10 +87,7 @@ public class HandScript : MonoBehaviour {
 
     private void Update() {
         destructionTimer += Convert.ToSingle(moveBack) * Time.deltaTime;
-        if (destructionTimer > lifetimeAfterTheft)
-        {
-            Destroy(gameObject);
-        }
+        gameObject.SetActive(destructionTimer < lifetimeAfterTheft);
     }
 
     private Quaternion rotationTowardsHive() {
@@ -135,12 +134,13 @@ public class HandScript : MonoBehaviour {
         {
             handSpawner.activeHands.Remove(gameObject);
         }
+        if (destructionTimer > lifetimeAfterTheft)
+        {
+            wasUsed = true;
+        }
     }
     private void OnDestroy()
     {
-        if (handSpawner.activeHands.Contains(gameObject))
-        {
-            handSpawner.activeHands.Remove(gameObject);
-        }
+        handSpawner.hands.Remove(gameObject);
     }
 }

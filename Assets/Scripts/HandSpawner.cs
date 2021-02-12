@@ -11,10 +11,10 @@ public class HandSpawner : MonoBehaviour {
     [SerializeField] private int handsToPrespawn = 100;
     public float innerPadding;
     public float outerPadding;
-    public List<GameObject> activeHands = new List<GameObject>();
+    [HideInInspector] public List<GameObject> activeHands = new List<GameObject>();
+    [HideInInspector] public List<GameObject> hands = new List<GameObject>();
     public bool isSpawning;
 
-    private List<GameObject> hands = new List<GameObject>();
     private int currentHand = 0;
     private GameObject handParent;
     private Vector2 handSize;
@@ -59,7 +59,7 @@ public class HandSpawner : MonoBehaviour {
     }
 
     private void SpawnHand() {
-        if(currentHand < hands.Count)
+        if(currentHand < hands.Count && !hands[currentHand].GetComponent<HandScript>().wasUsed)
         {
             bool hasSpawned = false;
             while (!hasSpawned)
@@ -95,9 +95,12 @@ public class HandSpawner : MonoBehaviour {
                     currentHand++;
                 }
             }
-        } else if (currentHand > hands.Count && hands.Count > 0)
+        } else if (currentHand >= hands.Count && hands.Count > 0)
         {
             currentHand = 0;
+        } else
+        {
+            isSpawning = false;
         }
 
     }
