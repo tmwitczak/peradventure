@@ -33,13 +33,13 @@ public class LevelManager : MonoBehaviour {
         Random.InitState(level); // Make the game deterministic at every level
         resetScene();
         setLevelParameters(level);
+
+        // Hands
+        handSpawner.reset();
     }
 
     public void resetScene() {
         Debug.Log("Scene reset");
-
-        // Hands
-        handSpawner.reset();
 
         // Birds
         birdSpawner.GetComponent<BirdSpawnerScript>().reset();
@@ -94,7 +94,7 @@ public class LevelManager : MonoBehaviour {
         startupLevelParameters.Add(new LevelParameters(
                     /* hands */ new LevelParameters.Description(true, 1, 2f, 3f),
                     /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
-                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 5f)));
         startupLevelParameters.Add(new LevelParameters(
                     /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
                     /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
@@ -113,8 +113,8 @@ public class LevelManager : MonoBehaviour {
         var parameters = startupLevelParameters.ElementAt((levelNumber - 1) % startupLevelParameters.Count);
 
         // Hands
-        handSpawner.gameObject.GetComponent<HandSpawner>().isSpawning = parameters.hands.active;
-        if (handSpawner.gameObject.GetComponent<HandSpawner>().isSpawning) {
+        handSpawner.gameObject.SetActive(parameters.hands.active);
+        if (handSpawner.gameObject.activeSelf) {
             handSpawner.HandsToSpawn = parameters.hands.spawnCountAtOnce;
             handSpawner.SpawnCooldown = parameters.hands.interval;
             handSpawner.HandSpeed = parameters.hands.velocity;

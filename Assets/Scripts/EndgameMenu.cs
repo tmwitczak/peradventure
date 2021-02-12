@@ -118,7 +118,7 @@ public class EndgameMenu : MonoBehaviour {
         }
         endStart = false;
 
-        handSpawner.GetComponent<HandSpawner>().isSpawning = false;
+        handSpawner.SetActive(false);
         birdSpawner.SetActive(false);
         hiveScript.SetActive(false);
         blade.SetActive(false);
