@@ -14,19 +14,17 @@ public class HandSpawner : MonoBehaviour {
     public float outerPadding;
     [HideInInspector] public List<GameObject> activeHands = new List<GameObject>();
     [HideInInspector] public List<GameObject> hands = new List<GameObject>();
-    public bool isSpawning;
 
-    private double maxAngle = 20;
-    private int currentHand = 0;
     private GameObject handParent;
-    private Vector2 handSize;
     private Vector3 lastHandSpawnedInitialPosition;
-
     private Vector3 screenMin;
     private Vector3 screenMax;
-    private float spawnTimer;
     private List<float> spawnX;
     private List<float> spawnY;
+    private int currentHand = 0;
+    private float spawnTimer;
+    private double spawnAngle = 15.0;
+    private bool isSpawning;
 
     private void Awake() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)) + new Vector3(-2.0f, -2.0f);
@@ -43,9 +41,7 @@ public class HandSpawner : MonoBehaviour {
             spawnY.Add(i);
         }
 
-        handSize = new Vector2(Hand.GetComponent<BoxCollider2D>().size.x, Hand.GetComponent<BoxCollider2D>().size.y);
         lastHandSpawnedInitialPosition = new Vector3(0.0f, 0.0f);
-
         isSpawning = true;
     }
 
@@ -69,11 +65,10 @@ public class HandSpawner : MonoBehaviour {
                 var previousHand = currentHand <= 0 ? new Vector3(0.0f, 0.0f) : lastHandSpawnedInitialPosition;
                 var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
                 int handsChecked = 0;
-                int activeHandsCount = activeHands.Count();
                 foreach (var hand in activeHands)
                 {
                     var activeHandAngle = calculateAngle(hand.transform.position, nextHand);
-                    if (activeHandAngle >= maxAngle)
+                    if (activeHandAngle >= spawnAngle)
                     {
                         handsChecked++;
                     } else
@@ -83,8 +78,8 @@ public class HandSpawner : MonoBehaviour {
                 }
 
                 var angle = calculateAngle(previousHand, nextHand);
-                if (handsChecked == activeHandsCount &&
-                (currentHand == 0 || angle >= maxAngle ))
+                if (handsChecked == activeHands.Count() &&
+                (currentHand == 0 || angle >= spawnAngle ))
                 {
                     lastHandSpawnedInitialPosition = nextHand;
                     hands[currentHand++].SetActive(true);
@@ -126,7 +121,6 @@ public class HandSpawner : MonoBehaviour {
 
     public void prespawnHands() {
         destroyAllHands();
-
         handParent = new GameObject("Hands");
 
         for (int i = 0; i < handsToPrespawn; ++i) {
