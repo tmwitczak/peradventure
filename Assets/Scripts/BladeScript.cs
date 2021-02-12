@@ -3,7 +3,6 @@ using System.Linq;
 using UnityEngine;
 
 public class BladeScript : MonoBehaviour {
-    public HandSpawner handSpawner;
     public GameObject Trail;
     private GameObject currentTrail;
     private GameObject particleSystem;
@@ -102,10 +101,6 @@ public class BladeScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Hand")) {
             other.GetComponent<HandScript>().giveBack();
-            if (handSpawner.activeHands.Contains(other.gameObject))
-            {
-                handSpawner.activeHands.Remove(other.gameObject);
-            }
             Destroy(other.gameObject);
             emitParticles(other.gameObject);
         }
