@@ -85,7 +85,10 @@ public class HandScript : MonoBehaviour {
 
     private void Update() {
         destructionTimer += Convert.ToSingle(moveBack) * Time.deltaTime;
-        gameObject.SetActive(destructionTimer < lifetimeAfterTheft);
+        if (destructionTimer > lifetimeAfterTheft)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private Quaternion rotationTowardsHive() {
