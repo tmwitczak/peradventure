@@ -131,10 +131,7 @@ public class HandScript : MonoBehaviour {
     private void OnDisable()
     {
         handSpawner.activeHands.Remove(gameObject);
-        if (destructionTimer > lifetimeAfterTheft)
-        {
-            wasUsed = true;
-        }
+        wasUsed = destructionTimer > lifetimeAfterTheft;
     }
     private void OnDestroy()
     {
