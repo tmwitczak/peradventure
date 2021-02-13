@@ -94,7 +94,7 @@ public class LevelManager : MonoBehaviour {
         startupLevelParameters.Add(new LevelParameters(
                     /* hands */ new LevelParameters.Description(true, 1, 2f, 3f),
                     /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
-                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 5f)));
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
         startupLevelParameters.Add(new LevelParameters(
                     /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
                     /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),

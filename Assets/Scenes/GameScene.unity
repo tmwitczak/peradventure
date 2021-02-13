@@ -461,26 +461,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 649019849430485571, guid: a4ec89a56cb719541a588276e53d042f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.062881395
-      objectReference: {fileID: 0}
-    - target: {fileID: 649019849430485571, guid: a4ec89a56cb719541a588276e53d042f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9370335
-      objectReference: {fileID: 0}
-    - target: {fileID: 649019849430485571, guid: a4ec89a56cb719541a588276e53d042f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.23630159
-      objectReference: {fileID: 0}
-    - target: {fileID: 649019849430485571, guid: a4ec89a56cb719541a588276e53d042f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.24935071
-      objectReference: {fileID: 0}
     - target: {fileID: 1747901052717546511, guid: a4ec89a56cb719541a588276e53d042f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1125,7 +1105,7 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 0.91, b: 0.61, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 0
---- !u!84 &1280712455
+--- !u!84 &1357513999
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2001,11 +1981,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2513557427304530207, guid: a751bf4d8e14d1e45abeba811f755db2,
-        type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 1280712455}
     - target: {fileID: 8201758825177749484, guid: a751bf4d8e14d1e45abeba811f755db2,
         type: 3}
       propertyPath: m_Name
@@ -2157,21 +2132,21 @@ MonoBehaviour:
   - {x: 0.8357797, y: -0.15412846, z: 0.4366938, w: 0.29498336}
   - {x: 0.06288139, y: 0.9370335, z: -0.23630153, w: 0.24935071}
   backgroundTextures:
-  - {fileID: 2800000, guid: 67902c89faba7e049831c485a1767bc6, type: 3}
-  - {fileID: 2800000, guid: bf0577f8462e8f1458f9d4a5ab754d36, type: 3}
-  - {fileID: 2800000, guid: b316d0a520081184180fc7c2244b885d, type: 3}
-  - {fileID: 2800000, guid: b2dd9d6b346ee1c4481515debf2a8f7d, type: 3}
-  - {fileID: 2800000, guid: 2ea08f1323232eb448c2b426cab31149, type: 3}
-  - {fileID: 2800000, guid: d6d704b84f6383e42825b86929117f4c, type: 3}
-  - {fileID: 2800000, guid: 4f27115453d2eca4cbed1e0cf79fcd61, type: 3}
-  - {fileID: 2800000, guid: 2bdbc3d975a88c64faabe0d6565dbefa, type: 3}
-  - {fileID: 2800000, guid: 2dce706804ee3f54e9702431c000577b, type: 3}
-  - {fileID: 2800000, guid: 9df33dd62202ae841976901310702bdd, type: 3}
-  - {fileID: 2800000, guid: accaa445634389f41b2a521aca21338c, type: 3}
-  - {fileID: 2800000, guid: 9560ace5a28cb714ca8f1e688d81bf75, type: 3}
-  - {fileID: 2800000, guid: a9985a21c546db543a7751daacd88b61, type: 3}
-  - {fileID: 2800000, guid: 1f1b107f34e36d2439bf2dda78fbbb4b, type: 3}
-  - {fileID: 2800000, guid: 61be3b88dbd131a47ac3db7096ef7be4, type: 3}
+  - {fileID: 2800000, guid: 406b09b488591544891b35a8ecb51777, type: 3}
+  - {fileID: 2800000, guid: ed447396fe135c947b2846efeade196e, type: 3}
+  - {fileID: 2800000, guid: e65a69ccf3186b545b2c086c2888ff63, type: 3}
+  - {fileID: 2800000, guid: df9e832b3ed5eb640bdb51d2d1049ef4, type: 3}
+  - {fileID: 2800000, guid: 12df8870f60211a4cb0e76e489064f31, type: 3}
+  - {fileID: 2800000, guid: b089c7cb1b6cd3a44bd2735773bda238, type: 3}
+  - {fileID: 2800000, guid: 311c5ebcef55e894b9b7ec6255aeeb84, type: 3}
+  - {fileID: 2800000, guid: b526d7250f1d8924db2961f008ad1aa1, type: 3}
+  - {fileID: 2800000, guid: a20da68a2f298d54eb1caee423786936, type: 3}
+  - {fileID: 2800000, guid: fe4c622e58f705448ac071ec071ca371, type: 3}
+  - {fileID: 2800000, guid: ab7798d11bbb3bd49987e4aec8c4df59, type: 3}
+  - {fileID: 2800000, guid: dc28ad36a6a664e45ac19f96c3e0442b, type: 3}
+  - {fileID: 2800000, guid: b1dfd963cd8dbe54ebd1f17be7c244a9, type: 3}
+  - {fileID: 2800000, guid: 18eb0a39fdd65ff4c9e8900de5ce7800, type: 3}
+  - {fileID: 2800000, guid: 59e80055556f2674ab6819fc0550403e, type: 3}
   seed: 202
   backgroundPerLevel: 0c000000020000000b0000000000000004000000
 --- !u!4 &1716996455
@@ -2379,11 +2354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blade
       objectReference: {fileID: 0}
-    - target: {fileID: 9019628314672914890, guid: f6ed43f150e4f1c4491f693313f03fe4,
-        type: 3}
-      propertyPath: handSpawner
-      value: 
-      objectReference: {fileID: 283326199}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ed43f150e4f1c4491f693313f03fe4, type: 3}
 --- !u!4 &2074789093 stripped
