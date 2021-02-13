@@ -23,7 +23,7 @@ public class HandSpawner : MonoBehaviour {
     private List<float> spawnY;
     private int currentHand = 0;
     private float spawnTimer;
-    private double spawnAngle = 15.0;
+    private float spawnAngle = 15f;
     private bool isSpawning;
 
     private void Awake() {
@@ -111,7 +111,7 @@ public class HandSpawner : MonoBehaviour {
         return false;
     }
 
-    private double calculateAngle(Vector3 hand, Vector3 nextHand)
+    private float calculateAngle(Vector3 hand, Vector3 nextHand)
         => Vector3.Angle(hand, nextHand);
 
     public void prespawnHands() {
