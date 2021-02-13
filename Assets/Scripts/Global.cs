@@ -31,6 +31,9 @@ public class Global : MonoBehaviour {
     public static Vector2 screenMaxWorldPoint {
         get => Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
     }
+    public static float fmod(float a, float b) {
+        return a - b * Mathf.Floor(a / b);
+    }
 
     private void Awake() {
         LoadData();

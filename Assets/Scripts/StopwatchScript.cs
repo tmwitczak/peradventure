@@ -14,15 +14,11 @@ public class StopwatchScript : MonoBehaviour {
 
     public bool isTimerFinished = false;
 
-    private float fmod(float a, float b) {
-        return a - b * Mathf.Floor(a / b);
-    }
-
     private float polygonRadius(float angle, float sides, float scale) {
         float alpha = -((sides - 2) * Mathf.PI / (2 * sides));
         float beta = 2 * Mathf.PI / sides;
         float a = Mathf.Tan(alpha);
-        float b = fmod(angle, beta);
+        float b = Global.fmod(angle, beta);
         return (-scale * a) / (Mathf.Sin(b) - a * Mathf.Cos(b));
     }
 
