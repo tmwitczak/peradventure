@@ -112,12 +112,7 @@ public class HandSpawner : MonoBehaviour {
     }
 
     private double calculateAngle(Vector3 hand, Vector3 nextHand)
-    {
-        var d1 = Math.Sqrt(Math.Pow(hand.x, 2) + Math.Pow(hand.y, 2));
-        var d2 = Math.Sqrt(Math.Pow(nextHand.x, 2) + Math.Pow(nextHand.y, 2));
-        var d3 = Math.Sqrt(Math.Pow(hand.x - nextHand.x, 2) + Math.Pow(hand.y - nextHand.y, 2));
-        return (Math.Acos((-Math.Pow(d3, 2) + Math.Pow(d2, 2) + Math.Pow(d1, 2)) / (2 * d1 * d2)) / Math.PI) * 180;
-    }
+        => Vector3.Angle(hand, nextHand);
 
     public void prespawnHands() {
         destroyAllHands();
