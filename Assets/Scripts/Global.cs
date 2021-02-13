@@ -34,6 +34,9 @@ public class Global : MonoBehaviour {
     public static float fmod(float a, float b) {
         return a - b * Mathf.Floor(a / b);
     }
+    public static int mod(int a, int b) {
+        return (int)fmod(a, b);
+    }
 
     private void Awake() {
         LoadData();
