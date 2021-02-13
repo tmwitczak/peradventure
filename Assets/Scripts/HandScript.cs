@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -130,10 +130,7 @@ public class HandScript : MonoBehaviour {
 
     private void OnDisable()
     {
-        if (handSpawner.activeHands.Contains(gameObject))
-        {
-            handSpawner.activeHands.Remove(gameObject);
-        }
+        handSpawner.activeHands.Remove(gameObject);
         if (destructionTimer > lifetimeAfterTheft)
         {
             wasUsed = true;
