@@ -23,8 +23,14 @@ public class HandSpawner : MonoBehaviour {
     private List<float> spawnY;
     private int currentHand = 0;
     private float spawnTimer;
-    private float spawnAngle = 15f;
+    private float _spawnAngle = 15f;
     private bool isSpawning;
+
+    }
+    private float spawnAngle {
+        get => _spawnAngle;
+        set => _spawnAngle = Global.fmod(value, Mathf.PI * Mathf.Rad2Deg);
+    }
 
     private void Awake() {
         screenMin = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)) + new Vector3(-2.0f, -2.0f);
