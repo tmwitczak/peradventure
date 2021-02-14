@@ -31,8 +31,8 @@ public class LevelManager : MonoBehaviour {
 
     public void loadLevel(int level) {
         Random.InitState(level); // Make the game deterministic at every level
-        resetScene();
         setLevelParameters(level);
+        resetScene();
     }
 
     public void resetScene() {
