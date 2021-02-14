@@ -24,7 +24,6 @@ public class HandSpawner : MonoBehaviour {
     private int _currentHand = 0;
     private float spawnTimer;
     private float _spawnAngle = 15f;
-    private bool isSpawning;
 
     private int currentHand {
         get => _currentHand;
@@ -49,13 +48,11 @@ public class HandSpawner : MonoBehaviour {
         for (float i = screenMin.y - outerPadding; i < screenMax.y + outerPadding; i += 0.01f) {
             spawnY.Add(i);
         }
-
-        isSpawning = true;
     }
 
     private void Update() {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= SpawnCooldown && isSpawning) {
+        if (spawnTimer >= SpawnCooldown) {
             spawnTimer = 0.0f;
 
             for (int i = 0; i < HandsToSpawn; ++i) {
@@ -66,6 +63,13 @@ public class HandSpawner : MonoBehaviour {
 
     private void SpawnHand() {
         Assert.IsTrue(currentHand >= 0 && currentHand < hands.Count);
+
+        // Skip spawning of this hand if there isn't enough of the prespawned hands
+        Assert.IsFalse(unusedHandsCount == 0,
+                "Hand couldn't be spawned! Increase the prespawn limit!");
+        if (unusedHandsCount == 0) {
+            return;
+        }
 
         if(findUnusedHand())
         {
@@ -97,8 +101,6 @@ public class HandSpawner : MonoBehaviour {
                 }
             }
         }
-
-        isSpawning = unusedHandsCount > 0;
     }
 
     private bool findUnusedHand()
