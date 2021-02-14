@@ -68,7 +68,7 @@ public class HandSpawner : MonoBehaviour {
             bool hasSpawned = false;
             while (!hasSpawned && currentHand < hands.Count())
             {
-                var previousHand = currentHand <= 0 ? Vector3.zero : lastHandSpawnedInitialPosition;
+                var previousHand = lastHandSpawnedInitialPosition;
                 var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
                 int handsChecked = 0;
                 foreach (var hand in activeHands)
@@ -177,5 +177,6 @@ public class HandSpawner : MonoBehaviour {
         spawnTimer = 0f;
         destroyAllHands();
         prespawnHands();
+        lastHandSpawnedInitialPosition = Vector3.zero;
     }
 }
