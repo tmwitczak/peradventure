@@ -63,7 +63,10 @@ public class HandSpawner : MonoBehaviour {
     }
 
     private void SpawnHand() {
-        if(currentHand < hands.Count() && findUnusedHand())
+        if (currentHand >= hands.Count - 1) {
+            currentHand = 0;
+        }
+        if(findUnusedHand())
         {
             bool hasSpawned = false;
             while (!hasSpawned && currentHand < hands.Count())
@@ -96,13 +99,9 @@ public class HandSpawner : MonoBehaviour {
                     currentHand++;
                 }
             }
-        } else if (currentHand >= hands.Count - 1 && hands.Count > 0)
-        {
-            currentHand = 0;
-        } else
-        {
-            isSpawning = false;
         }
+
+        isSpawning = hands.Count > 0;
     }
 
     private bool findUnusedHand()
