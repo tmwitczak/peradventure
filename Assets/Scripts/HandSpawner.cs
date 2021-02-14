@@ -71,7 +71,9 @@ public class HandSpawner : MonoBehaviour {
             return;
         }
 
-        while (moveToNextUnusedHand())
+        // Search for a fitting hand (angular condition)
+        int unfitHands = 0;
+        while (unfitHands < unusedHandsCount && moveToNextUnusedHand())
         {
             var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
             int handsChecked = 0;
@@ -91,8 +93,19 @@ public class HandSpawner : MonoBehaviour {
             {
                 break;
             }
+            else {
+                ++unfitHands;
+            }
         }
 
+        // Skip spawning of this hand if the active ones are too densely packed
+        Assert.IsTrue(unfitHands < unusedHandsCount,
+                "Hand couldn't be spawned due to the close proximity of the active hands!");
+        if (!(unfitHands < unusedHandsCount)) {
+            return;
+        }
+
+        // Activate the chosen prespawned hand
         hands[currentHand].SetActive(true);
         hands[currentHand].GetComponent<HandScript>().wasUsed = true;
     }
