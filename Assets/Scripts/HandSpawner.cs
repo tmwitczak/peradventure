@@ -94,6 +94,7 @@ public class HandSpawner : MonoBehaviour {
         }
 
         hands[currentHand].SetActive(true);
+        hands[currentHand].GetComponent<HandScript>().wasUsed = true;
     }
 
     private bool moveToNextUnusedHand()
