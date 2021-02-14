@@ -71,41 +71,34 @@ public class HandSpawner : MonoBehaviour {
             return;
         }
 
-        if(findUnusedHand())
+        while (moveToNextUnusedHand())
         {
-            bool hasSpawned = false;
-            while (!hasSpawned && currentHand < hands.Count())
+            var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
+            int handsChecked = 0;
+            foreach (var hand in activeHands)
             {
-                var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
-                int handsChecked = 0;
-                foreach (var hand in activeHands)
+                var activeHandAngle = calculateAngle(hand.transform.position, nextHand);
+                if (activeHandAngle >= spawnAngle)
                 {
-                    var activeHandAngle = calculateAngle(hand.transform.position, nextHand);
-                    if (activeHandAngle >= spawnAngle)
-                    {
-                        handsChecked++;
-                    } else
-                    {
-                        break;
-                    }
-                }
-
-                if (handsChecked == activeHands.Count())
+                    handsChecked++;
+                } else
                 {
-                    hands[currentHand++].SetActive(true);
-                    hasSpawned = true;
-                }
-                else
-                {
-                    currentHand++;
+                    break;
                 }
             }
+
+            if (handsChecked == activeHands.Count())
+            {
+                break;
+            }
         }
+
+        hands[currentHand].SetActive(true);
     }
 
-    private bool findUnusedHand()
+    private bool moveToNextUnusedHand()
     {
-        for(; currentHand < hands.Count(); currentHand++)
+        for(int startSearch = currentHand++; currentHand != startSearch; currentHand++)
         {
             if (!hands[currentHand].GetComponent<HandScript>().wasUsed)
             {
