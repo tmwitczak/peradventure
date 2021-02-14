@@ -98,7 +98,7 @@ public class HandSpawner : MonoBehaviour {
             }
         }
 
-        isSpawning = hands.Count > 0;
+        isSpawning = unusedHandsCount > 0;
     }
 
     private bool findUnusedHand()
@@ -111,6 +111,18 @@ public class HandSpawner : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    private int unusedHandsCount {
+        get {
+            int unusedHands = 0;
+            foreach (var hand in hands) {
+                if (!hand.GetComponent<HandScript>().wasUsed) {
+                    ++unusedHands;
+                }
+            }
+            return unusedHands;
+        }
     }
 
     private float calculateAngle(Vector3 hand, Vector3 nextHand)
