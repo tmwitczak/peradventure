@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 using System;
 using Random = UnityEngine.Random;
 
@@ -21,11 +22,14 @@ public class HandSpawner : MonoBehaviour {
     private Vector3 screenMax;
     private List<float> spawnX;
     private List<float> spawnY;
-    private int currentHand = 0;
+    private int _currentHand = 0;
     private float spawnTimer;
     private float _spawnAngle = 15f;
     private bool isSpawning;
 
+    private int currentHand {
+        get => _currentHand;
+        set => _currentHand = Global.mod(value, handsToPrespawn);
     }
     private float spawnAngle {
         get => _spawnAngle;
@@ -63,9 +67,8 @@ public class HandSpawner : MonoBehaviour {
     }
 
     private void SpawnHand() {
-        if (currentHand >= hands.Count - 1) {
-            currentHand = 0;
-        }
+        Assert.IsTrue(currentHand >= 0 && currentHand < hands.Count);
+
         if(findUnusedHand())
         {
             bool hasSpawned = false;
