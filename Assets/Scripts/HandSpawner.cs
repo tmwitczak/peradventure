@@ -17,7 +17,6 @@ public class HandSpawner : MonoBehaviour {
     [HideInInspector] public List<GameObject> hands = new List<GameObject>();
 
     private GameObject handParent;
-    private Vector3 lastHandSpawnedInitialPosition;
     private Vector3 screenMin;
     private Vector3 screenMax;
     private List<float> spawnX;
@@ -51,7 +50,6 @@ public class HandSpawner : MonoBehaviour {
             spawnY.Add(i);
         }
 
-        lastHandSpawnedInitialPosition = Vector3.zero;
         isSpawning = true;
     }
 
@@ -74,7 +72,6 @@ public class HandSpawner : MonoBehaviour {
             bool hasSpawned = false;
             while (!hasSpawned && currentHand < hands.Count())
             {
-                var previousHand = lastHandSpawnedInitialPosition;
                 var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
                 int handsChecked = 0;
                 foreach (var hand in activeHands)
@@ -89,11 +86,8 @@ public class HandSpawner : MonoBehaviour {
                     }
                 }
 
-                var angle = calculateAngle(previousHand, nextHand);
-                if (handsChecked == activeHands.Count() &&
-                (currentHand == 0 || angle >= spawnAngle ))
+                if (handsChecked == activeHands.Count())
                 {
-                    lastHandSpawnedInitialPosition = nextHand;
                     hands[currentHand++].SetActive(true);
                     hasSpawned = true;
                 }
@@ -179,6 +173,5 @@ public class HandSpawner : MonoBehaviour {
         spawnTimer = 0f;
         destroyAllHands();
         prespawnHands();
-        lastHandSpawnedInitialPosition = Vector3.zero;
     }
 }
