@@ -101,7 +101,7 @@ public class BladeScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Hand")) {
             other.GetComponent<HandScript>().giveBack();
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             emitParticles(other.gameObject);
         }
     }
