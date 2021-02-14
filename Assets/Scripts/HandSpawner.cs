@@ -75,21 +75,7 @@ public class HandSpawner : MonoBehaviour {
         int unfitHands = 0;
         while (unfitHands < unusedHandsCount && moveToNextUnusedHand())
         {
-            var nextHand = hands[currentHand].GetComponent<HandScript>().initialPosition;
-            int handsChecked = 0;
-            foreach (var hand in activeHands)
-            {
-                var activeHandAngle = calculateAngle(hand.transform.position, nextHand);
-                if (activeHandAngle >= spawnAngle)
-                {
-                    handsChecked++;
-                } else
-                {
-                    break;
-                }
-            }
-
-            if (handsChecked == activeHands.Count())
+            if (!angularCollisionWithActiveHands())
             {
                 break;
             }
@@ -116,6 +102,16 @@ public class HandSpawner : MonoBehaviour {
         {
             if (!hands[currentHand].GetComponent<HandScript>().wasUsed)
             {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool angularCollisionWithActiveHands() {
+        var candidate = hands[currentHand].GetComponent<HandScript>().initialPosition;
+        foreach (var hand in activeHands) {
+            if (calculateAngle(hand.transform.position, candidate) < spawnAngle) {
                 return true;
             }
         }
