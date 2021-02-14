@@ -44,6 +44,7 @@ public class BackgroundVariantGeneratorEditor : Editor {
 
         // Setup for the editor ------------------------------------------------
         EditorGUILayout.LabelField("Run the pre-render option!");
+        EditorGUILayout.LabelField("If the Assets/Backgrounds folder doesn't exist, create one manually.");
 
         EditorGUILayout.Space(bigSpace);
 
