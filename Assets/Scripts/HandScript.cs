@@ -129,7 +129,4 @@ public class HandScript : MonoBehaviour {
     private void OnDisable() {
         handSpawner.activeHands.Remove(gameObject);
     }
-    private void OnDestroy() {
-        handSpawner.hands.Remove(gameObject);
-    }
 }
