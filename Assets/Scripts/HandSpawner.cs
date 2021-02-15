@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using System;
 using Random = UnityEngine.Random;
 
 public class HandSpawner : MonoBehaviour {
@@ -73,10 +73,10 @@ public class HandSpawner : MonoBehaviour {
 
         // Search for a fitting hand (angular condition)
         int unfitHands = 0;
-        for (; moveToNextUnusedHand() 
+        for (; moveToNextUnusedHand()
                 && angularCollisionWithActiveHands()
                 && unfitHands < unusedHandsCount;
-             ++unfitHands);
+             ++unfitHands) ;
 
         // Skip spawning of this hand if the active ones are too densely packed
         Assert.IsTrue(unfitHands < unusedHandsCount,
@@ -90,12 +90,9 @@ public class HandSpawner : MonoBehaviour {
         hands[currentHand].GetComponent<HandScript>().wasUsed = true;
     }
 
-    private bool moveToNextUnusedHand()
-    {
-        for(int startSearch = currentHand++; currentHand != startSearch; currentHand++)
-        {
-            if (!hands[currentHand].GetComponent<HandScript>().wasUsed)
-            {
+    private bool moveToNextUnusedHand() {
+        for (int startSearch = currentHand++; currentHand != startSearch; currentHand++) {
+            if (!hands[currentHand].GetComponent<HandScript>().wasUsed) {
                 return true;
             }
         }
@@ -137,18 +134,15 @@ public class HandSpawner : MonoBehaviour {
             List<float> spawnX = new List<float>(this.spawnX);
             List<float> spawnY = new List<float>(this.spawnY);
 
-            if (mode == 1) // Left and right edges
-            {
+            if (mode == 1) { // Left and right edges
                 spawnX = spawnX.Where(value =>
                     value <= screenMin.x - innerPadding ||
                     value >= screenMax.x + innerPadding).ToList();
-            } else if (mode == 2) // Top and bottom edges
-              {
+            } else if (mode == 2) { // Top and bottom edges
                 spawnY = spawnY.Where(value =>
                     value <= screenMin.y - innerPadding ||
                     value >= screenMax.y + innerPadding).ToList();
-            } else // Corners
-              {
+            } else { // Corners
                 spawnX = spawnX.Where(value =>
                         value <= screenMin.x - innerPadding ||
                         value >= screenMax.x + innerPadding).ToList();

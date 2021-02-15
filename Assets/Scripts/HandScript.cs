@@ -13,7 +13,7 @@ public class HandScript : MonoBehaviour {
     public bool wasUsed;
     public float speed;
     public float stealAmount;
-    public Vector3 initialPosition; 
+    public Vector3 initialPosition;
     public HandSpawner handSpawner;
 
     private float stolenHoney;
@@ -118,22 +118,18 @@ public class HandScript : MonoBehaviour {
         stolenHoney = 0f;
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         stolenHoney = 0f;
 
-        if (!handSpawner.activeHands.Contains(gameObject))
-        {
+        if (!handSpawner.activeHands.Contains(gameObject)) {
             handSpawner.activeHands.Add(gameObject);
         }
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         handSpawner.activeHands.Remove(gameObject);
     }
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         handSpawner.hands.Remove(gameObject);
     }
 }
