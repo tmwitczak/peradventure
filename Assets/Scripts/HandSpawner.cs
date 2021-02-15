@@ -73,16 +73,10 @@ public class HandSpawner : MonoBehaviour {
 
         // Search for a fitting hand (angular condition)
         int unfitHands = 0;
-        while (unfitHands < unusedHandsCount && moveToNextUnusedHand())
-        {
-            if (!angularCollisionWithActiveHands())
-            {
-                break;
-            }
-            else {
-                ++unfitHands;
-            }
-        }
+        for (; moveToNextUnusedHand() 
+                && angularCollisionWithActiveHands()
+                && unfitHands < unusedHandsCount;
+             ++unfitHands);
 
         // Skip spawning of this hand if the active ones are too densely packed
         Assert.IsTrue(unfitHands < unusedHandsCount,
