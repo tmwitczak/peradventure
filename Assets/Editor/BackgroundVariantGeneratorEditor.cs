@@ -44,7 +44,11 @@ public class BackgroundVariantGeneratorEditor : Editor {
 
         // Setup for the editor ------------------------------------------------
         EditorGUILayout.LabelField("Run the pre-render option!");
-        EditorGUILayout.LabelField("If the Assets/Backgrounds folder doesn't exist, create one manually.");
+        EditorGUILayout.LabelField("The .meta files of the backgrounds are committed to VCS."
+                + " The backgrounds themselves need to be generated.", EditorStyles.wordWrappedLabel);
+        EditorGUILayout.LabelField("Whenever the backgrounds get updated: Unity deletes the VCS .meta files."
+                + " Generate the backgrounds, delete the new .meta files and restore the ones from Git.",
+                EditorStyles.wordWrappedLabel);
 
         EditorGUILayout.Space(bigSpace);
 

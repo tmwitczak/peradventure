@@ -74,4 +74,4 @@ crashlytics-build.properties
 
 # Background renders
 /[Aa]ssets/[Bb]ackgrounds.meta
-/[Aa]ssets/[Bb]ackgrounds/*
+/[Aa]ssets/[Bb]ackgrounds/*.png
