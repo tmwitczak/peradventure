@@ -38,8 +38,11 @@ public class LevelManager : MonoBehaviour {
     public void resetScene() {
         Debug.Log("Scene reset");
 
-        // Hands
-        handSpawner.reset();
+        if(handSpawner.gameObject.activeSelf)
+        {
+            // Hands
+            handSpawner.reset();
+        }
 
         // Birds
         birdSpawner.GetComponent<BirdSpawnerScript>().reset();
