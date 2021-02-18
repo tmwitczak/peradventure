@@ -1,23 +1,18 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveSystem {
-    public static string path = Application.persistentDataPath + "/gamedata.atm";
+    public static string path = Application.persistentDataPath + "/gamedata.json";
 
     public static void SaveData(GameData gameData) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Create);
-        formatter.Serialize(stream, gameData);
-        stream.Close();
+        string jsonSaveData = JsonUtility.ToJson(gameData);
+        File.WriteAllText(path, jsonSaveData);
     }
 
     public static GameData LoadGameData() {
         if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-            GameData gameData = (GameData)formatter.Deserialize(stream);
-            stream.Close();
+            string jsonSaveData = File.ReadAllText(path);
+            GameData gameData = JsonUtility.FromJson<GameData>(jsonSaveData);
             return gameData;
         } else {
             return null;
