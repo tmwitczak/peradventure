@@ -18,11 +18,11 @@ public class LevelManager : MonoBehaviour {
 
     private void Awake() {
         mainMenu.SetActive(true);
-
         setupLevelParameters();
     }
 
     private void Start() {
+        Global.appVersion = Application.version;
         loadLevel(Global.currentGameplayLevel);
         backgroundVariantGenerator.setLighting(Global.currentGameplayLevel);
         preRenderBackground.setBackgroundTextures(Global.currentGameplayLevel);

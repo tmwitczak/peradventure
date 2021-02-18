@@ -25,6 +25,10 @@ public class Global : MonoBehaviour {
         get => gameData._currentGameplayLevel;
         set => gameData._currentGameplayLevel = value;
     }
+    public static string appVersion {
+        get => gameData._appVersion;
+        set => gameData._appVersion = value;
+    }
     public static Vector2 screenMinWorldPoint {
         get => Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
     }
@@ -81,6 +85,21 @@ public class Global : MonoBehaviour {
             return false;
         }
 
+        return checkAppVersion();
+    }
+
+    private static bool checkAppVersion() {
+        if (gameData._appVersion != Application.version)
+        {
+            switch(gameData._appVersion)
+            {
+                case "0.12.0":
+                    return true;
+                default:
+                    gameData = new GameData();
+                    return false;
+            }
+        }
         return true;
     }
 }
