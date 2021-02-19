@@ -13,15 +13,23 @@ public class BirdScript : MonoBehaviour {
     private GameObject Hive;
     private bool headsRight = true;
 
+    private Vector3 transformRightTarget;
+    private float angularSpeed = -2f * Mathf.PI * Mathf.Rad2Deg;
+    private float angularAcceleration = -3f * Mathf.PI * Mathf.Rad2Deg;
+
     private Vector2 hiveDirection;
 
-    private GameObject angerSymbol;
-    private float initialAngerSymbolScale;
+    [SerializeField] private GameObject angerSymbol;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject model;
+    private Vector3 initialAngerSymbolScale;
     private float pingPongSpeed = 2.0f;
 
     private bool hasCollided = false;
 
     private void Awake() {
+        iTween.Init(gameObject);
+
         if (transform.position.x > Global.screenMaxWorldPoint.x) {
             Vector3 localScale = transform.localScale;
             localScale.x *= -1;
@@ -30,8 +38,7 @@ public class BirdScript : MonoBehaviour {
             headsRight = false;
         }
         Hive = GameObject.FindGameObjectWithTag("Hive");
-        angerSymbol = transform.GetChild(1).gameObject;
-        initialAngerSymbolScale = angerSymbol.transform.localScale.x;
+        initialAngerSymbolScale = angerSymbol.transform.localScale;
     }
 
     private void Start() {
@@ -43,13 +50,14 @@ public class BirdScript : MonoBehaviour {
 
         if (isTriggered) {
             angerSymbol.transform.localScale = new Vector3(
-                    Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale,
-                    Mathf.PingPong(Time.time * pingPongSpeed, 0.5f) + initialAngerSymbolScale,
-                    transform.localScale.y);
+                    (0.5f + Mathf.PingPong(Time.time * pingPongSpeed, 1f)) * initialAngerSymbolScale.x,
+                    transform.localScale.y,
+                    (0.5f + Mathf.PingPong(Time.time * pingPongSpeed, 1f)) * initialAngerSymbolScale.z);
 
             transform.position = Vector2.MoveTowards(transform.position, Hive.transform.position, speed * Time.deltaTime);
-            hiveDirection = Hive.transform.position - transform.position;
-            transform.right = (headsRight ? 1 : -1) * hiveDirection;
+
+            angularSpeed += angularAcceleration * Time.deltaTime;
+            model.transform.Rotate(0f, 0f, angularSpeed * Time.deltaTime);
         } else {
             transform.position += (headsRight ? Vector3.right : Vector3.left) * Time.deltaTime * speed;
         }
@@ -70,10 +78,31 @@ public class BirdScript : MonoBehaviour {
 
             angerSymbol.SetActive(true);
             speed *= 1.5f;
+            animator.speed *= 1.25f;
+            animator.SetLayerWeight(animator.GetLayerIndex("Attack"), 1f);
+            animator.SetTrigger("Prepare");
+
+            hiveDirection = Hive.transform.position - transform.position;
+            transformRightTarget = (headsRight ? 1 : -1) * hiveDirection;
+
+            iTween.Stop(gameObject);
+            iTween.ValueTo(gameObject, iTween.Hash(
+                "from", 0f,
+                "to", 1f,
+                "time", 0.5f,
+                "ignoretimescale", false,
+                "onupdate", "tweenOnUpdateTransformRightCallback",
+                "easetype", iTween.EaseType.easeInOutCubic
+                )
+            );
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         OnTriggerEnter2D(other);
+    }
+
+    private void tweenOnUpdateTransformRightCallback(float value) {
+        transform.right = Vector3.Lerp(transform.right, transformRightTarget, value);
     }
 }

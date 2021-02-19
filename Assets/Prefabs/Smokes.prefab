@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 265024873}
   - component: {fileID: 265024875}
   - component: {fileID: 265024874}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SS DR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 368373923}
   - component: {fileID: 368373925}
   - component: {fileID: 368373924}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SS UR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 1164850997}
   - component: {fileID: 1164850999}
   - component: {fileID: 1164850998}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SS DL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 1430487074}
   - component: {fileID: 1430487076}
   - component: {fileID: 1430487075}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SS UL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1649397008}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: ScreenSplitters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 767825142438995220}
   - component: {fileID: 767825142438995223}
   - component: {fileID: 1876831416}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SmokeLeft
   m_TagString: Smoke
   m_Icon: {fileID: 0}
@@ -5139,7 +5139,7 @@ GameObject:
   - component: {fileID: 767825143048045795}
   - component: {fileID: 767825143048045794}
   - component: {fileID: 1560030743}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SmokeUp
   m_TagString: Smoke
   m_Icon: {fileID: 0}
@@ -9916,7 +9916,7 @@ GameObject:
   - component: {fileID: 767825143305193330}
   - component: {fileID: 767825143305193333}
   - component: {fileID: 1521085847}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SmokeRight
   m_TagString: Smoke
   m_Icon: {fileID: 0}
@@ -14693,7 +14693,7 @@ GameObject:
   - component: {fileID: 767825143773373090}
   - component: {fileID: 767825143773373093}
   - component: {fileID: 529699738}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SmokeDown
   m_TagString: Smoke
   m_Icon: {fileID: 0}
@@ -19506,10 +19506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7173c1c861dce0847af2101a7dacd24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmokeDown: {fileID: 767825143773373090}
-  SmokeLeft: {fileID: 767825142438995220}
-  SmokeRight: {fileID: 767825143305193330}
-  SmokeUp: {fileID: 767825143048045795}
   smokeParticleSystems:
   - {fileID: 767825142438995220}
   - {fileID: 767825143305193330}
