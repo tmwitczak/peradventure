@@ -257,12 +257,12 @@ PrefabInstance:
     - target: {fileID: -531447446284312183, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
       propertyPath: outerPadding
-      value: 1.6
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: -531447446284312183, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
       propertyPath: innerPadding
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2230783086767674684, guid: 2297b8c0d0fd29b4eb000b4b07160fb0,
         type: 3}
