@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SmokeScript : MonoBehaviour {
-    List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
+    List<ParticleSystem.Particle> inside = new List<ParticleSystem.Particle>();
     private new ParticleSystem particleSystem;
     private float smokeEffect = 0.005f;
     private float recoverySpeed = 10f;
@@ -25,28 +25,16 @@ public class SmokeScript : MonoBehaviour {
     }
 
     private void OnParticleTrigger() {
-        particlesTriggered = particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
-        honeyCounter.SmokeFactor -= particlesTriggered * smokeEffect;
+        particlesTriggered = particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, inside);
+        honeyCounter.SmokeFactor -= smokeEffect * (particlesTriggered / 100f);
     }
 
     private float particleMultiplier()
     {
-        float particleMultiplier = 0.0f;
-        switch (particlesTriggered)
+        if(particlesTriggered > 0)
         {
-            case 0:
-                particleMultiplier = 1.0f;
-                break;
-            case 1:
-                particleMultiplier = 0.2f;
-                break;
-            case 2:
-                particleMultiplier = 0.1f;
-                break;
-            default:
-                particleMultiplier = 0.0f;
-                break;
+            return 1 / Mathf.Pow(particlesTriggered, 2);
         }
-        return particleMultiplier;
+        return 1.0f;
     }
 }
