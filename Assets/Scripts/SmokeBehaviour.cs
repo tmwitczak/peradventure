@@ -5,7 +5,9 @@ using UnityEngine.Assertions;
 public class SmokeBehaviour : MonoBehaviour {
     public List<ParticleSystem> smokeParticleSystems;
     public float smokeCooldown = 2.0f;
+    public HoneyCounter honeyCounter;
 
+    private List<SmokeScript> smokeGenerators;
     private List<float> elapsedTime;
     private float smokeTimer;
 
@@ -13,6 +15,14 @@ public class SmokeBehaviour : MonoBehaviour {
 
     private List<int> randomSmokeActivations;
     private IEnumerator<int> randomSmokeActivation;
+
+    private void Awake() {
+        smokeGenerators = new List<SmokeScript>();
+        for (int i = 0; i < smokeParticleSystems.Count; ++i) {
+            smokeGenerators.Add(
+                    smokeParticleSystems[i].gameObject.GetComponent<SmokeScript>());
+        }
+    }
 
     private void Start() {
         elapsedTime = new List<float>(smokeParticleSystems.Count);
@@ -22,6 +32,8 @@ public class SmokeBehaviour : MonoBehaviour {
     }
 
     private void Update() {
+        updateSmokeCoverageFactor();
+
         smokeTimer += Time.deltaTime;
         if (smokeTimer >= smokeCooldown) {
             randomSmokeActivation.MoveNext();
@@ -39,6 +51,30 @@ public class SmokeBehaviour : MonoBehaviour {
                 smokeParticleSystems[i].Stop();
             }
         }
+    }
+
+    private int particlesTriggered {
+        get {
+            int count = 0;
+            foreach (var generator in smokeGenerators) {
+                count += generator.particlesTriggered;
+            }
+            return count;
+        }
+    }
+
+    private float coverage {
+        get {
+            float sigma = 80f; // Controls the steepness of the curve
+            float a = particlesTriggered / sigma;
+            return Mathf.Exp(-0.5f * a * a);
+        }
+    }
+
+    private void updateSmokeCoverageFactor() {
+        float coveredDistancePerSecond = 0.9f;
+        honeyCounter.SmokeFactor = Global.lerp(
+                honeyCounter.SmokeFactor, coverage, coveredDistancePerSecond, Time.deltaTime);
     }
 
     private void activateSmoke(int i) {

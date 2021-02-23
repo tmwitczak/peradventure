@@ -975,6 +975,10 @@ PrefabInstance:
       propertyPath: honeyCounter
       value: 
       objectReference: {fileID: 1111379734}
+    - target: {fileID: 1897925468, guid: 42ccd7293de293c4f8c15e3d4f94f2b4, type: 3}
+      propertyPath: honeyCounter
+      value: 
+      objectReference: {fileID: 1111379734}
     - target: {fileID: 767825143953188488, guid: 42ccd7293de293c4f8c15e3d4f94f2b4,
         type: 3}
       propertyPath: m_LocalPosition.x

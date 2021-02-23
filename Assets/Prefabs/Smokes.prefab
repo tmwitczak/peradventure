@@ -4855,7 +4855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  honeyCounter: {fileID: 0}
+  particlesTriggered: 0
 --- !u!1 &767825143048045796
 GameObject:
   m_ObjectHideFlags: 0
@@ -9632,7 +9632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  honeyCounter: {fileID: 0}
+  particlesTriggered: 0
 --- !u!1 &767825143305193335
 GameObject:
   m_ObjectHideFlags: 0
@@ -14409,7 +14409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  honeyCounter: {fileID: 0}
+  particlesTriggered: 0
 --- !u!1 &767825143773373095
 GameObject:
   m_ObjectHideFlags: 0
@@ -19186,7 +19186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1b77a1f229c744ae7c8714869daaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  honeyCounter: {fileID: 0}
+  particlesTriggered: 0
 --- !u!1 &767825143953188491
 GameObject:
   m_ObjectHideFlags: 0
@@ -19241,3 +19241,4 @@ MonoBehaviour:
   - {fileID: 767825143048045795}
   - {fileID: 767825143773373090}
   smokeCooldown: 2
+  honeyCounter: {fileID: 0}
