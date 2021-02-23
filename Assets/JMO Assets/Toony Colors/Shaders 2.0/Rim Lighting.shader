@@ -17,6 +17,9 @@ Shader "Toony Colors Free/Rim Lighting"
 		
 		//DIFFUSE
 		_MainTex ("Main Texture (RGB)", 2D) = "white" {}
+
+		// Normal mapping
+		[NoScaleOffset] _NormalMap ("Normal Map", 2D) = "bump" {}
 		
 		//TOONY COLORS RAMP
 		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
@@ -50,6 +53,8 @@ Shader "Toony Colors Free/Rim Lighting"
 		
 		fixed4 _Color;
 		sampler2D _MainTex;
+
+		sampler2D _NormalMap;
 		
 		fixed4 _RimColor;
 		fixed _RimMin;
@@ -65,6 +70,7 @@ Shader "Toony Colors Free/Rim Lighting"
 		struct Input
 		{
 			half2 uv_MainTex;
+			half2 uv_NormalMap;
 			float3 viewDir;
 		};
 		
@@ -121,6 +127,8 @@ Shader "Toony Colors Free/Rim Lighting"
 			
 			o.Albedo = mainTex.rgb * _Color.rgb;
 			o.Alpha = mainTex.a * _Color.a;
+
+			o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_NormalMap));
 			
 			//Rim
 			float3 viewDir = normalize(IN.viewDir);
