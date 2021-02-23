@@ -41,6 +41,9 @@ public class Global : MonoBehaviour {
     public static int mod(int a, int b) {
         return (int)fmod(a, b);
     }
+    public static float lerp(float a, float b, float t, float deltaTime) {
+        return Mathf.Lerp(a, b, 1f - Mathf.Pow(1f - t, deltaTime));
+    }
 
     private void Awake() {
         LoadData();
