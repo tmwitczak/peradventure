@@ -156,8 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hive: {fileID: 4615227038859752290, guid: f10284a08e1850c4ca3a5dda9b5b0748, type: 3}
   moveBack: 0
+  wasUsed: 0
   speed: 3
   stealAmount: 15
+  initialPosition: {x: 0, y: 0, z: 0}
+  animator: {fileID: 5991291331639333694}
 --- !u!1001 &763653202847752249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,6 +323,12 @@ PrefabInstance:
 --- !u!4 &5509851576569905223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3862841779677451989, guid: 2b6d1744479b8014f9111e7403c9a277,
+    type: 3}
+  m_PrefabInstance: {fileID: 8785818021213312658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5991291331639333694 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3082759342598407596, guid: 2b6d1744479b8014f9111e7403c9a277,
     type: 3}
   m_PrefabInstance: {fileID: 8785818021213312658}
   m_PrefabAsset: {fileID: 0}

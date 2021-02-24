@@ -15,6 +15,7 @@ public class HandScript : MonoBehaviour {
     public float stealAmount;
     public Vector3 initialPosition;
     static public HandSpawner handSpawner;
+    public Animator animator;
 
     private float stolenHoney;
     private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
@@ -22,6 +23,7 @@ public class HandScript : MonoBehaviour {
     private HoneyCounter honeyCounter;
     private float destructionTimer = 0.0f;
     private float lifetimeAfterTheft = 5.0f;
+    private bool stealAnimationTriggered;
 
     private void Awake() {
         honey = gameObject.transform.GetChild(0).gameObject;
@@ -33,6 +35,7 @@ public class HandScript : MonoBehaviour {
         initialPosition = transform.position;
         moveBack = false;
         wasUsed = false;
+        stealAnimationTriggered = false;
 
         transform.rotation = rotationTowardsHive();
 
@@ -90,6 +93,13 @@ public class HandScript : MonoBehaviour {
     private void Update() {
         destructionTimer += Convert.ToSingle(moveBack) * Time.deltaTime;
         gameObject.SetActive(destructionTimer < lifetimeAfterTheft);
+
+        // Trigger a grabbing animation when a hand is close enough to the hive
+        if (!stealAnimationTriggered &&
+                Vector3.Distance(hive.transform.position, transform.position) <= 4.75f) {
+            animator.SetTrigger("Steal");
+            stealAnimationTriggered = true;
+        }
     }
 
     private Quaternion rotationTowardsHive() {

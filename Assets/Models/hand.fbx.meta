@@ -1,8 +1,29 @@
 fileFormatVersion: 2
-guid: 2834df23ca8b62846a504dcf22df560f
+guid: 51536bd896d1f674f8ca3b986b9de703
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -4613257538813082340
+    second: Hand Armature|Action
+  - first:
+      74: -3042886730315558237
+    second: Hand Armature|Action.001
+  - first:
+      74: 5262339933204378632
+    second: Hand Armature|Hand Finger Movement
+  - first:
+      74: 3534170739037216488
+    second: Hand Armature|Hand Finger Movement.001
+  - first:
+      74: 1472407414829998980
+    second: Hand Armature|Hand Grab
+  - first:
+      74: 1182300374755974623
+    second: Hand Armature|Hand Idle
+  - first:
+      74: -8784874550217014844
+    second: Hand Armature|Hand Steal
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -30,7 +51,65 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Hand Armature|Hand Idle
+      takeName: Hand Armature|Hand Idle
+      internalID: 0
+      firstFrame: 27
+      lastFrame: 76
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hand Armature|Hand Steal
+      takeName: Hand Armature|Hand Steal
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
