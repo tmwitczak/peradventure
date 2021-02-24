@@ -31,18 +31,15 @@ public class LevelManager : MonoBehaviour {
 
     public void loadLevel(int level) {
         Random.InitState(level); // Make the game deterministic at every level
-        setLevelParameters(level);
         resetScene();
+        setLevelParameters(level);
     }
 
     public void resetScene() {
         Debug.Log("Scene reset");
 
-        if(handSpawner.gameObject.activeSelf)
-        {
-            // Hands
-            handSpawner.reset();
-        }
+        // Hands
+        handSpawner.reset();
 
         // Birds
         birdSpawner.GetComponent<BirdSpawnerScript>().reset();

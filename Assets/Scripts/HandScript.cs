@@ -14,7 +14,7 @@ public class HandScript : MonoBehaviour {
     public float speed;
     public float stealAmount;
     public Vector3 initialPosition;
-    public HandSpawner handSpawner;
+    static public HandSpawner handSpawner;
 
     private float stolenHoney;
     private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
@@ -26,7 +26,9 @@ public class HandScript : MonoBehaviour {
     private void Awake() {
         honey = gameObject.transform.GetChild(0).gameObject;
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
-        handSpawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
+        if (handSpawner == null) {
+            handSpawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
+        }
 
         initialPosition = transform.position;
         moveBack = false;
