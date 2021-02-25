@@ -91,22 +91,46 @@ public class LevelManager : MonoBehaviour {
         // TODO: Rewrite the level management as JSON-centric
         startupLevelParameters = new List<LevelParameters>();
 
+        // Nothing
         startupLevelParameters.Add(new LevelParameters(
-                    /* hands */ new LevelParameters.Description(true, 1, 2f, 3f),
+                    /* hands */ new LevelParameters.Description(false, 0, 0f, 0f),
                     /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
                     /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+        // Hands only
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 1, 1f, 3f),
+                    /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+        // Smoke only
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(false, 0, 0f, 0f),
+                    /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
+                    /* smoke */ new LevelParameters.Description(true, 0, 0f, 4f)));
+        // Hands and smoke
         startupLevelParameters.Add(new LevelParameters(
                     /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
-                    /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
-                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
-        startupLevelParameters.Add(new LevelParameters(
-                    /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
-                    /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
-                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
-        startupLevelParameters.Add(new LevelParameters(
-                    /* hands */ new LevelParameters.Description(true, 1, 3f, 1.5f),
-                    /* birds */ new LevelParameters.Description(true, 1, 2f, 3f),
+                    /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
                     /* smoke */ new LevelParameters.Description(true, 0, 0f, 8f)));
+        // Hands and birds
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 1, 2.5f, 2f),
+                    /* birds */ new LevelParameters.Description(true, 1, 2f, 4f),
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 8f)));
+        // Smoke and birds
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(false, 0, 0f, 0f),
+                    /* birds */ new LevelParameters.Description(true, 1, 2f, 4f),
+                    /* smoke */ new LevelParameters.Description(true, 0, 0f, 8f)));
+        // Multiple hands
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 2, 2.5f, 3f),
+                    /* birds */ new LevelParameters.Description(false, 0, 0f, 0f),
+                    /* smoke */ new LevelParameters.Description(false, 0, 0f, 0f)));
+        // Hands, birds and smoke
+        startupLevelParameters.Add(new LevelParameters(
+                    /* hands */ new LevelParameters.Description(true, 3, 2f, 4f),
+                    /* birds */ new LevelParameters.Description(true, 2, 3f, 6f),
+                    /* smoke */ new LevelParameters.Description(true, 0, 0f, 15f)));
     }
 
     private void setLevelParameters(int levelNumber) {
