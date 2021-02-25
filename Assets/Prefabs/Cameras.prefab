@@ -44,6 +44,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8378124164262371329}
     m_Modifications:
+    - target: {fileID: 1398971429743603380, guid: a338ad32d89cd3748a54142efe48ef82,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 103424
+      objectReference: {fileID: 0}
     - target: {fileID: 1398971429743603383, guid: a338ad32d89cd3748a54142efe48ef82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -203,6 +208,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera (Smoke)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778702152825739723, guid: ad576fa9ec7d2c14e8612caed9077c01,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8778702152825739724, guid: ad576fa9ec7d2c14e8612caed9077c01,
         type: 3}
@@ -508,6 +518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Foreground Camera (Bird)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398971429743603386, guid: a338ad32d89cd3748a54142efe48ef82,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1398971429743603381, guid: a338ad32d89cd3748a54142efe48ef82, type: 3}
