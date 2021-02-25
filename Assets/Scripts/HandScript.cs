@@ -19,14 +19,13 @@ public class HandScript : MonoBehaviour {
 
     private float stolenHoney;
     private List<Hashtable> forwardMovementProperties, backwardMovementProperties;
-    private GameObject honey;
+    [SerializeField] private GameObject honey;
     private HoneyCounter honeyCounter;
     private float destructionTimer = 0.0f;
     private float lifetimeAfterTheft = 5.0f;
     private bool stealAnimationTriggered;
 
     private void Awake() {
-        honey = gameObject.transform.GetChild(0).gameObject;
         honeyCounter = GameObject.FindGameObjectWithTag("HoneyCounter").GetComponent<HoneyCounter>();
         if (handSpawner == null) {
             handSpawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
@@ -38,6 +37,8 @@ public class HandScript : MonoBehaviour {
         stealAnimationTriggered = false;
 
         transform.rotation = rotationTowardsHive();
+
+        honey.transform.localScale = Vector3.zero;
 
         // iTween setup
         {
@@ -99,6 +100,13 @@ public class HandScript : MonoBehaviour {
                 Vector3.Distance(hive.transform.position, transform.position) <= 4.75f) {
             animator.SetTrigger("Steal");
             stealAnimationTriggered = true;
+
+            iTween.Stop(honey);
+            iTween.ScaleTo(honey, iTween.Hash(
+                        "scale", Vector3.one,
+                        "time", 0.8f,
+                        "delay", 0.15f,
+                        "easeType", iTween.EaseType.easeOutElastic));
         }
     }
 
