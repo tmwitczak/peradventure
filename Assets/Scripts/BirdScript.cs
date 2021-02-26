@@ -71,7 +71,9 @@ public class BirdScript : MonoBehaviour {
         if (other.CompareTag("Hive") && isTriggered && !hasCollided) {
             hasCollided = true;
             honeyCounter.HoneyAmount -= StealAmount;
+#if UNITY_ANDROID || UNITY_IOS
             Handheld.Vibrate();
+#endif
             Destroy(gameObject);
         } else if (other.CompareTag("Blade") && !isTriggered) {
             isTriggered = true;
